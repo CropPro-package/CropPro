@@ -24,6 +24,8 @@ LDAcrop.pro<-function(x){
 # note not sure how to do the colour - do have this as a default colour that can be changed.
 
 cropplot3dpoints<-function(x,y,z, Col){
+  library(rgl)
+
   load(file="CP.data.model.rda")
   discrim_cv <- lda(PROC ~ BHH+BFH+SHH+SHL+SFH+SFL,CP.data.model, CV = TRUE)
   model_lda <- lda(PROC ~ BHH+BFH+SHH+SHL+SFH+SFL,CP.data.model)
@@ -35,29 +37,62 @@ cropplot3dpoints<-function(x,y,z, Col){
     group_by(PROC) %>%
     summarise(centroid1 = mean(LD1),
               centroid2= mean(LD2),
-              centroid3=mean(LD3))  open3d()
-  plot3d(x, y, z,
-       xlab="LD1", ylab="LD2", zlab="LD3", col=Col, type="s",size=0.8 )
-  shapelist3d(cube3d(),x=centroids$centroid1,y=centroids$centroid2, z=centroids$centroid3,  col="black",size=0.25)
+              centroid3=mean(LD3))
+  open3d()
+  par3d(windowRect = c(100, 100, 612, 612))
 
-  points3d(x,y, z, col="black",  size=0.9)
 
-play3d( spin3d( axis = c(0, 0, 1), rpm = 20), duration = 10 )
+  plot3d(functionalAt$LD1,functionalAt$LD2, functionalAt$LD3, col=functionalAt$PROC, type="s",  size=0.9, xlab= "LD1", ylab="LD2", zlab="LD3")
+  pch3d(x, y, z, pch=8, col=Col,cex = 0.2 )
+  shapelist3d(cube3d(),x=centroids$centroid1,y=centroids$centroid2, z=centroids$centroid3,  col="black",size=0.2)
+#play3d( spin3d( axis = c(0, 0, 1), rpm = 20), duration = 10 )
+legend3d("topright",c("Winnowing by-products", "Coarse-sieving by-products", "Fine-sieving by-products", "Fine-sieving products", "SITE", "Group centroids"), pch= c(16,16,16,16,8,15), col=c(1,2,3,4,Col,"black"), cex=1)
 }
 
-wire3d(ellips1, col="blue")
-wire3d(ellips2, col="pink")
-wire3d(ellips3, col="purple")
-wire3d(ellips4, col="black")
 
 
-cropplot2d<-function(x???,y???,xlims=c(-5,5),ylims=c(-5.5,4),cols=,pchs,legend){
-  LDA.data<-
-  centroids<-
+cropplot2d<-function(x,y,ylims=c(-4.5,4.5),xlims=c(-4.5,4.5),gcols=NULL,gpchs=NULL, col ='black', pch=15){
+  load(file="CP.data.model.rda")
+  discrim_cv <- lda(PROC ~ BHH+BFH+SHH+SHL+SFH+SFL,CP.data.model, CV = TRUE)
+  model_lda <- lda(PROC ~ BHH+BFH+SHH+SHL+SFH+SFL,CP.data.model)
+  predictionmodel <- predict(model_lda,CP.data.model)
+  dataset <- data.frame(PROC = as.factor(CP.data.model$PROC),
+                             Classification= predictionmodel$class,
+                             predictionmodel$x)
+  centroids <- dataset %>%
+    group_by(PROC) %>%
+    summarise(centroid1 = mean(LD1),
+              centroid2= mean(LD2),
+              centroid3=mean(LD3))
+
+  if(!is.null(gcols)){
+    gcolours<-gcols
+    dataset$colour<-gcolours[as.numeric(functionalAt$PROC)]
+  }
+  if(is.null(gcols)){
+    gcolours<-c('black','black','black','black')
+    dataset$colour<-gcolours[as.numeric(functionalAt$PROC)]
+  }
+  mygroups<-c("Winnowing by-products", "Coarse-sieving by-products", "Fine-sieving by-products", "Fine-sieving products")
+ dataset$Actual.Group<-mygroups[as.numeric(dataset$PROC)]
+  if(!is.null(gpchs)){
+    mypch<-gpchs
+    dataset$pch<-mypch[as.numeric(dataset$PROC)]
+  }
+ if(is.null(gpchs)){
+    mypch<-c(1,2,3,5)
+    dataset$pch<-mypch[as.numeric(dataset$PROC)]
+  }
+
   par(mar=c(10,4,4,4))
-  plot(x=dataset$lda.LD1, y=dataset$lda.LD2, col=dataset$colour, pch=as.numeric(as.character(dataset$pch)), ylim=c(-5.5,4), xlim=c(-5,5), xlab="", ylab="")
+  plot(dataset$LD1, dataset$LD2, col=paste(dataset$colour), pch=as.numeric(as.character(dataset$pch)), ylim=ylims, xlim=xlims, xlab="", ylab="")
   par(new=T)
-  plot(centroids$centroid1,centroids$centroid2 , col="Black", pch=20, ylim=c(-5.5,4), xlim=c(-5,5), xlab="Function 1", ylab="Function 2")
+  plot(centroids$centroid1,centroids$centroid2 , col="Black", pch=20, ylim=ylims, xlim=xlims, xlab="", ylab="")
   par(new=T)
-  plot(predictions$x.LD1,predictions$x.LD2, col="Black", pch=17,ylim=c(-5.5,4), xlim=c(-5,5), xlab="Function 1", ylab="Function 2")
+  plot(x,y, col=col, pch=pch,ylim=ylims, xlim=xlims, xlab="Function 1", ylab="Function 2")
+
+  legend.table<- dataset[!duplicated(dataset$Actual.Group),]
+
+  legend("bottom", c(paste(legend.table$Actual.Group), "SITE", "Group centroids"), col=c(paste(legend.table$colour),col, "black"), pch=c(as.numeric(as.character(legend.table$pch)),pch,20), pt.cex=1, cex=0.64, bg="white",xpd=TRUE, ncol=2, inset = c(-0.3,-0.4))
+
 }
