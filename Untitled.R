@@ -16,7 +16,9 @@ LDAcrop.pro<-function(x){
               centroid2= mean(LD2),
               centroid3=mean(LD3))
   model <- cbind(as.data.frame(predict(model_lda,x)),x)
+
   print(model)
+
 }
 
 
@@ -51,7 +53,7 @@ legend3d("topright",c("Winnowing by-products", "Coarse-sieving by-products", "Fi
 
 
 
-cropplot2d<-function(x,y,ylims=c(-4.5,4.5),xlims=c(-4.5,4.5),gcols=NULL,gpchs=NULL, col ='black', pch=15){
+cropplot2d<-function(x,y,ylims=c(-5,5),xlims=c(-5,5),gcols=NULL,gpchs=NULL, col ='black', pch=23){
   load(file="CP.data.model.rda")
   discrim_cv <- lda(PROC ~ BHH+BFH+SHH+SHL+SFH+SFL,CP.data.model, CV = TRUE)
   model_lda <- lda(PROC ~ BHH+BFH+SHH+SHL+SFH+SFL,CP.data.model)
@@ -67,11 +69,11 @@ cropplot2d<-function(x,y,ylims=c(-4.5,4.5),xlims=c(-4.5,4.5),gcols=NULL,gpchs=NU
 
   if(!is.null(gcols)){
     gcolours<-gcols
-    dataset$colour<-gcolours[as.numeric(functionalAt$PROC)]
+    dataset$colour<-gcolours[as.numeric(dataset$PROC)]
   }
   if(is.null(gcols)){
     gcolours<-c('black','black','black','black')
-    dataset$colour<-gcolours[as.numeric(functionalAt$PROC)]
+    dataset$colour<-gcolours[as.numeric(dataset$PROC)]
   }
   mygroups<-c("Winnowing by-products", "Coarse-sieving by-products", "Fine-sieving by-products", "Fine-sieving products")
  dataset$Actual.Group<-mygroups[as.numeric(dataset$PROC)]
@@ -89,10 +91,10 @@ cropplot2d<-function(x,y,ylims=c(-4.5,4.5),xlims=c(-4.5,4.5),gcols=NULL,gpchs=NU
   par(new=T)
   plot(centroids$centroid1,centroids$centroid2 , col="Black", pch=20, ylim=ylims, xlim=xlims, xlab="", ylab="")
   par(new=T)
-  plot(x,y, col=col, pch=pch,ylim=ylims, xlim=xlims, xlab="Function 1", ylab="Function 2")
+  plot(x,y, col=col, pch=21, ylim=ylims, xlim=xlims, xlab="Function 1", ylab="Function 2")
 
   legend.table<- dataset[!duplicated(dataset$Actual.Group),]
 
-  legend("bottom", c(paste(legend.table$Actual.Group), "SITE", "Group centroids"), col=c(paste(legend.table$colour),col, "black"), pch=c(as.numeric(as.character(legend.table$pch)),pch,20), pt.cex=1, cex=0.64, bg="white",xpd=TRUE, ncol=2, inset = c(-0.3,-0.4))
+  legend("bottom", c(paste(legend.table$Actual.Group), "SITE", "Group centroids"), col=c((paste(legend.table$colour)),col, "black"), pch=c((as.numeric(as.character(legend.table$pch))),pch,20), pt.cex=1, cex=0.64, bg="white",xpd=TRUE, ncol=2, inset = c(-0.3,-0.4))
 
 }
