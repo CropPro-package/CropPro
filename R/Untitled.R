@@ -1,9 +1,8 @@
 
 LDAcrop.pro<-function(x){
   library(dplyr)
-  library(haven)
   library(MASS)
-  load(file="CP.data.model.rda")
+  data.model<-data.frame(CP.data.model)
   discrim_cv <- lda(PROC ~ BHH+BFH+SHH+SHL+SFH+SFL,CP.data.model, CV = TRUE)
   model_lda <- lda(PROC ~ BHH+BFH+SHH+SHL+SFH+SFL,CP.data.model)
   predictionmodel <- predict(model_lda,CP.data.model)
