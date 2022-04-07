@@ -1,24 +1,24 @@
-\name{CP.data.model}
-\alias{CP.data.model}
+\name{data.model}
+\alias{data.model}
 \docType{data}
-\title{ the modern model of crop processing
+\title{ test 2
 %%   ~~ data name/kind ... ~~
 }
-\description{
+\description{ test 2
 %%  ~~ A concise (1-5 lines) description of the dataset. ~~
 }
-\usage{data("CP.data.model")}
+\usage{data("data.model")}
 \format{
   A data frame with 216 observations on the following 8 variables.
   \describe{
-    \item{\code{NO}}{a numeric vector}
-    \item{\code{PROC}}{a numeric vector}
-    \item{\code{BHH}}{a numeric vector}
+    \item{\code{NO}}{1}
+    \item{\code{PROC}}{2a numeric vector}
+    \item{\code{BHH}}{a 3numeric vector}
     \item{\code{BFH}}{a numeric vector}
-    \item{\code{SHH}}{a numeric vector}
-    \item{\code{SHL}}{a numeric vector}
-    \item{\code{SFH}}{a numeric vector}
-    \item{\code{SFL}}{a numeric vector}
+    \item{\code{SHH}}{a n4umeric vector}
+    \item{\code{SHL}}{a nu5meric vector}
+    \item{\code{SFH}}{a num6eric vector}
+    \item{\code{SFL}}{a nume6ric vector}
   }
 }
 \details{
@@ -31,7 +31,7 @@
 %%  ~~ possibly secondary sources and usages ~~
 }
 \examples{
-data(CP.data.model)
-## maybe str(CP.data.model) ; plot(CP.data.model) ...
+data(data.model)
+## maybe str(data.model) ; plot(data.model) ...
 }
 \keyword{datasets}

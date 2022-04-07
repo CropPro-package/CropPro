@@ -1,12 +1,11 @@
 
 LDAcrop.pro<-function(x){
-  library(dplyr)
-  library(MASS)
-  data.model<-data.frame(CP.data.model)
-  discrim_cv <- lda(PROC ~ BHH+BFH+SHH+SHL+SFH+SFL,CP.data.model, CV = TRUE)
-  model_lda <- lda(PROC ~ BHH+BFH+SHH+SHL+SFH+SFL,CP.data.model)
-  predictionmodel <- predict(model_lda,CP.data.model)
-  functionalAt <- data.frame(PROC = as.factor(CP.data.model$PROC),
+
+  data.model<-data.frame(data.model)
+  discrim_cv <- lda(PROC ~ BHH+BFH+SHH+SHL+SFH+SFL,data.model, CV = TRUE)
+  model_lda <- lda(PROC ~ BHH+BFH+SHH+SHL+SFH+SFL,data.model)
+  predictionmodel <- predict(model_lda,data.model)
+  functionalAt <- data.frame(PROC = as.factor(data.model$PROC),
                              Classification= predictionmodel$class,
                              predictionmodel$x)
   centroids <- functionalAt %>%
