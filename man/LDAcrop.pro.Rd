@@ -52,6 +52,9 @@ SFL<-runif(40, min=1, max=8)
 Sample<-sample(1:40, 40, replace=F)
 data<-as.data.frame(cbind(BHH,BFH,SHH,SHL,SFH,SFL,Sample))
 
+#Use
+LDAcrop.pro(data)
+
 }
 % Add one or more standard keywords, see file 'KEYWORDS' in the
 % R documentation directory (show via RShowDoc("KEYWORDS")):

@@ -1,6 +1,6 @@
 
 
-cropplot2d<-function(x,y,ylims=NULL,xlims=NULL,gcols=NULL,gpchs=NULL, col ='black', pch=23){
+cropplot2d<-function(x,y,ylims=NULL,xlims=NULL,gcols=NULL,gpchs=NULL, col ='black', pch=15, site=site){
   data.model<-data.frame(data.model)
   discrim_cv <- lda(PROC ~ BHH+BFH+SHH+SHL+SFH+SFL,data.model, CV = TRUE)
   model_lda <- lda(PROC ~ BHH+BFH+SHH+SHL+SFH+SFL,data.model)
@@ -79,17 +79,15 @@ cropplot2d<-function(x,y,ylims=NULL,xlims=NULL,gcols=NULL,gpchs=NULL, col ='blac
    ylim<-c(ymin-0.5,ymax+0.5)}
 
 
-
-
   par(mar=c(10,4,4,4))
   plot(dataset$LD1, dataset$LD2, col=paste(dataset$colour), pch=as.numeric(as.character(dataset$pch)), ylim=ylim, xlim=xlim, xlab="", ylab="")
   par(new=T)
-  plot(centroids$centroid1,centroids$centroid2 , col="Black", pch=20, ylim=ylim, xlim=xlim, xlab="", ylab="")
+  plot(centroids$centroid1,centroids$centroid2 , col="Black", pch=19, ylim=ylim, xlim=xlim, xlab="", ylab="")
   par(new=T)
-  plot(x,y, col=col, pch=15, ylim=ylim, xlim=xlim, xlab="Function 1", ylab="Function 2")
+  plot(x,y, col=col, pch=pch, ylim=ylim, xlim=xlim, xlab="Function 1", ylab="Function 2")
 
   legend.table<- dataset[!duplicated(dataset$Actual.Group),]
 
-  legend("bottom", c(paste(legend.table$Actual.Group), "SITE", "Group centroids"), col=c((paste(legend.table$colour)),col, "black"), pch=c((as.numeric(as.character(legend.table$pch))),pch,15), pt.cex=1, cex=0.64, bg="white",xpd=TRUE, ncol=2, inset = c(-0.3,-0.4))
+  legend("bottom", c(paste(legend.table$Actual.Group), site, "Group centroids"), col=c((paste(legend.table$colour)),col, "black"), pch=c((as.numeric(as.character(legend.table$pch))),pch,19), pt.cex=1, cex=0.64, bg="white",xpd=TRUE, ncol=2, inset = c(-0.3,-0.4))
 
 }

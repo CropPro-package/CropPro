@@ -8,20 +8,26 @@
 %%  ~~ A concise (1-5 lines) description of what the function does. ~~
 }
 \usage{
-cropplot3dpoints(x, y, z, Col)
+cropplot3dpoints(x, y, z, col, gcol, site)
 }
 %- maybe also 'usage' for other objects documented here.
 \arguments{
-  \item{x}{
+  \item{x}{Function 1
 %%     ~~Describe \code{x} here~~
 }
-  \item{y}{
+  \item{y}{Function 2
 %%     ~~Describe \code{y} here~~
 }
-  \item{z}{
+  \item{z}{Function 3
 %%     ~~Describe \code{z} here~~
 }
-  \item{Col}{
+  \item{col}{colour of archaeobotanical data
+%%     ~~Describe \code{Col} here~~
+}
+\item{gcol}{group colour
+%%     ~~Describe \code{Col} here~~
+}
+\item{site}{name of archaeobotanical data
 %%     ~~Describe \code{Col} here~~
 }
 }
@@ -51,38 +57,20 @@ cropplot3dpoints(x, y, z, Col)
 %% ~~objects to See Also as \code{\link{help}}, ~~~
 }
 \examples{
-##---- Should be DIRECTLY executable !! ----
-##-- ==>  Define data, use random,
-##--	or do  help(data=index)  for the standard data sets.
+##example dataset
+LD1<-runif(40, min= -0, max=3)
+LD2<-runif(40, min = -2, max=4)
+LD3<-runif(40, min =-4, max=-1)
+Study<-sample(1:3, 40, replace=T)
+data<-data.frame(Study,LD1, LD2, LD3)
 
-## The function is currently defined as
-function (x, y, z, Col)
-{
-    library(rgl)
-    load(file = "CP.data.model.rda")
-    discrim_cv <- lda(PROC ~ BHH + BFH + SHH + SHL + SFH + SFL,
-        CP.data.model, CV = TRUE)
-    model_lda <- lda(PROC ~ BHH + BFH + SHH + SHL + SFH + SFL,
-        CP.data.model)
-    predictionmodel <- predict(model_lda, CP.data.model)
-    functionalAt <- data.frame(PROC = as.factor(CP.data.model$PROC),
-        Classification = predictionmodel$class, predictionmodel$x)
-    centroids <- functionalAt \%>\% group_by(PROC) \%>\% summarise(centroid1 = mean(LD1),
-        centroid2 = mean(LD2), centroid3 = mean(LD3))
-    open3d()
-    par3d(windowRect = c(100, 100, 612, 612))
-    plot3d(functionalAt$LD1, functionalAt$LD2, functionalAt$LD3,
-        col = functionalAt$PROC, type = "s", size = 0.9, xlab = "LD1",
-        ylab = "LD2", zlab = "LD3")
-    pch3d(x, y, z, pch = 8, col = Col, cex = 0.2)
-    shapelist3d(cube3d(), x = centroids$centroid1, y = centroids$centroid2,
-        z = centroids$centroid3, col = "black", size = 0.2)
-    legend3d("topright", c("Winnowing by-products", "Coarse-sieving by-products",
-        "Fine-sieving by-products", "Fine-sieving products",
-        "SITE", "Group centroids"), pch = c(16, 16, 16, 16, 8,
-        15), col = c(1, 2, 3, 4, Col, "black"), cex = 1)
-  }
+## use
+cropplot3dpoints(data$LD1, data$LD2, data$LD3)
+
+## without defaults
+cropplot3dpoints(data$LD1, data$LD2, data$LD3, gcol = c("black", "grey", "grey48", "grey100"), col = "red", site = "Example")
 }
+
 % Add one or more standard keywords, see file 'KEYWORDS' in the
 % R documentation directory (show via RShowDoc("KEYWORDS")):
 % \keyword{ ~kwd1 }

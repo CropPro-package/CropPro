@@ -1,39 +1,42 @@
 \name{cropplot2d}
 \alias{cropplot2d}
 %- Also NEED an '\alias' for EACH other topic documented here.
-\title{ploting the output of the lDA as a 2 d graph showing LD1 and LD2
+\title{ploting the output of the LDA as a 2d graph showing LD1 and LD2
 %%  ~~function to do ... ~~
 }
 \description{
 %%  ~~ A concise (1-5 lines) description of what the function does. ~~
 }
 \usage{
-cropplot2d(x, y, ylims = c(-5, 5), xlims = c(-5, 5), gcols = NULL, gpchs = NULL, col = "black", pch = 23)
+cropplot2d(x, y, ylims = ylims, xlims = xlims, gcols = NULL, gpchs = NULL, col = "black", pch = 23, site= "site")
 }
 %- maybe also 'usage' for other objects documented here.
 \arguments{
-  \item{x}{
+  \item{x}{The first linear discriminant function
 %%     ~~Describe \code{x} here~~
 }
-  \item{y}{
+  \item{y}{ the second linear discriminant function
 %%     ~~Describe \code{y} here~~
 }
-  \item{ylims}{
+  \item{ylims}{the limits of the y axis (expressed as c(min, max))
 %%     ~~Describe \code{ylims} here~~
 }
-  \item{xlims}{
+  \item{xlims}{the limits of the x axis (expressed as c(min, max))
 %%     ~~Describe \code{xlims} here~~
 }
-  \item{gcols}{
+  \item{gcols}{ the colours for the symbols of the modern crop processing groups ( expressed as c("pink", "red", etc))
 %%     ~~Describe \code{gcols} here~~
 }
-  \item{gpchs}{
+  \item{gpchs}{ the symbols of the modern crop processing groups ( expressed as c( 1,2,3,14,18))
 %%     ~~Describe \code{gpchs} here~~
 }
-  \item{col}{
+  \item{col}{ The colour of the archaeobotanical data's symbol
 %%     ~~Describe \code{col} here~~
 }
-  \item{pch}{
+  \item{pch}{the symbol of the archaebotanical data
+%%     ~~Describe \code{pch} here~~
+}
+ \item{site}{the name of the archaeobotanical data showing in the legend
 %%     ~~Describe \code{pch} here~~
 }
 }
@@ -50,7 +53,7 @@ cropplot2d(x, y, ylims = c(-5, 5), xlims = c(-5, 5), gcols = NULL, gpchs = NULL,
 \references{
 %% ~put references to the literature/web site here ~
 }
-\author{
+\author{Elizabeth Stroud
 %%  ~~who you are~~
 }
 \note{
@@ -63,62 +66,19 @@ cropplot2d(x, y, ylims = c(-5, 5), xlims = c(-5, 5), gcols = NULL, gpchs = NULL,
 %% ~~objects to See Also as \code{\link{help}}, ~~~
 }
 \examples{
-##---- Should be DIRECTLY executable !! ----
-##-- ==>  Define data, use random,
-##--	or do  help(data=index)  for the standard data sets.
+##example dataset
+LD1<-runif(40, min= -0, max=3)
+LD2<-runif(40, min = -2, 4)
+Study<-sample(1:3, 40, replace=T)
+data<-data.frame(Study,LD1)
 
-## The function is currently defined as
-function (x, y, ylims = c(-5, 5), xlims = c(-5, 5), gcols = NULL,
-    gpchs = NULL, col = "black", pch = 23)
-{
-    load(file = "CP.data.model.rda")
-    discrim_cv <- lda(PROC ~ BHH + BFH + SHH + SHL + SFH + SFL,
-        CP.data.model, CV = TRUE)
-    model_lda <- lda(PROC ~ BHH + BFH + SHH + SHL + SFH + SFL,
-        CP.data.model)
-    predictionmodel <- predict(model_lda, CP.data.model)
-    dataset <- data.frame(PROC = as.factor(CP.data.model$PROC),
-        Classification = predictionmodel$class, predictionmodel$x)
-    centroids <- dataset \%>\% group_by(PROC) \%>\% summarise(centroid1 = mean(LD1),
-        centroid2 = mean(LD2), centroid3 = mean(LD3))
-    if (!is.null(gcols)) {
-        gcolours <- gcols
-        dataset$colour <- gcolours[as.numeric(dataset$PROC)]
-    }
-    if (is.null(gcols)) {
-        gcolours <- c("black", "black", "black", "black")
-        dataset$colour <- gcolours[as.numeric(dataset$PROC)]
-    }
-    mygroups <- c("Winnowing by-products", "Coarse-sieving by-products",
-        "Fine-sieving by-products", "Fine-sieving products")
-    dataset$Actual.Group <- mygroups[as.numeric(dataset$PROC)]
-    if (!is.null(gpchs)) {
-        mypch <- gpchs
-        dataset$pch <- mypch[as.numeric(dataset$PROC)]
-    }
-    if (is.null(gpchs)) {
-        mypch <- c(1, 2, 3, 5)
-        dataset$pch <- mypch[as.numeric(dataset$PROC)]
-    }
-    par(mar = c(10, 4, 4, 4))
-    plot(dataset$LD1, dataset$LD2, col = paste(dataset$colour),
-        pch = as.numeric(as.character(dataset$pch)), ylim = ylims,
-        xlim = xlims, xlab = "", ylab = "")
-    par(new = T)
-    plot(centroids$centroid1, centroids$centroid2, col = "Black",
-        pch = 20, ylim = ylims, xlim = xlims, xlab = "", ylab = "")
-    par(new = T)
-    plot(x, y, col = col, pch = 21, ylim = ylims, xlim = xlims,
-        xlab = "Function 1", ylab = "Function 2")
-    legend.table <- dataset[!duplicated(dataset$Actual.Group),
-        ]
-    legend("bottom", c(paste(legend.table$Actual.Group), "SITE",
-        "Group centroids"), col = c((paste(legend.table$colour)),
-        col, "black"), pch = c((as.numeric(as.character(legend.table$pch))),
-        pch, 20), pt.cex = 1, cex = 0.64, bg = "white", xpd = TRUE,
-        ncol = 2, inset = c(-0.3, -0.4))
+#### Use with defaults (will return a black and white graph)
+cropplot2d(data$LD1, data$LD2)
+
+##Use with variables
+cropplot2d(data$LD1,data$LD2, xlims = c(-5, 5), ylims =c(-5,5), gcols =c("forestgreen", "blue", "skyblue", "orange"), gpch=c(6,7,8,9), col = "darkred", pch = 20 , site ="Example")
   }
-}
+
 % Add one or more standard keywords, see file 'KEYWORDS' in the
 % R documentation directory (show via RShowDoc("KEYWORDS")):
 % \keyword{ ~kwd1 }
