@@ -1,14 +1,13 @@
-\name{LDAcrop.pro}
-\alias{LDAcrop.pro}
+\name{LDAcrop.dung}
+\alias{LDAcrop.dung}
 %- Also NEED an '\alias' for EACH other topic documented here.
-\title{Linear discriminant analysis based on attributes of weed seeds
+\title{Linear discriminant analysis based on attributes of weed seeds to classify taphanomic pathway ( processing vs dung)
 %%  ~~function to do ... ~~
 }
-\description{This function conducts linear discriminant analysis classification using ethnographic data of crop processing to classify archaeobotanical samples on the basis of attributes of weed seeds. The function provides the classification of each sample (class), as well as the discriminant scores of each sample (LD1, LD2, LD3) and the posterior probabilities. The function also produces a classification table showing the classification results and the percentage of samples classified as either: Winnowing by-products, Coarse sieve by-products, Fine sieve by-products, Fine sieve products
-%%  ~~ A concise (1-5 lines) description of what the function does. ~~
+\description{This function conducts linear discriminant analysis classification using ethnographic data of crop processing to classify archaeobotanical samples on the basis of attributes of weed seeds. This function is a modification of LDAcrop.pro, in that it uses the entered archaeobotncial data as well as the ethnographic data to create the model. The archaeobotanical data is then reclassified angainst that. The function provides the classification of each sample (class), as well as the discriminant scores of each sample (LD1, LD2, LD3) and the posterior probabilities. The function also produces a classification table showing the classification results and the percentage of samples classified as either: Archaeological, Winnowing by-products, Coarse sieve by-products, Fine sieve by-products, Fine sieve products
 }
 \usage{
-LDAcrop.pro(x)
+LDAcrop.dung(x)
 }
 %- maybe also 'usage' for other objects documented here.
 \arguments{
@@ -42,18 +41,18 @@ LDAcrop.pro(x)
 %% ~~objects to See Also as \code{\link{help}}, ~~~
 }
 \examples{
-##Create random dataset for examples
+## Create random dataset for example
 BHH<-runif(40, min=0, max=7)
 BFH<-runif(40, min=0, max=24)
 SHH<-runif(40, min=1, max=13)
 SHL<-runif(40, min=0.5, max=17)
 SFH<-runif(40, min=1, max=22)
 SFL<-runif(40, min=1, max=8)
-Sample<-sample(1:40, 40, replace=F)
-data<-as.data.frame(cbind(BHH,BFH,SHH,SHL,SFH,SFL,Sample))
-
-#Use
-LDAcrop.pro(data)
+NO<-sample(1:40, 40, replace=F)
+PROC<-runif(40,min=0,max=0)
+data<-as.data.frame(cbind(NO, PROC,BHH,BFH,SHH,SHL,SFH,SFL))
+## function usage
+LDAcrop.dung(data)
 
 }
 % Add one or more standard keywords, see file 'KEYWORDS' in the
