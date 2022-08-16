@@ -3,7 +3,7 @@
 #x = lda1, y = lda2, z= lda3
 # note not sure how to do the colour - do have this as a default colour that can be changed.
 
-dungplot3d<-function(data,x,y,z, gcol=NULL, col="black", site="Archaeological", forth=3){
+dungplot3d<-function(data, gcol=NULL, col="black", site="Archaeological", LD=3){
   data.model<-data.frame(data.model)
   archdata<-data[c(11:18)]
   archdata$PROC<-"6"
@@ -34,7 +34,7 @@ dungplot3d<-function(data,x,y,z, gcol=NULL, col="black", site="Archaeological", 
   open3d()
   par3d(windowRect = c(100, 100, 612, 612))
 
-  if (forth>3){
+  if (LD>3){
     plot3d(dataset$LD1, dataset$LD4,dataset$LD2, col=dataset$colour, type="s",  size=0.9, xlab= "LD1", ylab="LD4", zlab="LD2")
 
     shapelist3d(cube3d(),x=centroids$centroid1,y=centroids$centroid2, z=centroids$centroid3,  col="black",size=0.2)

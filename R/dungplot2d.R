@@ -1,4 +1,4 @@
-dungplot2d<-function(data,x,y,ylims=NULL,xlims=NULL,gcols=NULL,gpchs=NULL, col ='black', pch=15, site="Archaeological"){
+dungplot2d<-function(data,ylims=NULL,xlims=NULL,gcols=NULL,gpchs=NULL, col ='black', pch=15, site="Archaeological"){
   data.model<-data.frame(data.model)
   archdata<-data[c(11:18)]
   archdata$PROC<-"6"
@@ -32,7 +32,7 @@ dungplot2d<-function(data,x,y,ylims=NULL,xlims=NULL,gcols=NULL,gpchs=NULL, col =
     mypch<-c(1,2,3,5,15)
     dataset$pch<-mypch[as.numeric(dataset$PROC)]
   }
-  x.value<-unlist((x))
+  x.value<-unlist((data$x.LD1))
   m.value<-unlist(dataset$LD1)
   xmin<-min(x.value)
   xmax<-max(x.value)
@@ -55,7 +55,7 @@ dungplot2d<-function(data,x,y,ylims=NULL,xlims=NULL,gcols=NULL,gpchs=NULL, col =
   }else {
     xlim<-c(xmin-0.5,xmax+0.5)}
 
-  y.value<-unlist((y))
+  y.value<-unlist((data$x.LD2))
   ym.value<-unlist(dataset$LD2)
   ymin<-min(y.value)
   ymax<-max(y.value)

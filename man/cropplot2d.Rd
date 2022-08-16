@@ -1,10 +1,10 @@
 \name{cropplot2d}
 \alias{cropplot2d}
 %- Also NEED an '\alias' for EACH other topic documented here.
-\title{ploting the output of the LDA as a 2d graph showing LD1 and LD2
+\title{Ploting the output of the LDAcrop.pro as a 2d graph
 %%  ~~function to do ... ~~
 }
-\description{
+\description{This function plots the output of LDAcrop.pro as a 2d graphshowing LD1 and LD2
 %%  ~~ A concise (1-5 lines) description of what the function does. ~~
 }
 \usage{

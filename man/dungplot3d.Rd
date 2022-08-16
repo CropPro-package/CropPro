@@ -12,18 +12,14 @@ dungplot3d(x,y,z, gcol=NULL, col="black", site="site", forth=3)
 }
 %- maybe also 'usage' for other objects documented here.
 \arguments{
-  \item{x}{ discriminant scores 1
+  \item{data}{the output of LDAcrop.dung
 }
-  \item{y}{discriminant scores 2
+  \item{gcol}{ the colour of the crop processing stages
 }
-  \item{z}{discriminant scores 3
-}
-  \item{gcol}{
-}
-  \item{col}{}
-  \item{site}{
+  \item{col}{the colour of the archaeobotanical samples}
+  \item{site}{the name to appear on the legend for the archaebotanical samples
   }
-  \item{forth}{ using 3rd or forth discriminant funcution
+  \item{LD}{whether using the first three discriminant functions or subsituting the 3rd or for the 4th (response is LD=4)
   }
   }
 \details{
