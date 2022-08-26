@@ -1,4 +1,4 @@
-cropplot2d<-function(x,y,ylims=NULL,xlims=NULL,gcols=NULL,gpchs=NULL, col ='black', pch=15, site="Site"){
+crop.plot2d<-function(x,y,ylims=NULL,xlims=NULL,gcols=NULL,gpchs=NULL, col ='black', pch=15, site="Site"){
   data.model<-data.frame(data.model)
   discrim_cv <- lda(PROC ~ BHH+BFH+SHH+SHL+SFH+SFL,data.model, CV = TRUE)
   model_lda <- lda(PROC ~ BHH+BFH+SHH+SHL+SFH+SFL,data.model)
@@ -10,7 +10,7 @@ cropplot2d<-function(x,y,ylims=NULL,xlims=NULL,gcols=NULL,gpchs=NULL, col ='blac
     group_by(PROC) %>%
     summarise(centroid1 = mean(LD1),
               centroid2= mean(LD2),
-              centroid3=mean(LD3))
+              centroid3= mean(LD3))
 
   if(!is.null(gcols)){
     gcolours<-gcols

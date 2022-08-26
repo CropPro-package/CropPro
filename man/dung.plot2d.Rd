@@ -58,7 +58,6 @@ dungplot2d(data, ylims = NULL, xlims = NULL, gcols = NULL, gpchs = NULL, col = "
 %% ~~objects to See Also as \code{\link{help}}, ~~~
 }
 \examples{
-NEED AN EXAMPLE>>>>>>>
-  }
+
 }
 

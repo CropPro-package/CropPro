@@ -1,7 +1,7 @@
 LDAcrop.pro<-function(x){
   data.model<-data.frame(data.model)
-  discrim_cv <- lda(PROC ~ BHH+BFH+SHH+SHL+SFH+SFL,data.model, CV = TRUE)
-  model_lda <- lda(PROC ~ BHH+BFH+SHH+SHL+SFH+SFL,data.model)
+  discrim_cv <- lda(PROC ~ BHH+BFH+SHH+SHL+SFH+SFL,data.model, CV = TRUE, prior=c(0.25,0.25,0.25,0.25))
+  model_lda <- lda(PROC ~ BHH+BFH+SHH+SHL+SFH+SFL,data.model, prior=c(0.25,0.25,0.25,0.25))
   predictionmodel <- predict(model_lda,data.model)
   functionalAt <- data.frame(PROC = as.factor(data.model$PROC),
                              Classification= predictionmodel$class,

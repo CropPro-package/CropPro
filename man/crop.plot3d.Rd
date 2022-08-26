@@ -1,5 +1,5 @@
-\name{cropplot3dpoints}
-\alias{cropplot3dpoints}
+\name{crop.plot3d}
+\alias{crop.plot3d}
 %- Also NEED an '\alias' for EACH other topic documented here.
 \title{ploting the results of the LDA as a 3 d object
 %%  ~~function to do ... ~~

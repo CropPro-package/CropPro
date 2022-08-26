@@ -3,7 +3,7 @@
 #x = lda1, y = lda2, z= lda3
 # note not sure how to do the colour - do have this as a default colour that can be changed.
 
-dungplot3d<-function(data, gcol=NULL, col="black", site="Archaeological", LD=3){
+dung.plot3d<-function(data, gcol=NULL, col="black", site="Archaeological", LD=3){
   data.model<-data.frame(data.model)
   archdata<-data[c(11:18)]
   archdata$PROC<-"6"

@@ -3,7 +3,7 @@
 #x = lda1, y = lda2, z= lda3
 # note not sure how to do the colour - do have this as a default colour that can be changed.
 
-cropplot3dpoints<-function(x,y,z, gcol=NULL, col="black", site="Site"){
+crop.plot3d<-function(x,y,z, gcol=NULL, col="black", site="Site"){
 
   data.model<-data.frame(data.model)
   discrim_cv <- lda(PROC ~ BHH+BFH+SHH+SHL+SFH+SFL,data.model, CV = TRUE)
