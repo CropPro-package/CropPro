@@ -1,10 +1,10 @@
 \name{dataorg}
 \alias{dataorg}
 %- Also NEED an '\alias' for EACH other topic documented here.
-\title{function to transform raw archaeobotanical data into the form required for LDAcrop.pro.
+\title{Function to transform raw archaeobotanical data into the form required for\code{\link[CropPro]{LDAcrop.pro} and \code{\link[CropPro]{LDAcrop.dung}.
 %%  ~~function to do ... ~~
 }
-\description{ the function transforms raw archaeobotnical data, calculating the squareroot of each species number muliplited by 100, divided by the total weed species within the sample
+\description{The function transforms raw archaeobotnical data, calculating the squareroot of each species number muliplited by 100, divided by the total weed species within the sample
 %%  ~~ A concise (1-5 lines) description of what the function does. ~~
 }
 \usage{
@@ -12,16 +12,16 @@ dataorg(dataframe, groupcol)
 }
 %- maybe also 'usage' for other objects documented here.
 \arguments{
-  \item{dataframe}{ the data to be entered
+  \item{dataframe}{The dataframe with the archaeobotanical samples
 }
- \item{groupcol}{ the column containing the grouping variables of the different species (BHH, BFH etc )
+ \item{groupcol}{The column containing the grouping variables of the different species (BHH, BFH etc )
 }
 }
 \details{
 }
 \value{
 }
-\references{ see - references
+\references{see - Jones, G., 1987. A statistical approach to the archaeological identification of crop processing. Journal of archaeological science, 14(3), pp.311-323.
 
 }
 \author{
@@ -29,12 +29,19 @@ Elizabeth Stroud
 }
 
 \examples{
-##---- Should be DIRECTLY executable !! ----
-##-- ==>  Define data, use random,
-##--	or do  help(data=index)  for the standard data sets.
+# random data
+species<-c("Chenopodium album" , "Anthemis cotula", "Brassica rapa ssp campestris", "Raphanus raphanistrum", "Agrostemma githago" , "Poa annua" )
+catergory<-c("SFH", "BHH","SFH","BHH","BFH", "SFL" )
+s.1246<-sample(1:3, 6, replace=T)
+s.46178<-sample(1:5, 6, replace=T)
+s.1<-sample(0:8, 6, replace=T)
+s.23<-sample(0:3, 6, replace=T)
+s.987<-sample(3:9, 6, replace=T)
+dataset<-data.frame(species,catergory,s.1246,s.46178,s.1,s.23,s.987))
 
-## The function is currently defined as
-function (x)
+# Usage
+
+data<-dataorg(dataset, groupcol=2)
 {
   }
 }
