@@ -1,21 +1,21 @@
 \name{LDAcrop.dung}
 \alias{LDAcrop.dung}
 %- Also NEED an '\alias' for EACH other topic documented here.
-\title{Linear discriminant analysis based on attributes of weed seeds to classify taphanomic pathway ( processing vs dung)
+\title{Linear discriminant analysis based on attributes of weed seeds to classify taphonomic pathway ( processing vs dung)
 %%  ~~function to do ... ~~
 }
-\description{This function conducts linear discriminant analysis classification using ethnographic data of crop processing to classify archaeobotanical samples on the basis of attributes of weed seeds. This function is a modification of LDAcrop.pro, in that it uses the entered archaeobotncial data as well as the ethnographic data to create the model. The archaeobotanical data is then reclassified angainst that. The function provides the classification of each sample (class), as well as the discriminant scores of each sample (LD1, LD2, LD3) and the posterior probabilities. The function also produces a classification table showing the classification results and the percentage of samples classified as either: Archaeological, Winnowing by-products, Coarse sieve by-products, Fine sieve by-products, Fine sieve products
+\description{This function conducts linear discriminant analysis classification using ethnographic data of crop processing sequence to classify archaeobotanical samples on the basis of weed seeds attributes. This function is a modification of \code{\link[CropPro]{LDAcrop.pro}}, in that it uses the entered archaeobotanical data as well as the ethnographic data to create the model. Data is then reclassified against that model, allowing the archaeobotanical samples to be classified as 1 of five groups: archaeological, winnowing by-products, coarse sieve by-products, fine sieve by-products, fine sieve products. The function provides the classification of each sample (class), as well as the discriminant scores of each sample (LD1, LD2, LD3) and the posterior probabilities. The function also produces a classification table showing the classification results and the percentage of samples classified for each group.
 }
 \usage{
 LDAcrop.dung(x)
 }
 %- maybe also 'usage' for other objects documented here.
 \arguments{
-  \item{x}{ archaeobotanical dataset
+  \item{x}{The archaeobotanical dataset
 %%     ~~Describe \code{x} here~~
 }
 }
-\details{
+\details{The dataset needs to be organised in the way described in \code{\link[CropPro]{LDAcrop.pro}} or as the output of \code{\link[CropPro]{dataorg}}
 %%  ~~ If necessary, more details than the description above ~~
 }
 \value{
@@ -28,7 +28,7 @@ LDAcrop.dung(x)
 \references{
 %% ~put references to the literature/web site here ~
 }
-\author{
+\author{Elizabeth Stroud
 %%  ~~who you are~~
 }
 \note{
@@ -51,6 +51,7 @@ SFL<-runif(40, min=1, max=8)
 NO<-sample(1:40, 40, replace=F)
 PROC<-runif(40,min=0,max=0)
 data<-as.data.frame(cbind(NO, PROC,BHH,BFH,SHH,SHL,SFH,SFL))
+
 ## function usage
 LDAcrop.dung(data)
 

@@ -1,34 +1,36 @@
-\name{dungplot2d}
-\alias{dungplot2d}
+\name{dung.plot2d}
+\alias{dung.plot2d}
 %- Also NEED an '\alias' for EACH other topic documented here.
-\title{Ploting the output of the LDAcrop.dung as a 2d graph showing LD1 and LD2
+\title{Plotting the output of the \code{\link[CropPro]{LDAcrop.dung}} as a 2D graph
 %%  ~~function to do ... ~~
 }
-\description{This function plots the output of the LDAcrop.dung as a 2d graph showing LD1 and LD2
-%%  ~~ A concise (1-5 lines) description of what the function does. ~~
+\description{This function plots the output of \code{\link[CropPro]{LDAcrop.dung}} as a 2D graph showing function1 (LD1) and function 2 (LD2)
+
 }
 \usage{
-dungplot2d(data, ylims = NULL, xlims = NULL, gcols = NULL, gpchs = NULL, col = "black", pch = 15, site = "Archaeological")
+dung.plot2d(data, ylims = NULL, xlims = NULL, gcols = NULL, gpchs = NULL, col = "black",
+pch = 15, site = "Archaeological")
 }
 %- maybe also 'usage' for other objects documented here.
 \arguments{
-  \item{data}{the dataframe containing the results of the LDAcrop.dung function
+  \item{data}{The dataframe containing the results of the \code{\link[CropPro]{LDAcrop.dung}} function
 }
-  \item{ylims}{the limits of the y axis expressed as c(min, max)
+  \item{ylims}{The limits of the y axis expressed as c(min, max)
 }
-  \item{xlims}{ the limits of the x axis expressed as c(min, max)
+  \item{xlims}{The limits of the x axis expressed as c(min, max)
 }
-  \item{gcols}{the colours of the symbols of the modern crop processing groups expressed as for example c("pink", "red", etc)
+  \item{gcols}{The colours of the symbols of the modern crop processing groups expressed as for example
+  c("pink", "red", etc)
 }
-  \item{gpchs}{ the symbols of the modern crop processing groups  expressed as for example c(1,2,3,4)
+  \item{gpchs}{The symbols of the modern crop processing groups  expressed as for example c(1,2,3,4)
 }
-  \item{col}{the colour of the archaeobotanical samples
+  \item{col}{The colour of the archaeobotanical samples
 %%     ~~Describe \code{col} here~~
 }
-  \item{pch}{the symbol of the archaeobotanical samples
+  \item{pch}{The symbol of the archaeobotanical samples
 %%     ~~Describe \code{pch} here~~
 }
-  \item{site}{ the name of the archaeobotnical samples to appear in the legend
+  \item{site}{The name of the archaeobotanical samples to appear in the legend
 %%     ~~Describe \code{site} here~~
 }
 }
@@ -58,6 +60,19 @@ dungplot2d(data, ylims = NULL, xlims = NULL, gcols = NULL, gpchs = NULL, col = "
 %% ~~objects to See Also as \code{\link{help}}, ~~~
 }
 \examples{
+# Random data
+BHH<-runif(40, min=0, max=7)
+BFH<-runif(40, min=0, max=24)
+SHH<-runif(40, min=1, max=13)
+SHL<-runif(40, min=0.5, max=17)
+SFH<-runif(40, min=1, max=22)
+SFL<-runif(40, min=1, max=8)
+NO<-sample(1:40, 40, replace=F)
+PROC<-runif(40,min=0,max=0)
+data<-as.data.frame(cbind(NO,PROC,BHH,BFH,SHH,SHL,SFH,SFL))
+results<-LDAcrop.dung(results)
+# Use
+dung.plot2d(results)
 
 }
 

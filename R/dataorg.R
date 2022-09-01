@@ -11,13 +11,20 @@ sumgroups<-aggregate(.~`category`, data=all, FUN=sum)
 labels<-toupper(sumgroups$`category`)
 df<-as.data.frame(t(sumgroups[,-1]))
 colnames(df)<-labels
-resultdf<-data.frame #OF 7 columns and X row number of samples ( so number of columns data has)
-resultdf$samples<-rownames(df)
-resultdf$BHH<-df$BHH
-resultdf$BFH<-df$BFH
-resultdf$SHH<-df$SHH
-resultdf$SHL<-df$SHL
-resultdf$SFH<-df$SFH
 
-dforder<-df[,colorder]
+samples<-rownames(df)
+BHH<-df$BHH
+BFH<-df$BFH
+SHH<-df$SHH
+SHL<-df$SHL
+SFH<-df$SFH
+SFL<-df$SFL
+if(is.null(BHH)== TRUE){BHH<-sample(0,length(samples),replace = T)}
+if(is.null(BFH)== TRUE){BFH<-sample(0,length(samples),replace = T)}
+if(is.null(SHH)== TRUE){SHH<-sample(0,length(samples),replace = T)}
+if(is.null(SHL)== TRUE){SHL<-sample(0,length(samples),replace = T)}
+if(is.null(SFH)== TRUE){SFH<-sample(0,length(samples),replace = T)}
+if(is.null(SFL)== TRUE){SFL<-sample(0,length(samples),replace = T)}
+results<-data.frame(BHH, BFH, SHH, SHL, SFH, SFL)
+
 }

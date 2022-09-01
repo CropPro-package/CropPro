@@ -4,8 +4,8 @@ x$PROC<-6
 x$NO<-"arch"
 x<-x[c(8,7,1:6)]
 model.arch<-rbind(data.model, x)
-discrim_cv <- lda(PROC ~ BHH+BFH+SHH+SHL+SFH+SFL, model.arch, CV = TRUE,prior=c(0.2,0.2,0.2,0.2,0.2) )
-model_lda50 <- lda(PROC ~ BHH+BFH+SHH+SHL+SFH+SFL, model.arch, prior=c(0.2,0.2,0.2,0.2,0.2))
+discrim_cv <- lda(PROC ~ BHH+BFH+SHH+SHL+SFH+SFL, model.arch, CV = TRUE,prior=c(1,1,1,1,1)/5)
+model_lda50 <- lda(PROC ~ BHH+BFH+SHH+SHL+SFH+SFL, model.arch, prior=c(1,1,1,1,1)/5)
 model_lda <- lda(PROC ~ BHH+BFH+SHH+SHL+SFH+SFL, model.arch)
 predictionmodel <- predict(model_lda, model.arch)
 functionalAt <- data.frame(PROC = as.factor(model.arch$PROC),

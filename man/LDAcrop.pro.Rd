@@ -4,7 +4,7 @@
 \title{Linear discriminant analysis based on attributes of weed seeds
 %%  ~~function to do ... ~~
 }
-\description{This function conducts linear discriminant analysis classification using ethnographic data of crop processing to classify archaeobotanical samples on the basis of attributes of weed seeds. The function provides the classification of each sample (class), as well as the discriminant scores of each sample (LD1, LD2, LD3) and the posterior probabilities. The function also produces a classification table showing the classification results and the percentage of samples classified as either: Winnowing by-products, Coarse sieve by-products, Fine sieve by-products, Fine sieve products
+\description{This function conducts linear discriminant analysis classification using ethnographic data of crop processing to classify archaeobotanical samples on the basis of attributes of weed seeds. The function provides the classification of each sample (class), as well as the discriminant scores of each sample (LD1, LD2, LD3) and the posterior probabilities. The function also produces a classification table showing the classification results and the percentage of samples classified as either: winnowing by-products, coarse sieve by-products, fine sieve by-products, fine sieve products
 %%  ~~ A concise (1-5 lines) description of what the function does. ~~
 }
 \usage{
@@ -12,11 +12,11 @@ LDAcrop.pro(x)
 }
 %- maybe also 'usage' for other objects documented here.
 \arguments{
-  \item{x}{ archaeobotanical dataset
+  \item{x}{The archaeobotanical dataset
 %%     ~~Describe \code{x} here~~
 }
 }
-\details{
+\details{The archaeobotanical dataset needs to have been transformed and organised with columns labelled and in the order of: BHH,BFH,SHH,SHL,SFH,SFL. Transformation can be done manually following (insert reference) or through the use of \code{\link[CropPro]{dataorg}} which can transform a raw archaeobotanical dataset.
 %%  ~~ If necessary, more details than the description above ~~
 }
 \value{
@@ -29,7 +29,7 @@ LDAcrop.pro(x)
 \references{
 %% ~put references to the literature/web site here ~
 }
-\author{
+\author{Eizabeth Stroud
 %%  ~~who you are~~
 }
 \note{
@@ -50,7 +50,7 @@ SHL<-runif(40, min=0.5, max=17)
 SFH<-runif(40, min=1, max=22)
 SFL<-runif(40, min=1, max=8)
 Sample<-sample(1:40, 40, replace=F)
-data<-as.data.frame(cbind(BHH,BFH,SHH,SHL,SFH,SFL,Sample))
+data<-as.data.frame(cbind(BHH, BFH, SHH, SHL, SFH, SFL, Sample))
 
 #Use
 LDAcrop.pro(data)

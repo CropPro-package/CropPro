@@ -1,11 +1,10 @@
 Package: CropPro
 Type: Package
-Title: Classification using discriminant anaylsis of archaeobotanical datasets against ethnographic data to understand crop processing stages
+Title: Classification using discriminant analysis of archaeobotanical datasets against ethnographic data to understand crop processing stages
 Version: 0.1.0
 Author: Elizabeth Stroud
 Maintainer: <elizabeth.stroud@arch.ox.ac.uk>
-Description: This package contains function for the linear discriminant anaylsis of ethnographic data agaisint which archaeobotanical data can be classified. The attributes of the weed seeds are used within the linear discriminant anaylsis and allows for archaeobotical datasets to be classified as one crop processing stages the weed seeds attributes fit the best. 
-   The package contains functions to transform archaeobotanical datasets, conduct LDA and then plot the data against the ethnographic data as 2D or 3D plots
+Description: This package contains functions for the linear discriminant analysis of ethnographic data against which archaeobotanical data can be classified. The package contains functions to transform archaeobotanical datasets, conduct LDA and then plot the archaeobotanical data against the ethnographic data as 2D or 3D plots. The package contains two LDA functions which allows the archaeobotanical samples to be classified as one of four crop processing stages, or one of five classes (four crop processing stages and the archaeological group)  
 License: MIT
 Depends:
   dplyr,

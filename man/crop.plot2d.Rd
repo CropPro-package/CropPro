@@ -1,14 +1,15 @@
 \name{crop.plot2d}
 \alias{crop.plot2d}
 %- Also NEED an '\alias' for EACH other topic documented here.
-\title{Ploting the output of the \code{\link[CropPro]{LDAcrop.pro}} as a 2D graph
+\title{Plotting the output of the \code{\link[CropPro]{LDAcrop.pro}} as a 2D graph
 %%  ~~function to do ... ~~
 }
 \description{This function plots the output of \code{\link[CropPro]{LDAcrop.pro}} as a 2D graph showing LD1 and LD2
 %%  ~~ A concise (1-5 lines) description of what the function does. ~~
 }
 \usage{
-crop.plot2d(x, y, ylims=NULL, xlims=NULL, gcols=NULL, gpchs=NULL, col ='black', pch=15, site="Site")
+crop.plot2d(x, y, ylims=NULL, xlims=NULL, gcols=NULL, gpchs=NULL, col ='black', pch=15,
+site="Site")
 }
 %- maybe also 'usage' for other objects documented here.
 \arguments{
@@ -24,10 +25,10 @@ crop.plot2d(x, y, ylims=NULL, xlims=NULL, gcols=NULL, gpchs=NULL, col ='black', 
   \item{xlims}{The limits of the x axis (expressed as c(min, max))
 %%     ~~Describe \code{xlims} here~~
 }
-  \item{gcols}{Symbol colours of the ethnographical crop processing groups writen as c("red", "green"...) etc
+  \item{gcols}{Symbol colours of the ethnographical crop processing groups written as c("red", "green"...) etc
 %%     ~~Describe \code{gcols} here~~
 }
-  \item{gpchs}{The symbols of the ethnographical crop processing groups (expressed as c( 1,2,3,14,18))
+  \item{gpchs}{The symbols of the ethnographical crop processing groups (expressed as c(1, 2, 3, 14, 18))
 %%     ~~Describe \code{gpchs} here~~
 }
   \item{col}{Symbol colour for archaeobotanical data
@@ -66,17 +67,18 @@ crop.plot2d(x, y, ylims=NULL, xlims=NULL, gcols=NULL, gpchs=NULL, col ='black', 
 %% ~~objects to See Also as \code{\link{help}}, ~~~
 }
 \examples{
-##example dataset
+##Example dataset
 LD1<-runif(40, min= -0, max=3)
 LD2<-runif(40, min = -2, 4)
 Study<-sample(1:3, 40, replace=T)
 data<-data.frame(Study,LD1)
 
-#### Use with defaults (will return a black and white graph)
+###Use with defaults (will return a black and white graph)
 crop.plot2d(data$LD1, data$LD2)
 
 ##Use with variables
-crop.plot2d(data$LD1,data$LD2, xlims = c(-5, 5), ylims =c(-5,5), gcols =c("forestgreen", "blue", "skyblue", "orange"), gpch=c(6,7,8,9), col = "darkred", pch = 20 , site ="Example")
+crop.plot2d(data$LD1,data$LD2, xlims = c(-5, 5), ylims =c(-5,5), gcols =c("forestgreen", "blue",
+"skyblue", "orange"), gpch=c(6,7,8,9), col = "darkred", pch = 20 , site ="Example")
   }
 
 % Add one or more standard keywords, see file 'KEYWORDS' in the

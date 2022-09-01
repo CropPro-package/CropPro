@@ -1,10 +1,10 @@
 \name{dataorg}
 \alias{dataorg}
 %- Also NEED an '\alias' for EACH other topic documented here.
-\title{Function to transform raw archaeobotanical data into the form required for\code{\link[CropPro]{LDAcrop.pro} and \code{\link[CropPro]{LDAcrop.dung}.
+\title{Function to transform raw archaeobotanical data into the form required for \code{\link[CropPro]{LDAcrop.pro}} and \code{\link[CropPro]{LDAcrop.dung}}.
 %%  ~~function to do ... ~~
 }
-\description{The function transforms raw archaeobotnical data, calculating the squareroot of each species number muliplited by 100, divided by the total weed species within the sample
+\description{The function transforms raw archaeobotanical data, calculating the squareroot of each species number multiplied by 100, divided by the total weed species within the sample
 %%  ~~ A concise (1-5 lines) description of what the function does. ~~
 }
 \usage{
@@ -29,21 +29,21 @@ Elizabeth Stroud
 }
 
 \examples{
-# random data
-species<-c("Chenopodium album" , "Anthemis cotula", "Brassica rapa ssp campestris", "Raphanus raphanistrum", "Agrostemma githago" , "Poa annua" )
-catergory<-c("SFH", "BHH","SFH","BHH","BFH", "SFL" )
+# Example data
+species<-c("Chenopodium album" , "Anthemis cotula", "Brassica rapa ssp campestris",
+"Raphanus raphanistrum", "Agrostemma githago" , "Poa annua" )
+category<-c("SFH", "BHH","SFH","BHH","BFH", "SFL" )
 s.1246<-sample(1:3, 6, replace=T)
 s.46178<-sample(1:5, 6, replace=T)
 s.1<-sample(0:8, 6, replace=T)
 s.23<-sample(0:3, 6, replace=T)
 s.987<-sample(3:9, 6, replace=T)
-dataset<-data.frame(species,catergory,s.1246,s.46178,s.1,s.23,s.987))
+dataset<-data.frame(species,category,s.1246,s.46178,s.1,s.23,s.987))
 
 # Usage
 
 data<-dataorg(dataset, groupcol=2)
-{
-  }
+
 }
 % Add one or more standard keywords, see file 'KEYWORDS' in the
 % R documentation directory (show via RShowDoc("KEYWORDS")):

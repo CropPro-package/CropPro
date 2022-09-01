@@ -1,7 +1,7 @@
 \name{crop.plot3d}
 \alias{crop.plot3d}
 %- Also NEED an '\alias' for EACH other topic documented here.
-\title{ploting the results of \code{\link[CropPro]{LDAcrop.pro}} as a 3d object
+\title{plotting the results of \code{\link[CropPro]{LDAcrop.pro}} as a 3d object
 %%  ~~function to do ... ~~
 }
 \description{
@@ -12,19 +12,19 @@ crop.plot3d(x, y, z, col, gcol, site)
 }
 %- maybe also 'usage' for other objects documented here.
 \arguments{
-  \item{x}{Column of the dateframe containing the discriminant scores of function 1 ( if results from \code{\link[CropPro]{LDAcrop.pro}} it will be called x.LD1)
+  \item{x}{Column of the dataframe containing the discriminant scores of function 1 (if results from \code{\link[CropPro]{LDAcrop.pro}} it will be called x.LD1)
 %%     ~~Describe \code{x} here~~
 }
-  \item{y}{Column of the dateframe containing the discriminant scores of function 2 ( if results from \code{\link[CropPro]{LDAcrop.pro}} it will be called x.LD2)
+  \item{y}{Column of the dataframe containing the discriminant scores of function 2 (if results from \code{\link[CropPro]{LDAcrop.pro}} it will be called x.LD2)
 %%     ~~Describe \code{y} here~~
 }
-  \item{z}{Column of the dateframe containing the discriminant scores of function 3 ( if results from \code{\link[CropPro]{LDAcrop.pro}} it will be called x.LD3)
+  \item{z}{Column of the dataframe containing the discriminant scores of function 3 (if results from \code{\link[CropPro]{LDAcrop.pro}} it will be called x.LD3)
 %%     ~~Describe \code{z} here~~
 }
   \item{col}{Symbol colour of archaeobotanical data
 
 }
-\item{gcol}{Symbol colours of the ethnographical crop processing groups writen as c("red", "green"...) etc
+\item{gcol}{Symbol colours of the ethnographical crop processing groups written as c("red", "green"...) etc
 
 }
 \item{site}{The name the archaeobotanical data will be labelled as in key
@@ -70,7 +70,8 @@ crop.plot3d(data$LD1, data$LD2, data$LD3)
 
 ## without defaults
 
-crop.plot3d(data$LD1, data$LD2, data$LD3, gcol = c("black", "grey", "grey48", "grey100"), col = "red", site = "Example")
+crop.plot3d(data$LD1, data$LD2, data$LD3, gcol = c("black", "grey", "grey48", "grey100"),
+col = "red", site = "Example")
 }
 
 % Add one or more standard keywords, see file 'KEYWORDS' in the
