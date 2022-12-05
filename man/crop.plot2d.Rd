@@ -8,37 +8,30 @@
 %%  ~~ A concise (1-5 lines) description of what the function does. ~~
 }
 \usage{
-crop.plot2d(x, y, ylims=NULL, xlims=NULL, gcols=NULL, gpchs=NULL, col ='black', pch=15,
+crop.plot2d(x,  ylims=NULL, xlims=NULL, gcols=NULL, gpchs=NULL, col ='black', pch=15,
 site="Site")
 }
-%- maybe also 'usage' for other objects documented here.
+
 \arguments{
-  \item{x}{The first linear discriminant function. If using the output of \code{\link[CropPro]{LDAcrop.pro}} then this will be called x.LD1
-%%     ~~Describe \code{x} here~~
+  \item{x}{dataframe containing columns with the LD1, LD2 and LD3 scores - this can be the output of \code{\link[CropPro]{LDAcrop.pro}}
 }
-  \item{y}{The second linear discriminant function. If using the output of \code{\link[CropPro]{LDAcrop.pro}} then this will be called x.LD2
-%%     ~~Describe \code{y} here~~
+  \item{Func1}{The linear discriminant function to be ploted on axis 1 (1,2 or 3) default is 1
+}
+  \item{Func2}{The linear discriminant function to be ploted on axis 2 (1,2 or 3), default is 2
 }
   \item{ylims}{The limits of the y axis (expressed as c(min, max))
-%%     ~~Describe \code{ylims} here~~
 }
   \item{xlims}{The limits of the x axis (expressed as c(min, max))
-%%     ~~Describe \code{xlims} here~~
 }
   \item{gcols}{Symbol colours of the ethnographical crop processing groups written as c("red", "green"...) etc
-%%     ~~Describe \code{gcols} here~~
 }
   \item{gpchs}{The symbols of the ethnographical crop processing groups (expressed as c(1, 2, 3, 14, 18))
-%%     ~~Describe \code{gpchs} here~~
 }
   \item{col}{Symbol colour for archaeobotanical data
-%%     ~~Describe \code{col} here~~
 }
   \item{pch}{Symbol of the archaeobotanical data
-%%     ~~Describe \code{pch} here~~
 }
  \item{site}{The name the archaeobotanical data will be labelled as in key
-%%     ~~Describe \code{pch} here~~
 }
 }
 \details{
@@ -70,14 +63,18 @@ site="Site")
 ##Example dataset
 LD1<-runif(40, min= -0, max=3)
 LD2<-runif(40, min = -2, 4)
+LD3<-runif(40, min = 2, 4)
 Study<-sample(1:3, 40, replace=T)
-data<-data.frame(Study,LD1)
+data<-data.frame(Study,LD1, LD2, LD3)
 
 ###Use with defaults (will return a black and white graph)
-crop.plot2d(data$LD1, data$LD2)
+crop.plot2d(data)
 
-##Use with variables
-crop.plot2d(data$LD1,data$LD2, xlims = c(-5, 5), ylims =c(-5,5), gcols =c("forestgreen", "blue",
+###Use with defaults (will return a black and white graph)
+crop.plot2d(data, Func1=2, Func2=3)
+
+##Use with colour and symbol variables
+crop.plot2d(data, xlims = c(-5, 5), ylims =c(-5,5), gcols =c("forestgreen", "blue",
 "skyblue", "orange"), gpch=c(6,7,8,9), col = "darkred", pch = 20 , site ="Example")
   }
 

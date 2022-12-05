@@ -6,10 +6,10 @@
 dung.plot3d<-function(data, gcol=NULL, col="black", site="Archaeological", LD=3){
   data.model<-data.frame(data.model)
   archdata<-data[c(11:18)]
-  archdata$PROC<-"6"
+  archdata$PROC<-"5"
   model.arch<-rbind(data.model, archdata)
   discrim_cv <- lda(PROC ~ BHH+BFH+SHH+SHL+SFH+SFL, model.arch, CV = TRUE)
-  model_lda <- lda(PROC ~ BHH+BFH+SHH+SHL+SFH+SFL, model.arch)
+  model_lda <- lda(PROC ~ BHH+BFH+SHH+SHL+SFH+SFL, model.arch, prior=c(1,1,1,1,1)/5)
   predictionmodel <- predict(model_lda, model.arch)
   dataset <- data.frame(PROC = as.factor(model.arch$PROC),
                         Classification= predictionmodel$class,
