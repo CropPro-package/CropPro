@@ -13,17 +13,17 @@ site="Site")
 }
 
 \arguments{
-  \item{x}{dataframe containing columns with the LD1, LD2 and LD3 scores - this can be the output of \code{\link[CropPro]{LDAcrop.pro}}
+  \item{x}{dataframe containing columns with the LD1, LD2 and LD3 scores - this can be the output of \code{\link[CropPro]{LDAcrop.pro}, see details for futher information}
 }
-  \item{Func1}{The linear discriminant function to be ploted on axis 1 (1,2 or 3) default is 1
+  \item{Func1}{The first linear discriminant function to be ploted, the default is 1
 }
-  \item{Func2}{The linear discriminant function to be ploted on axis 2 (1,2 or 3), default is 2
+  \item{Func2}{The second linear discriminant function to be ploted (1,2 or 3), the default is 2
 }
   \item{ylims}{The limits of the y axis (expressed as c(min, max))
 }
   \item{xlims}{The limits of the x axis (expressed as c(min, max))
 }
-  \item{gcols}{Symbol colours of the ethnographical crop processing groups written as c("red", "green"...) etc
+  \item{gcols}{Symbol colours of the ethnographical crop processing groups written as c("red", "green"...) etc. The default produces a black and white plot
 }
   \item{gpchs}{The symbols of the ethnographical crop processing groups (expressed as c(1, 2, 3, 14, 18))
 }
@@ -31,10 +31,11 @@ site="Site")
 }
   \item{pch}{Symbol of the archaeobotanical data
 }
- \item{site}{The name the archaeobotanical data will be labelled as in key
+ \item{site}{The name the archaeobotanical data will be labelled as in the legend
 }
 }
 \details{
+The dataframe entered as argument X can be the output of \code{\link[CropPro]{LDAcrop.pro}} or from manual normalizing. However the dataframe must have column labeled LD1, LD2, LD2, and containing the linear discrimanant scores
 %%  ~~ If necessary, more details than the description above ~~
 }
 \value{
@@ -70,7 +71,7 @@ data<-data.frame(Study,LD1, LD2, LD3)
 ###Use with defaults (will return a black and white graph)
 crop.plot2d(data)
 
-###Use with defaults (will return a black and white graph)
+###Changing discriminant function ploted
 crop.plot2d(data, Func1=2, Func2=3)
 
 ##Use with colour and symbol variables

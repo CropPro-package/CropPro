@@ -30,9 +30,8 @@ crop.plot3d<-function(x, gcol=NULL, col="black", site="Site"){
 
   open3d()
   par3d(windowRect = c(100, 100, 612, 612))
-
-
   plot3d(functionalAt$LD1,functionalAt$LD3, functionalAt$LD2,  col=functionalAt$colour, type="s",  size=0.9, xlab= "LD1", ylab="LD3", zlab="LD2")
+
   spheres3d(x$LD1,x$LD3,x$LD2, col=col,radius=0.14 )
   shapelist3d(cube3d(),x=centroids$centroid1,y=centroids$centroid3, z=centroids$centroid2,  col="black",size=0.2)
   #play3d( spin3d( axis = c(0, 0, 1), rpm = 20), duration = 10 )

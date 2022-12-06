@@ -50,6 +50,5 @@ LDAcrop.pro<-function(x){
   print(res50)
   modelname<-cbind(models,x$samples)
   names(modelname)<-c("Class", "Prob.1", "Prob.2","Prob.3", "Prob.4", "LD1","LD2", "LD3","CLASS_std", "Prob.1_std", "Prob.2_std", "Prob.3_std", "Prob.4_std", "Ld1_std", "Ld2_std", "Ld3_std", "Samples")
-
-results<-modelname
+  results<-modelname
 }
