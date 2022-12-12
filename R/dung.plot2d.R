@@ -32,7 +32,11 @@ dung.plot2d<-function(data,Func1=1, Func2=2, ylims=NULL,xlims=NULL,gcols=NULL,gp
     mypch<-c(1,2,3,5,15)
     dataset$pch<-mypch[as.numeric(dataset$PROC)]
   }
-
+  x<-x%>%
+    rename("LD1"="LD1*",
+      "LD2"="LD2*",
+      "LD3"="LD3*",
+      "LD4"="LD4*")
 
   if(Func1==1 & Func2==3){
     xv<-data$LD1

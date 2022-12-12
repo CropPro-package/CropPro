@@ -1,7 +1,7 @@
 crop.plot2d<-function(x,ylims=NULL,xlims=NULL,gcols=NULL,gpchs=NULL, col ='black', pch=15, site="Site", Func1=1, Func2=2){
   data.model<-data.frame(data.model)
-  discrim_cv <- lda(PROC ~ BHH+BFH+SHH+SHL+SFH+SFL,data.model, CV = TRUE)
-  model_lda <- lda(PROC ~ BHH+BFH+SHH+SHL+SFH+SFL,data.model)
+  discrim_cv <- lda(PROC ~ BHH+BFH+SHH+SHL+SFH+SFL,data.model,CV = TRUE)
+  model_lda <- lda(PROC ~ BHH+BFH+SHH+SHL+SFH+SFL, data.model)
   predictionmodel <- predict(model_lda,data.model)
   dataset <- data.frame(PROC = as.factor(data.model$PROC),
                              Classification= predictionmodel$class,
@@ -30,6 +30,11 @@ crop.plot2d<-function(x,ylims=NULL,xlims=NULL,gcols=NULL,gpchs=NULL, col ='black
     mypch<-c(1,2,3,5)
     dataset$pch<-mypch[as.numeric(dataset$PROC)]
  }
+ x<-x%>%
+   rename("LD1"="LD1*",
+          "LD2"="LD2*",
+          "LD3"="LD3*")
+
  if (Func1==1 & Func2==3){
    xv<-x$LD1
    x.value<-unlist((xv))

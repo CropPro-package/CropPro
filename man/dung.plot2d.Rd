@@ -15,6 +15,10 @@ pch = 15, site = "Archaeological")
 \arguments{
   \item{data}{The dataframe containing the results of the \code{\link[CropPro]{LDAcrop.dung}} function
 }
+  \item{Func1}{The linear discriminant function to be ploted on the x axis- the default is 1
+}
+  \item{Func2}{The linear discriminant function to be ploted  on the y axis- the default is 2
+}
   \item{ylims}{The limits of the y axis expressed as c(min, max)
 }
   \item{xlims}{The limits of the x axis expressed as c(min, max)

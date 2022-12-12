@@ -15,9 +15,9 @@ site="Site")
 \arguments{
   \item{x}{dataframe containing columns with the LD1, LD2 and LD3 scores - this can be the output of \code{\link[CropPro]{LDAcrop.pro}, see details for futher information}
 }
-  \item{Func1}{The first linear discriminant function to be ploted, the default is 1
+  \item{Func1}{The linear discriminant function to be ploted on the x axis- the default is 1
 }
-  \item{Func2}{The second linear discriminant function to be ploted (1,2 or 3), the default is 2
+  \item{Func2}{The linear discriminant function to be ploted  on the y axis- the default is 2
 }
   \item{ylims}{The limits of the y axis (expressed as c(min, max))
 }

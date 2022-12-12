@@ -1,8 +1,8 @@
 library(plyr)
-dataorg<-function(dataframe, groupcol){
-data<-dataframe[,(groupcol+1):ncol(dataframe)]
+dataorg<-function(dataframe, codes, samples){
+data<-dataframe[,samples:ncol(dataframe)]
 
-groups<-dataframe[,groupcol]
+groups<-dataframe[,codes]
 groups<-as.data.frame(groups)
 colnames(groups)<-"category"
 
