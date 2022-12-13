@@ -1,7 +1,10 @@
-dung.plot2d<-function(data,Func1=1, Func2=2, ylims=NULL,xlims=NULL,gcols=NULL,gpchs=NULL, col ='black', pch=15, site="Archaeological"){
+crop.dung_plot2D<-function(data,Func1=1, Func2=2, ylims=NULL,xlims=NULL,gcols=NULL,gpchs=NULL, col ='black', pch=15, site="Archaeological"){
   data.model<-data.frame(data.model)
   archdata<-data
-  archdata<-archdata[c(22:29)]
+  archdata$PROC<-"5"
+  labels<-archdata[c(1)]
+  archdata<-archdata[c("PROC","BHH","BFH", "SHH", "SHL", "SFH", "SFL")]
+
   model.arch<-rbind(data.model, archdata)
   discrim_cv <- lda(PROC ~ BHH+BFH+SHH+SHL+SFH+SFL, model.arch, CV = TRUE)
   model_lda <- lda(PROC ~ BHH+BFH+SHH+SHL+SFH+SFL, model.arch)
@@ -32,11 +35,7 @@ dung.plot2d<-function(data,Func1=1, Func2=2, ylims=NULL,xlims=NULL,gcols=NULL,gp
     mypch<-c(1,2,3,5,15)
     dataset$pch<-mypch[as.numeric(dataset$PROC)]
   }
-  x<-x%>%
-    rename("LD1"="LD1*",
-      "LD2"="LD2*",
-      "LD3"="LD3*",
-      "LD4"="LD4*")
+  names(data)<-gsub(x=names(data), pattern = "*", replacement="")
 
   if(Func1==1 & Func2==3){
     xv<-data$LD1

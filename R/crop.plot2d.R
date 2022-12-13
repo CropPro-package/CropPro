@@ -30,10 +30,7 @@ crop.plot2d<-function(x,ylims=NULL,xlims=NULL,gcols=NULL,gpchs=NULL, col ='black
     mypch<-c(1,2,3,5)
     dataset$pch<-mypch[as.numeric(dataset$PROC)]
  }
- x<-x%>%
-   rename("LD1"="LD1*",
-          "LD2"="LD2*",
-          "LD3"="LD3*")
+names(x)<-gsub(x=names(x), pattern = "*", replacement="")
 
  if (Func1==1 & Func2==3){
    xv<-x$LD1

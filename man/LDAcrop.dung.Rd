@@ -42,15 +42,14 @@ LDAcrop.dung(x)
 }
 \examples{
 ## Create random dataset for example
-BHH<-runif(40, min=0, max=7)
-BFH<-runif(40, min=0, max=24)
-SHH<-runif(40, min=1, max=13)
-SHL<-runif(40, min=0.5, max=17)
-SFH<-runif(40, min=1, max=22)
-SFL<-runif(40, min=1, max=8)
-NO<-sample(1:40, 40, replace=F)
-PROC<-runif(40,min=0,max=0)
-data<-as.data.frame(cbind(NO, PROC,BHH,BFH,SHH,SHL,SFH,SFL))
+BHH<-runif(20, min=0, max=7)
+BFH<-runif(20, min=0, max=24)
+SHH<-runif(20, min=1, max=13)
+SHL<-runif(20, min=0.5, max=17)
+SFH<-runif(20, min=1, max=22)
+SFL<-runif(20, min=1, max=8)
+Samples<-c("s1","s2","s3","s4","s5","s6","s7","s8","s9","s10","s11","s12","s13","s14","s15","s16","s17","s18","s19","s20")
+data<-data.frame(Samples,BHH,BFH,SHH,SHL,SFH,SFL)
 
 ## function usage
 LDAcrop.dung(data)

@@ -8,17 +8,18 @@
 %%  ~~ A concise (1-5 lines) description of what the function does. ~~
 }
 \usage{
-crop.triplot(grain,rachis,weeds,pch=5, col="black", bg="black", sample=NULL, cpch=NULL, cbg=NULL, ccol=NULL)
+crop.triplot(grain,rachis,weeds)
 }
 %- maybe also 'usage' for other objects documented here.
 \arguments{
-  \item{grain}{The column containing the amount of free threshing cereal grain}
+  \item{grain}{the column containing the amount of free threshing cereal grain}
   \item{rachis}{the column containing the amount of free threshing cereal rachis}
   \item{weeds}{the column containing the amount of weed seeds}
-  \item{pch}{ the symbol for the archaeobotanical samples}
-  \item{col}{ the colour for the archaeobotanical samples}
-  \item{bg}{the colour the the background of the symbol}
-  \item{label}{row number of a the sample/s to be labeled}
+  \item{pch}{the symbol for the archaeobotanical samples, default is 5}
+  \item{col}{the colour for the archaeobotanical samples, default is black}
+  \item{bg}{the colour the the background of the symbol, default is black}
+  \item{sample}{row number of the sample/s to be labeled}
+  \item{label}{label of the sample/s entered in the sample argument}
   \item{cpch}{the symbol of the model data}
   \item{cbg}{the blackground colour of the symbol of the model data}
   \item{ccol}{the colour of the symbol of the model data}
@@ -33,11 +34,11 @@ crop.triplot(grain,rachis,weeds,pch=5, col="black", bg="black", sample=NULL, cpc
 %%  \item{comp2 }{Description of 'comp2'}
 %% ...
 }
-\references{
+\references{ Jones, G. (1990) The application of present-day cereal processing studies to charred archaeobotanical remains. Circaea 6(2):91-96
 %% ~put references to the literature/web site here ~
 }
-\author{
-%%  ~~who you are~~
+\author{Elizabeth Stroud
+
 }
 \note{
 %%  ~~further notes~~
@@ -49,14 +50,17 @@ crop.triplot(grain,rachis,weeds,pch=5, col="black", bg="black", sample=NULL, cpc
 %% ~~objects to See Also as \code{\link{help}}, ~~~
 }
 \examples{
-##---- Should be DIRECTLY executable !! ----
-##-- ==>  Define data, use random,
-##--	or do  help(data=index)  for the standard data sets.
+##example data
+samples<-c("s1","s2","s3","s4","s5","s6","s7","s8","s9","s10")
+grain<-runif(10, min= 5, max=100)
+rachis<-runif(10, min= 1, max=50)
+weeds<-runif(10, min= 50, max=200)
+data<-data.frame(samples,grain,rachis,weeds)
+##usage
+crop.triplot(grain=data$grain, rachis=data$rachis, weeds=data$weeds, col="red")
+## label specific sample
+crop.triplot(grain=data$grain, rachis=data$rachis, weeds=data$weeds, col="red", sample=2, label="s2")
 
-## The function is currently defined as
-function (x)
-{
-  }
 }
 % Add one or more standard keywords, see file 'KEYWORDS' in the
 % R documentation directory (show via RShowDoc("KEYWORDS")):

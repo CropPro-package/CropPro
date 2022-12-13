@@ -40,7 +40,7 @@ s.46178<-sample(1:5, 6, replace=T)
 s.1<-sample(0:8, 6, replace=T)
 s.23<-sample(0:3, 6, replace=T)
 s.987<-sample(3:9, 6, replace=T)
-dataset<-data.frame(species,category,s.1246,s.46178,s.1,s.23,s.987))
+dataset<-data.frame(species,category,s.1246,s.46178,s.1,s.23,s.987)
 # Usage
 
 data<-dataorg(dataset, codes=2, samples=3)

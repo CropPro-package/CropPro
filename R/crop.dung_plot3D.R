@@ -2,11 +2,13 @@
 
 #x = lda1, y = lda2, z= lda3
 # note not sure how to do the colour - do have this as a default colour that can be changed.
-
-dung.plot3d<-function(data, gcol=NULL, col="black", site="Archaeological", LD=3){
+crop.dung_plot3D<-function(data, gcol=NULL, col="black", site="Archaeological", LD=3){
   data.model<-data.frame(data.model)
-  archdata<-data[c(11:18)]
+  archdata<-data
   archdata$PROC<-"5"
+  labels<-archdata[c(1)]
+  archdata<-archdata[c("PROC","BHH","BFH", "SHH", "SHL", "SFH", "SFL")]
+
   model.arch<-rbind(data.model, archdata)
   discrim_cv <- lda(PROC ~ BHH+BFH+SHH+SHL+SFH+SFL, model.arch, CV = TRUE)
   model_lda <- lda(PROC ~ BHH+BFH+SHH+SHL+SFH+SFL, model.arch, prior=c(1,1,1,1,1)/5)
@@ -31,6 +33,7 @@ dung.plot3d<-function(data, gcol=NULL, col="black", site="Archaeological", LD=3)
     dataset$colour<-gcolours[as.numeric(dataset$PROC)]
   }
 
+  names(data)<-gsub(x=names(data), pattern = "*", replacement="")
   open3d()
   par3d(windowRect = c(100, 100, 612, 612))
 

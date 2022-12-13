@@ -8,20 +8,14 @@
 %%  ~~ A concise (1-5 lines) description of what the function does. ~~
 }
 \usage{
-crop.plot3d(x, y, z, col, gcol, site)
+crop.plot3d(x, col, gcol, site)
 }
 %- maybe also 'usage' for other objects documented here.
 \arguments{
-  \item{x}{Column of the dataframe containing the discriminant scores of function 1 (if results from \code{\link[CropPro]{LDAcrop.pro}} it will be called x.LD1)
+  \item{x}{the dataframe containing the discriminant scores of function 1 (if results from \code{\link[CropPro]{LDAcrop.pro}} it will be called x.LD1)
 %%     ~~Describe \code{x} here~~
 }
-  \item{y}{Column of the dataframe containing the discriminant scores of function 2 (if results from \code{\link[CropPro]{LDAcrop.pro}} it will be called x.LD2)
-%%     ~~Describe \code{y} here~~
-}
-  \item{z}{Column of the dataframe containing the discriminant scores of function 3 (if results from \code{\link[CropPro]{LDAcrop.pro}} it will be called x.LD3)
-%%     ~~Describe \code{z} here~~
-}
-  \item{col}{Symbol colour of archaeobotanical data
+\item{col}{Symbol colour of archaeobotanical data
 
 }
 \item{gcol}{Symbol colours of the ethnographical crop processing groups written as c("red", "green"...) etc
@@ -66,11 +60,11 @@ data<-data.frame(Study,LD1, LD2, LD3)
 
 ## use
 
-crop.plot3d(data$LD1, data$LD2, data$LD3)
+crop.plot3d(data)
 
 ## without defaults
 
-crop.plot3d(data$LD1, data$LD2, data$LD3, gcol = c("black", "grey", "grey48", "grey100"),
+crop.plot3d(data, gcol = c("black", "grey", "grey48", "grey100"),
 col = "red", site = "Example")
 }
 

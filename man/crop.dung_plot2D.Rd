@@ -1,4 +1,4 @@
-\name{dung.plot2d}
+\name{crop.dung_plot2D}
 \alias{dung.plot2d}
 %- Also NEED an '\alias' for EACH other topic documented here.
 \title{Plotting the output of the \code{\link[CropPro]{LDAcrop.dung}} as a 2D graph
@@ -71,12 +71,11 @@ SHH<-runif(40, min=1, max=13)
 SHL<-runif(40, min=0.5, max=17)
 SFH<-runif(40, min=1, max=22)
 SFL<-runif(40, min=1, max=8)
-NO<-sample(1:40, 40, replace=F)
-PROC<-runif(40,min=0,max=0)
-data<-as.data.frame(cbind(NO,PROC,BHH,BFH,SHH,SHL,SFH,SFL))
-results<-LDAcrop.dung(results)
+Sample<-sample(1:40, 40, replace=F)
+data<-data.frame(Sample,BHH,BFH,SHH,SHL,SFH,SFL)
+results<-LDAcrop.dung(data)
 # Use
-dung.plot2d(results)
+crop.dung_plot2D(results)
 
 }
 

@@ -1,4 +1,4 @@
-\name{dung.plot3d}
+\name{crop.dung_plot3D}
 \alias{dung.plot3d}
 %- Also NEED an '\alias' for EACH other topic documented here.
 \title{3D plot for the results of \code{\link[CropPro]{LDAcrop.dung}} where the archaeobotanical samples are entered at the discrimination point.
@@ -54,13 +54,13 @@ SHH<-runif(40, min=1, max=13)
 SHL<-runif(40, min=0.5, max=17)
 SFH<-runif(40, min=1, max=22)
 SFL<-runif(40, min=1, max=8)
-NO<-sample(1:40, 40, replace=F)
-PROC<-runif(40,min=0,max=0)
-data<-as.data.frame(cbind(NO,PROC,BHH,BFH,SHH,SHL,SFH,SFL))
-results<-LDAcrop.dung(results)
+Sample<-sample(1:40, 40, replace=F)
+
+data<-data.frame(Sample,BHH,BFH,SHH,SHL,SFH,SFL)
+results<-LDAcrop.dung(data)
 ## Usage
-dung.plot3d(results)
-dung.plot3d(results, LD=4)
+crop.dung_plot3D(results)
+crop.dung_plot3D(results, LD=4)
 }
 % Add one or more standard keywords, see file 'KEYWORDS' in the
 % R documentation directory (show via RShowDoc("KEYWORDS")):

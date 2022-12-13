@@ -26,7 +26,7 @@ crop.plot3d<-function(x, gcol=NULL, col="black", site="Site"){
     gcolours<-c("forestgreen", "blue", "dodgerblue", "red")
     functionalAt$colour<-gcolours[as.numeric(functionalAt$PROC)]
   }
-
+  names(x)<-gsub(x=names(x), pattern = "*", replacement="")
 
   open3d()
   par3d(windowRect = c(100, 100, 612, 612))

@@ -1,6 +1,6 @@
 #triplot
 
-triplot<-function(grain,rachis,weeds,pch=5, col="black", bg="black", sample=NULL, label="Sample",cpch=NULL, cbg=NULL, ccol=NULL){
+crop.triplot<-function(grain,rachis,weeds,pch=5, col="black", bg="black", sample=NULL, label="Sample",cpch=NULL, cbg=NULL, ccol=NULL){
   par(mar=c(4,4,4,4))
   plot(NA,NA,xlim=c(0,1),ylim=c(0,sqrt(3)/2),asp=1,bty="n",axes=F,xlab="",ylab="")
   segments(0,0,0.5,sqrt(3)/2)

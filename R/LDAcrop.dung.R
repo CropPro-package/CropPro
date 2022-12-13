@@ -3,7 +3,7 @@ data.model<-data.frame(data.model,stringsAsFactors = FALSE)
 data.model$PROC<-as.numeric(data.model$PROC)
 x$PROC<-5
 labels<-x[c(1)]
-x<-x[c(8,2:7)]
+x<-x[c("PROC","BHH","BFH", "SHH", "SHL", "SFH", "SFL")]
 model.arch<-data.frame(stringsAsFactors = FALSE)
 model.arch<-rbind(data.model, x, stringsAsFactors = FALSE)
 discrim_cv <- lda(PROC ~ BHH+BFH+SHH+SHL+SFH+SFL, model.arch, CV = TRUE)
