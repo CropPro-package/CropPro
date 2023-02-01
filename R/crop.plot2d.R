@@ -1,4 +1,4 @@
-crop.plot2d<-function(x,ylims=NULL,xlims=NULL,gcols=NULL,gpchs=NULL, col ='black', pch=15, site="Site", Func1=1, Func2=2){
+crop.plot2D<-function(x,ylims=NULL,xlims=NULL,gcols=NULL,gpchs=NULL, col ='black', pch=15, site="Site", Func1=1, Func2=2){
   data.model<-data.frame(data.model)
   discrim_cv <- lda(PROC ~ BHH+BFH+SHH+SHL+SFH+SFL,data.model,CV = TRUE)
   model_lda <- lda(PROC ~ BHH+BFH+SHH+SHL+SFH+SFL, data.model)

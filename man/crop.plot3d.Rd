@@ -1,54 +1,23 @@
-\name{crop.plot3d}
-\alias{crop.plot3d}
-%- Also NEED an '\alias' for EACH other topic documented here.
-\title{plotting the results of \code{\link[CropPro]{LDAcrop.pro}} as a 3d object
-%%  ~~function to do ... ~~
+\name{crop.plot3D}
+\alias{crop.plot3D}
+\title{A three dimensional graph of the results of \code{\link[CropPro]{LDAcrop.pro}}
 }
-\description{
-%%  ~~ A concise (1-5 lines) description of what the function does. ~~
+\description{The funcation plots the linear discriminant scores obtained from \code{\link[CropPro]{LDAcrop.pro}} as a three dimensional graph
 }
 \usage{
-crop.plot3d(x, col, gcol, site)
+crop.plot3D(x, col= "black", gcol=NULL, site ="Site")
 }
-%- maybe also 'usage' for other objects documented here.
+
 \arguments{
-  \item{x}{the dataframe containing the discriminant scores of function 1 (if results from \code{\link[CropPro]{LDAcrop.pro}} it will be called x.LD1)
-%%     ~~Describe \code{x} here~~
+\item{x}{the dataframe containing the discriminant scores obtained from \code{\link[CropPro]{LDAcrop.pro}}}
+\item{col}{Symbol colour of archaeobotanical data}
+\item{gcol}{Symbolcolours of the ethnographical crop processing groups written as a list eg. c("red", "green"...) etc}
+\item{site}{The name that the archaeobotanical data will be labelled as in legend}
 }
-\item{col}{Symbol colour of archaeobotanical data
-
-}
-\item{gcol}{Symbol colours of the ethnographical crop processing groups written as c("red", "green"...) etc
-
-}
-\item{site}{The name the archaeobotanical data will be labelled as in key
-}
-}
-\details{
-%%  ~~ If necessary, more details than the description above ~~
-}
-\value{
-%%  ~Describe the value returned
-%%  If it is a LIST, use
-%%  \item{comp1 }{Description of 'comp1'}
-%%  \item{comp2 }{Description of 'comp2'}
-%% ...
-}
-\references{
-%% ~put references to the literature/web site here ~
-}
+\references{PUT IN PAPER REFERENCE}
 \author{Elizabeth Stroud
-%%  ~~who you are~~
-}
-\note{
-%%  ~~further notes~~
 }
 
-%% ~Make other sections like Warning with \section{Warning }{....} ~
-
-\seealso{
-%% ~~objects to See Also as \code{\link{help}}, ~~~
-}
 \examples{
 ##example dataset
 
@@ -60,11 +29,11 @@ data<-data.frame(Study,LD1, LD2, LD3)
 
 ## use
 
-crop.plot3d(data)
+crop.plot3D(data)
 
 ## without defaults
 
-crop.plot3d(data, gcol = c("black", "grey", "grey48", "grey100"),
+crop.plot3D(data, gcol = c("black", "grey", "grey48", "grey89"),
 col = "red", site = "Example")
 }
 

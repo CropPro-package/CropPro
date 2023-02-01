@@ -1,5 +1,5 @@
 library(plyr)
-dataorg<-function(dataframe, codes, samples){
+crop.dataorg<-function(dataframe, codes, samples){
 data<-dataframe[,samples:ncol(dataframe)]
 
 groups<-dataframe[,codes]

@@ -1,5 +1,4 @@
 
-
 #x = lda1, y = lda2, z= lda3
 # note not sure how to do the colour - do have this as a default colour that can be changed.
 crop.dung_plot3D<-function(data, gcol=NULL, col="black", site="Archaeological", LD=3){
@@ -34,13 +33,14 @@ crop.dung_plot3D<-function(data, gcol=NULL, col="black", site="Archaeological", 
   }
 
   names(data)<-gsub(x=names(data), pattern = "*", replacement="")
+
   open3d()
   par3d(windowRect = c(100, 100, 612, 612))
 
   if (LD>3){
     plot3d(dataset$LD1, dataset$LD4,dataset$LD2, col=dataset$colour, type="s",  size=0.9, xlab= "LD1", ylab="LD4", zlab="LD2")
 
-    shapelist3d(cube3d(),x=centroids$centroid1,y=centroids$centroid2, z=centroids$centroid3,  col="black",size=0.2)
+    shapelist3d(cube3d(),x=centroids$centroid1,y=centroids$centroid4, z=centroids$centroid2,  col="black",size=0.2)
     #play3d( spin3d( axis = c(0, 0, 1), rpm = 20), duration = 10 )
 
     legend.table<- dataset[!duplicated(dataset$Actual.Group),]
@@ -51,7 +51,7 @@ crop.dung_plot3D<-function(data, gcol=NULL, col="black", site="Archaeological", 
 
   plot3d(dataset$LD1, dataset$LD3,dataset$LD2, col=dataset$colour, type="s",  size=0.9, xlab= "LD1", ylab="LD3", zlab="LD2")
 
-  shapelist3d(cube3d(),x=centroids$centroid1,y=centroids$centroid2, z=centroids$centroid3,  col="black",size=0.2)
+  shapelist3d(cube3d(),x=centroids$centroid1,y=centroids$centroid3, z=centroids$centroid2,  col="black",size=0.2)
   #play3d( spin3d( axis = c(0, 0, 1), rpm = 20), duration = 10 )
 
   legend.table<- dataset[!duplicated(dataset$Actual.Group),]

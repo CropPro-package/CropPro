@@ -4,7 +4,6 @@ crop.dung_plot2D<-function(data,Func1=1, Func2=2, ylims=NULL,xlims=NULL,gcols=NU
   archdata$PROC<-"5"
   labels<-archdata[c(1)]
   archdata<-archdata[c("PROC","BHH","BFH", "SHH", "SHL", "SFH", "SFL")]
-
   model.arch<-rbind(data.model, archdata)
   discrim_cv <- lda(PROC ~ BHH+BFH+SHH+SHL+SFH+SFL, model.arch, CV = TRUE)
   model_lda <- lda(PROC ~ BHH+BFH+SHH+SHL+SFH+SFL, model.arch)
@@ -18,6 +17,8 @@ crop.dung_plot2D<-function(data,Func1=1, Func2=2, ylims=NULL,xlims=NULL,gcols=NU
               centroid2= mean(LD2),
               centroid3= mean(LD3),
               centroid4 = mean(LD4))
+
+  names(data)<-gsub(x=names(data), pattern = "`*`", replacement="")
 
   if(!is.null(gcols)){
     gcolours<-c(gcols,col)
@@ -35,7 +36,6 @@ crop.dung_plot2D<-function(data,Func1=1, Func2=2, ylims=NULL,xlims=NULL,gcols=NU
     mypch<-c(1,2,3,5,15)
     dataset$pch<-mypch[as.numeric(dataset$PROC)]
   }
-  names(data)<-gsub(x=names(data), pattern = "*", replacement="")
 
   if(Func1==1 & Func2==3){
     xv<-data$LD1

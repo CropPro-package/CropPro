@@ -1,16 +1,16 @@
-\name{dataorg}
-\alias{dataorg}
+\name{crop.dataorg}
+\alias{crop.dataorg}
 %- Also NEED an '\alias' for EACH other topic documented here.
 \title{Function to transform raw archaeobotanical data into the form required for \code{\link[CropPro]{LDAcrop.pro}} and \code{\link[CropPro]{LDAcrop.dung}}.
 %%  ~~function to do ... ~~
 }
 \description{The function transforms raw archaeobotanical data, calculating the squareroot of each species number multiplied by 100, divided by the total weed species within the sample
-%%  ~~ A concise (1-5 lines) description of what the function does. ~~
+
 }
 \usage{
-dataorg(dataframe, groupcol)
+dataorg(dataframe, codes, samples)
 }
-%- maybe also 'usage' for other objects documented here.
+
 \arguments{
   \item{dataframe}{The dataframe with the archaeobotanical samples
 }
@@ -43,15 +43,6 @@ s.987<-sample(3:9, 6, replace=T)
 dataset<-data.frame(species,category,s.1246,s.46178,s.1,s.23,s.987)
 # Usage
 
-data<-dataorg(dataset, codes=2, samples=3)
+data<-crop.dataorg(dataset, codes=2, samples=3)
 
 }
-% Add one or more standard keywords, see file 'KEYWORDS' in the
-% R documentation directory (show via RShowDoc("KEYWORDS")):
-% \keyword{ ~kwd1 }
-% \keyword{ ~kwd2 }
-% Use only one keyword per line.
-% For non-standard keywords, use \concept instead of \keyword:
-% \concept{ ~cpt1 }
-% \concept{ ~cpt2 }
-% Use only one concept per line.
