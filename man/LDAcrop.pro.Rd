@@ -12,7 +12,7 @@ LDAcrop.pro(x)
   \item{x}{The archaeobotanical dataset
 }
 }
-\details{The archaeobotanical dataset needs to have been transformed and organised with columns labelled and in the order of: BHH,BFH,SHH,SHL,SFH,SFL.The first column of the dataframe should be the sample names.Transformation can be done manually following (insert reference) or through the use of \code{\link[CropPro]{crop.dataorg}} which can transform a raw archaeobotanical dataset.
+\details{The archaeobotanical dataset needs to have been transformed and organised with columns labelled and in the order of: BHH, BFH, SHH, SHL, SFH, SFL.The first column of the dataframe should be the sample names.Transformation can be done manually following (insert reference) or through the use of \code{\link[CropPro]{crop.dataorg}} which can transform a raw archaeobotanical dataset.
 %%  ~~ If necessary, more details than the description above ~~
 }
 \value{Results table:(note the * asterisked items appear in console output and are used for interpretation, non-asterisked columns provide addition details regarding standardised and unstandardised components
@@ -57,16 +57,19 @@ Classification table: showing the count and percentage of samples classifed as o
 }
 \examples{
 ##Create random dataset for examples
+
 BHH<-runif(20, min=0, max=7)
 BFH<-runif(20, min=0, max=24)
 SHH<-runif(20, min=1, max=13)
 SHL<-runif(20, min=0.5, max=17)
 SFH<-runif(20, min=1, max=22)
 SFL<-runif(20, min=1, max=8)
-Samples<-c("s1","s2","s3","s4","s5","s6","s7","s8","s9","s10","s11","s12","s13","s14","s15","s16","s17","s18","s19","s20")
+Samples<-c("s1","s2","s3","s4","s5","s6","s7","s8","s9","s10","s11","s12","s13",
+"s14","s15","s16","s17","s18","s19","s20")
 data<-data.frame(Samples,BHH,BFH,SHH,SHL,SFH,SFL)
 
 #Use
+
 LDAcrop.pro(data)
 
 }

@@ -1,13 +1,14 @@
 \name{crop.plot2D}
 \alias{crop.plot2D}
 %- Also NEED an '\alias' for EACH other topic documented here.
-\title{A two dimentional plot (x/y scatterplot) of linear discriminant scores from \code{\link[CropPro]{LDAcrop.pro}}
+\title{A two dimentional plot (xy scatterplot) of linear discriminant scores from \code{\link[CropPro]{LDAcrop.pro}}
 }
-\description{This function plots the  linear discriminant scores from \code{\link[CropPro]{LDAcrop.pro}}as a 2D graph showing.
+\description{This function plots the linear discriminant scores from \code{\link[CropPro]{LDAcrop.pro}} as a 2D graph.
 
 }
 \usage{
-crop.plot2D(x,ylims=NULL,xlims=NULL,gcols=NULL,gpchs=NULL, col ='black', pch=15,site="Site", Func1=1, Func2=2)
+crop.plot2D(x,ylims=NULL,xlims=NULL,gcols=NULL,gpchs=NULL, col ='black', pch=15,
+site="Site", Func1=1, Func2=2)
 }
 
 \arguments{
@@ -23,7 +24,7 @@ crop.plot2D(x,ylims=NULL,xlims=NULL,gcols=NULL,gpchs=NULL, col ='black', pch=15,
   \item{Func2}{The linear discriminant function to be ploted on the y axis- the default is 2}
 }
 \details{
-The dataframe entered as argument X can be the output of \code{\link[CropPro]{LDAcrop.pro}} or from manual normalizing. However the dataframe must have column labeled LD1, LD2, LD3 containing the linear discrimanant scores
+The data frame entered as argument x can be the output of \code{\link[CropPro]{LDAcrop.pro}} or from manual normalizing. However the data frame must have column labeled LD1, LD2, LD3 containing the linear discrimanant scores for funcation 1, 2 and 3
 }
 
 \references{PAPER reference
@@ -35,6 +36,7 @@ The dataframe entered as argument X can be the output of \code{\link[CropPro]{LD
 
 \examples{
 ##Example dataset
+
 LD1<-runif(40, min= -0, max=3)
 LD2<-runif(40, min = -2, 4)
 LD3<-runif(40, min = 2, 4)
@@ -42,12 +44,15 @@ Study<-sample(1:3, 40, replace=T)
 data<-data.frame(Study,LD1, LD2, LD3)
 
 ###Use with defaults (will return a black and white graph)
+
 crop.plot2D(data)
 
 ###Changing whcih discriminant function is ploted
+
 crop.plot2D(data, Func1=2, Func2=3)
 
 ##Use with colour and symbol variables
+
 crop.plot2D(data, xlims = c(-5, 5), ylims =c(-5,5), gcols =c("forestgreen", "blue",
 "skyblue", "orange"), gpch=c(6,7,8,9), col = "darkred", pch = 20 , site ="Example")
   }

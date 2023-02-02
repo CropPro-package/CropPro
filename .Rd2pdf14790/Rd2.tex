@@ -1,0 +1,646 @@
+\nonstopmode{}
+\documentclass[a4paper]{book}
+\usepackage[times,inconsolata,hyper]{Rd}
+\usepackage{makeidx}
+\usepackage[utf8]{inputenc} % @SET ENCODING@
+% \usepackage{graphicx} % @USE GRAPHICX@
+\makeindex{}
+\begin{document}
+\chapter*{}
+\begin{center}
+{\textbf{\huge Package `CropPro'}}
+\par\bigskip{\large \today}
+\end{center}
+\inputencoding{utf8}
+\ifthenelse{\boolean{Rd@use@hyper}}{\hypersetup{pdftitle = {CropPro: Data organisation, classification and visualistion of archaeobotanical data to understand crop processing stage}}}{}
+\begin{description}
+\raggedright{}
+\item[Type]\AsIs{Package}
+\item[Title]\AsIs{Data organisation, classification and visualistion of archaeobotanical data to understand crop processing stage}
+\item[Version]\AsIs{0.1.0}
+\item[Author]\AsIs{Elizabeth Stroud}
+\item[Maintainer]\AsIs{}\email{elizabeth.stroud@arch.ox.ac.uk}\AsIs{}
+\item[Description]\AsIs{This package contains functions for the linear discriminant analysis of ethnographic data against which archaeobotanical data can be classified. T The package contains two LDA functions which allows the archaeobotanical samples to be classified as one of four crop processing stages, or one of five classes (four crop processing stages and the archaeological group). This package also contains a function for the data transformation required before LDA, as well as four graphing functions.   }
+\item[License]\AsIs{MIT}
+\item[Depends]\AsIs{dplyr,
+MASS,
+rgl}
+\item[Encoding]\AsIs{UTF-8}
+\item[LazyData]\AsIs{true}
+\end{description}
+\Rdcontents{\R{} topics documented:}
+\inputencoding{utf8}
+\HeaderA{CropPro-package}{CropPro Data organisation, classification and visualistion of archaeobotanical data to understand crop processing stage}{CropPro.Rdash.package}
+\aliasA{CropPro}{CropPro-package}{CropPro}
+%
+\begin{Description}\relax
+This package contains functions for the linear discriminant analysis of ethnographic data against which archaeobotanical data can be classified. T The package contains two LDA functions which allows the archaeobotanical samples to be classified as one of four crop processing stages, or one of five classes (four crop processing stages and the archaeological group). This package also contains a function for the data transformation required before LDA, as well as four graphing functions.   
+\end{Description}
+%
+\begin{Author}\relax
+Elizabeth Stroud
+Elizabeth Stroud
+
+Maintainer: <elizabeth.stroud@arch.ox.ac.uk>
+\end{Author}
+%
+\begin{References}\relax
+Reference to in prep paper
+
+Jones, G., 1987. A statistical approach to the archaeological identification of crop processing. \emph{Journal of Archaeological Science}, 14(3), pp.311-323.
+
+Jones, G. 1990. The application of present-day ceral processing studies to charred archaeobotanical remains. \emph{Circaea} 6(2):91-96
+
+Charles, M., 1998. Fodder from dung: the recognition and interpretation of dung-derived plant material from archaeological sites, \emph{Environmental Archaeology}, 1:1, 111-122
+
+\end{References}
+\inputencoding{utf8}
+\HeaderA{crop.dataorg}{Function to transform raw archaeobotanical data into the form required for \code{\LinkA{LDAcrop.pro}{LDAcrop.pro}} and \code{\LinkA{LDAcrop.dung}{LDAcrop.dung}}.}{crop.dataorg}
+%
+\begin{Description}\relax
+The function transforms raw archaeobotanical data, converting the data to percentages and calculating the squareroot of the weed seeds percentage within the sample.
+
+\end{Description}
+%
+\begin{Usage}
+\begin{verbatim}
+dataorg(dataframe, codes, samples)
+\end{verbatim}
+\end{Usage}
+%
+\begin{Arguments}
+\begin{ldescription}
+\item[\code{dataframe}] The dataframe with the archaeobotanical samples
+\item[\code{codes}] The column containing the grouping variables of the different species (BHH, BFH etc )
+\item[\code{samples}] The column in which the samples data starts
+\end{ldescription}
+\end{Arguments}
+%
+\begin{Details}\relax
+The funcation conducts a square-root transformation of the weed seeds percentages as per Jones 1984.
+\end{Details}
+%
+\begin{Author}\relax
+Elizabeth Stroud
+\end{Author}
+%
+\begin{References}\relax
+Jones, G. 1984. Interpretation of archaeological plant remains: ethnographic models from Greece. In W. van Zeist \& W.A. Casparie, Eds \emph{Plants and Ancient Man: Studies in Palaeoethnobotany}. Rotterdam: Balkema, pp 43-61
+
+Jones, G., 1987. A statistical approach to the archaeological identification of crop processing. \emph{Journal of Archaeological Science}, 14(3), pp.311-323.
+\end{References}
+%
+\begin{Examples}
+\begin{ExampleCode}
+## Example data
+
+species<-c("Chenopodium album" , "Anthemis cotula", "Brassica rapa ssp campestris",
+"Raphanus raphanistrum", "Agrostemma githago" , "Poa annua" )
+category<-c("SFH", "BHH","SFH","BHH","BFH", "SFL" )
+s.1246<-sample(1:3, 6, replace=T)
+s.46178<-sample(1:5, 6, replace=T)
+s.1<-sample(0:8, 6, replace=T)
+s.23<-sample(0:3, 6, replace=T)
+s.987<-sample(3:9, 6, replace=T)
+dataset<-data.frame(species,category,s.1246,s.46178,s.1,s.23,s.987)
+
+## Usage
+
+data<-crop.dataorg(dataset, codes=2, samples=3)
+data
+\end{ExampleCode}
+\end{Examples}
+\inputencoding{utf8}
+\HeaderA{crop.dung\_plot2D}{A two dimentional plot (xy scatterplot) of linear discriminant scores from \code{\LinkA{LDAcrop.dung}{LDAcrop.dung}} in comparsion to the ethnographic model's scores}{crop.dung.Rul.plot2D}
+%
+\begin{Description}\relax
+This function plots the  linear discriminant scores from \code{\LinkA{LDAcrop.dung}{LDAcrop.dung}} as a 2D graph.
+\end{Description}
+%
+\begin{Usage}
+\begin{verbatim}
+crop.dung_plot2d(data,Func1=1, Func2=2, ylims=NULL,xlims=NULL,gcols=NULL,
+gpchs=NULL, col ='black', pch=15, site="Archaeological")
+\end{verbatim}
+\end{Usage}
+%
+\begin{Arguments}
+\begin{ldescription}
+\item[\code{data}] The data frame containing the results of the \code{\LinkA{LDAcrop.dung}{LDAcrop.dung}} function
+
+\item[\code{Func1}] The linear discriminant function to be ploted on the x axis
+
+\item[\code{Func2}] The linear discriminant function to be ploted  on the y axis
+
+\item[\code{ylims}] The limits of the y axis expressed as c(min, max)
+
+\item[\code{xlims}] The limits of the x axis expressed as c(min, max)
+
+\item[\code{gcols}] The colours of the symbols of the modern crop processing groups expressed as for example c("pink", "red", etc)
+
+\item[\code{gpchs}] The symbols of the modern crop processing groups  expressed as for example c(1,2,3,4)
+
+\item[\code{col}] The colour of the archaeobotanical samples
+
+
+\item[\code{pch}] The symbol of the archaeobotanical samples
+
+
+\item[\code{site}] The name of the archaeobotanical samples to appear in the legend
+
+
+\end{ldescription}
+\end{Arguments}
+%
+\begin{Details}\relax
+The data frame entered as argument x can be the output of \code{\LinkA{LDAcrop.dung}{LDAcrop.dung}} or from manual transformation. However the data frame must have column labeled LD1, LD2, LD3 containing the linear discrimanant scores
+\end{Details}
+%
+\begin{Author}\relax
+Elizabeth Stroud
+
+\end{Author}
+%
+\begin{References}\relax
+ PAPER reference
+
+Charles, M., 1998. Fodder from dung: the recognition and interpretation of dung-derived plant material from archaeological sites, \emph{Environmental Archaeology}, 1:1, 111-122
+
+\end{References}
+%
+\begin{SeeAlso}\relax
+\code{\LinkA{LDAcrop.dung}{LDAcrop.dung}}
+
+\end{SeeAlso}
+%
+\begin{Examples}
+\begin{ExampleCode}
+## Random data
+
+BHH<-runif(40, min=0, max=7)
+BFH<-runif(40, min=0, max=24)
+SHH<-runif(40, min=1, max=13)
+SHL<-runif(40, min=0.5, max=17)
+SFH<-runif(40, min=1, max=22)
+SFL<-runif(40, min=1, max=8)
+Sample<-sample(1:40, 40, replace=F)
+data<-data.frame(Sample,BHH,BFH,SHH,SHL,SFH,SFL)
+results<-LDAcrop.dung(data)
+
+## Usage
+
+crop.dung_plot2D(results)
+
+##Plot different LD function
+
+crop.dung_plot2D(results, Func1=2, Func2=3)
+
+\end{ExampleCode}
+\end{Examples}
+\inputencoding{utf8}
+\HeaderA{crop.dung\_plot3D}{A three dimensional graph of the results of \code{\LinkA{LDAcrop.dung}{LDAcrop.dung}}}{crop.dung.Rul.plot3D}
+%
+\begin{Description}\relax
+crop.dung\_plot3D plots the linear discriminant scores obtained from \code{\LinkA{LDAcrop.dung}{LDAcrop.dung}} as a three dimensional graph
+\end{Description}
+%
+\begin{Usage}
+\begin{verbatim}
+dung.plot3d(data, gcol=NULL, col="black", site="site", LD=3)
+\end{verbatim}
+\end{Usage}
+%
+\begin{Arguments}
+\begin{ldescription}
+\item[\code{data}] The output of \code{\LinkA{LDAcrop.dung}{LDAcrop.dung}}
+\item[\code{gcol}] The colour of the crop processing stages' symbols
+\item[\code{col}] The colour of the archaeobotanical samples symbols
+\item[\code{site}] The name for the archaeobotanical samples - to appear in the legend
+\item[\code{LD}] Whether ploting the first three discriminant functions or the 4th has been substituted for the 3rd function (response is LD=4)
+
+\end{ldescription}
+\end{Arguments}
+%
+\begin{Author}\relax
+Elizabeth Stroud
+
+\end{Author}
+%
+\begin{References}\relax
+PAPER
+
+\end{References}
+%
+\begin{SeeAlso}\relax
+\LinkA{LDAcrop.dung}{LDAcrop.dung} \LinkA{crop.plot2D}{crop.plot2D}
+\end{SeeAlso}
+%
+\begin{Examples}
+\begin{ExampleCode}
+##Random data
+
+BHH<-runif(40, min=0, max=7)
+BFH<-runif(40, min=0, max=24)
+SHH<-runif(40, min=1, max=13)
+SHL<-runif(40, min=0.5, max=17)
+SFH<-runif(40, min=1, max=22)
+SFL<-runif(40, min=1, max=8)
+Sample<-sample(1:40, 40, replace=F)
+
+data<-data.frame(Sample,BHH,BFH,SHH,SHL,SFH,SFL)
+results<-LDAcrop.dung(data)
+
+## Usage
+
+crop.dung_plot3D(results)
+crop.dung_plot3D(results, LD=4)
+\end{ExampleCode}
+\end{Examples}
+\inputencoding{utf8}
+\HeaderA{crop.plot2D}{A two dimentional plot (xy scatterplot) of linear discriminant scores from \code{\LinkA{LDAcrop.pro}{LDAcrop.pro}}}{crop.plot2D}
+%
+\begin{Description}\relax
+This function plots the linear discriminant scores from \code{\LinkA{LDAcrop.pro}{LDAcrop.pro}} as a 2D graph.
+
+\end{Description}
+%
+\begin{Usage}
+\begin{verbatim}
+crop.plot2D(x,ylims=NULL,xlims=NULL,gcols=NULL,gpchs=NULL, col ='black', pch=15,
+site="Site", Func1=1, Func2=2)
+\end{verbatim}
+\end{Usage}
+%
+\begin{Arguments}
+\begin{ldescription}
+\item[\code{x}] dataframe containing columns with the LD1, LD2 and LD3 scores - this can be the output of \code{\LinkA{LDAcrop.pro}{LDAcrop.pro}, see details for futher information}
+\item[\code{ylims}] The limits of the y axis (expressed as c(min, max))
+\item[\code{xlims}] The limits of the x axis (expressed as c(min, max))
+\item[\code{gcols}] Symbol colours of the ethnographical crop processing groups written as c("red", "green"...) etc. The default produces a black and white plot
+\item[\code{gpchs}] The symbols of the ethnographical crop processing groups (expressed as c(1, 2, 3, 14, 18))
+\item[\code{col}] Symbol colour for archaeobotanical data
+\item[\code{pch}] Symbol of the archaeobotanical data
+\item[\code{site}] The name the archaeobotanical data will be labelled as in the legend
+\item[\code{Func1}] The linear discriminant function to be ploted on the x axis- the default is 1
+\item[\code{Func2}] The linear discriminant function to be ploted on the y axis- the default is 2
+\end{ldescription}
+\end{Arguments}
+%
+\begin{Details}\relax
+The data frame entered as argument x can be the output of \code{\LinkA{LDAcrop.pro}{LDAcrop.pro}} or from manual normalizing. However the data frame must have column labeled LD1, LD2, LD3 containing the linear discrimanant scores for funcation 1, 2 and 3
+\end{Details}
+%
+\begin{Author}\relax
+Elizabeth Stroud
+
+\end{Author}
+%
+\begin{References}\relax
+PAPER reference
+
+\end{References}
+%
+\begin{Examples}
+\begin{ExampleCode}
+##Example dataset
+
+LD1<-runif(40, min= -0, max=3)
+LD2<-runif(40, min = -2, 4)
+LD3<-runif(40, min = 2, 4)
+Study<-sample(1:3, 40, replace=T)
+data<-data.frame(Study,LD1, LD2, LD3)
+
+###Use with defaults (will return a black and white graph)
+
+crop.plot2D(data)
+
+###Changing whcih discriminant function is ploted
+
+crop.plot2D(data, Func1=2, Func2=3)
+
+##Use with colour and symbol variables
+
+crop.plot2D(data, xlims = c(-5, 5), ylims =c(-5,5), gcols =c("forestgreen", "blue",
+"skyblue", "orange"), gpch=c(6,7,8,9), col = "darkred", pch = 20 , site ="Example")
+  
+\end{ExampleCode}
+\end{Examples}
+\inputencoding{utf8}
+\HeaderA{crop.plot3D}{A three dimensional graph of the results of \code{\LinkA{LDAcrop.pro}{LDAcrop.pro}}}{crop.plot3D}
+%
+\begin{Description}\relax
+crop.plot3D plots the linear discriminant scores obtained from \code{\LinkA{LDAcrop.pro}{LDAcrop.pro}} as a three dimensional graph
+\end{Description}
+%
+\begin{Usage}
+\begin{verbatim}
+crop.plot3D(x, col= "black", gcol=NULL, site ="Site")
+\end{verbatim}
+\end{Usage}
+%
+\begin{Arguments}
+\begin{ldescription}
+\item[\code{x}] the dataframe containing the discriminant scores obtained from \code{\LinkA{LDAcrop.pro}{LDAcrop.pro}}
+\item[\code{col}] Symbol colour of archaeobotanical data
+\item[\code{gcol}] Symbolcolours of the ethnographical crop processing groups written as a list eg. c("red", "green"...) etc
+\item[\code{site}] The name that the archaeobotanical data will be labelled as in the legend
+\end{ldescription}
+\end{Arguments}
+%
+\begin{Author}\relax
+Elizabeth Stroud
+\end{Author}
+%
+\begin{References}\relax
+PUT IN PAPER REFERENCE
+\end{References}
+%
+\begin{Examples}
+\begin{ExampleCode}
+##example dataset
+
+LD1<-runif(40, min= -0, max=3)
+LD2<-runif(40, min = -2, max=4)
+LD3<-runif(40, min =-4, max=-1)
+Study<-sample(1:3, 40, replace=T)
+data<-data.frame(Study,LD1, LD2, LD3)
+
+## use
+
+crop.plot3D(data)
+
+## without defaults
+
+crop.plot3D(data, gcol = c("black", "grey", "grey48", "grey89"),
+col = "red", site = "Example")
+\end{ExampleCode}
+\end{Examples}
+\inputencoding{utf8}
+\HeaderA{crop.triplot}{Triplot of the different proportions of weeds, grains, and rachis compared to the Amorgos data}{crop.triplot}
+%
+\begin{Description}\relax
+Trianglar diagram showing the percentages of weeds to grains to rachis of the entered data. The funcation create two side by side plots, with the first showing the ethnographic data and the second the entered archaeobotanical data.
+\end{Description}
+%
+\begin{Usage}
+\begin{verbatim}
+crop.triplot(grain,rachis,weeds,pch=5, col="black", bg="black", sample=NULL,
+samplelabel="Sample",legendlabel="Samples",cpch=NULL, cbg=NULL, ccol=NULL)
+
+\end{verbatim}
+\end{Usage}
+%
+\begin{Arguments}
+\begin{ldescription}
+\item[\code{grain}] the column containing the amount of free threshing cereal grain in each sample
+\item[\code{rachis}] the column containing the amount of free threshing cereal rachis in each sample
+\item[\code{weeds}] the column containing the amount of weed seeds in each sample
+\item[\code{pch}] the symbol for the archaeobotanical samples, default is 5
+\item[\code{col}] the colour for the archaeobotanical samples, default is black
+\item[\code{bg}] the colour the the background of the symbol, default is black
+\item[\code{sample}] row number of the sample/s to be labeled
+\item[\code{samplelabel}] label of the sample/s entered in the sample argument to be shown on graph
+\item[\code{legendlabel}] the name of the archaebotanical assemablage to appear in the legend
+\item[\code{cpch}] the symbols of the model data as a list
+\item[\code{cbg}] the blackground colours of the symbols of the model data
+\item[\code{ccol}] the colours of the symbols of the model data
+\end{ldescription}
+\end{Arguments}
+%
+\begin{Author}\relax
+Elizabeth Stroud
+\end{Author}
+%
+\begin{References}\relax
+ Jones, G. (1990) The application of present-day cereal processing studies to charred archaeobotanical remains. Circaea 6(2):91-96
+
+\end{References}
+%
+\begin{Examples}
+\begin{ExampleCode}
+##example data
+
+samples<-c("s1","s2","s3","s4","s5","s6","s7","s8","s9","s10")
+grain<-runif(10, min= 5, max=100)
+rachis<-runif(10, min= 1, max=50)
+weeds<-runif(10, min= 50, max=200)
+data<-data.frame(samples,grain,rachis,weeds)
+
+##usage
+
+crop.triplot(grain=data$grain, rachis=data$rachis, weeds=data$weeds, col="blue")
+
+## label specific sample
+
+crop.triplot(grain=data$grain, rachis=data$rachis, weeds=data$weeds, col="blue", sample=2, samplelabel="s2")
+
+\end{ExampleCode}
+\end{Examples}
+\inputencoding{utf8}
+\HeaderA{data.model}{The ethnobotanical dataset from Amorgos}{data.model}
+\keyword{datasets}{data.model}
+%
+\begin{Description}\relax
+ Ethnographic data collected in Greece on the attributes of the weed seeds found in four different stages of crop processing of free-threshing crops. The samples taken from the different stages are shown under the 6 different seed attribute groupings: BHH, BGH, SHH, SHL, SFH SFL
+
+\end{Description}
+%
+\begin{Format}
+A data frame with 216 observations on the following 8 variables.
+\begin{description}
+
+\item[\code{NO}] Running number of samples
+\item[\code{PROC}] The crop proccessing stage written as a number and used as the grouping factor in \code{\LinkA{LDAcrop.pro}{LDAcrop.pro}} and \code{\LinkA{LDAcrop.dung}{LDAcrop.dung}}. 1= Winnowing by-products, 2= Coarse-sieving by-products, 3= Fine-sieving by-products, 4 =Fine-sieving products
+\item[\code{BHH}] Big, headed and heavy
+\item[\code{BFH}] Big, free and heavy
+\item[\code{SHH}] Small, headed and heavy
+\item[\code{SHL}] Small, headed and light
+\item[\code{SFH}] Small, free and heavy
+\item[\code{SFL}] Small, free and light
+
+\end{description}
+
+\end{Format}
+%
+\begin{Source}\relax
+Jones, G. - maybe phd? over the paper we are publishing?
+
+\end{Source}
+%
+\begin{References}\relax
+Jones, G. 1984. Interpretation of archaeological plant remains: ethnographic models from Greece. In W. van Zeist \& W.A. Casparie, Eds \emph{Plants and Ancient Man: Studies in Palaeoethnobotany}. Rotterdam: Balkema, pp 43-61
+
+Jones, G., 1987. A statistical approach to the archaeological identification of crop processing. \emph{Journal of Archaeological Science}, 14(3), pp.311-323.
+
+\end{References}
+\inputencoding{utf8}
+\HeaderA{LDAcrop.dung}{Linear discriminant analysis based on attributes of weed seeds to classify taphonomic pathway (crop processing vs dung)}{LDAcrop.dung}
+%
+\begin{Description}\relax
+This function conducts linear discriminant analysis using ethnographic crop processing data of weed seeds attributes. This function is a modification of \code{\LinkA{LDAcrop.pro}{LDAcrop.pro}}, and uses the entered archaeobotanical data as well as the ethnographic data during the discrimination stage to create a model. The entered archaeobotanical data is then reclassified against that model, allowing the archaeobotanical samples to be classified as 1 of five groups: archaeological, winnowing by-products, coarse sieve by-products, fine sieve by-products, fine sieve products. The function provides the classification, posterior probabilities of such classifications, and the discriminant score of the entered samples.
+\end{Description}
+%
+\begin{Usage}
+\begin{verbatim}
+LDAcrop.dung(x)
+\end{verbatim}
+\end{Usage}
+%
+\begin{Arguments}
+\begin{ldescription}
+\item[\code{x}] The archaeobotanical dataset
+
+
+\end{ldescription}
+\end{Arguments}
+%
+\begin{Details}\relax
+The archaeobotanical dataset needs to have been transformed and organised with columns labelled and in the order of: BHH,BFH,SHH,SHL,SFH,SFL.The first column of the dataframe should be the sample names. Transformation can be done manually following (insert reference) or through the use of \code{\LinkA{crop.dataorg}{crop.dataorg}} which can transform a raw archaeobotanical dataset.
+
+\end{Details}
+%
+\begin{Value}
+Results table: (note the * asterisked columns appear in console output and are used for interpretation, and graphing.  Non-asterisked columns provide additional details regarding standardised and unstandardised results
+\begin{ldescription}
+\item[\code{Samples}] the archaeobotanical sample names form the first column of the entered dataset (x)
+\item[\code{Class\_std*}] The standardised classification of the samples as either 1,2,3,or 4. 1= winnowing by-products, 2= coarse-sieving by-products, 3= fine-seieving by=products and 4= fine sieving products
+\item[\code{Prob.1\_std*}] the standardised posterior probability of the sample being classified as group 1
+\item[\code{Prob.2\_std*}] the standardised posterior probability of the sample being classified as group 2
+\item[\code{Prob.3\_std*}] the standardised posterior probability of the sample being classified as group 3
+\item[\code{Prob.4\_std*}] the standardised posterior probability of the sample being classified as group 4
+\item[\code{ld1\_std}] the standarised linear discriminant score for funcation 1
+\item[\code{ld2\_std}] the standarised linear discriminant score for funcation 2
+\item[\code{ld3\_std}] the standarised linear discriminant score for funcation 3
+\item[\code{Class}] the unstandarised classification of the samples 
+\item[\code{Prob.1}] the unstandardised posterior probability of the sample being classified as group 4
+\item[\code{Prob.2}] the unstandardised posterior probability of the sample being classified as group 4
+\item[\code{Prob.3}] the unstandardised posterior probability of the sample being classified as group 4
+\item[\code{Prob.4}] the unstandardised posterior probability of the sample being classified as group 4
+\item[\code{LD1*}] the unstandardised linear discriminant score for function 1
+\item[\code{LD2*}] the unstandardised linear discriminant score for function 2
+\item[\code{LD3*}] the unstandardised linear discriminant score for function 3
+\end{ldescription}
+Classification table: showing the count and percentage of samples classifed as one of four crop processing groups - as shown in the Class\_std column
+\begin{ldescription}
+\item[\code{winnowing by-products}] the count and percentage of samples classified as group 1
+\item[\code{Coarse-sieving by-products}] the count and percentage of samples classified as group 2
+\item[\code{Fine-sieving by-products}] the count and percentage of samples classified as group 3
+\item[\code{Fine-sieving products}] the count and percentage of samples classified as group 4
+\end{ldescription}
+\end{Value}
+%
+\begin{Author}\relax
+Elizabeth Stroud
+
+\end{Author}
+%
+\begin{SeeAlso}\relax
+\LinkA{LDAcrop.pro}{LDAcrop.pro}, \LinkA{crop.dataorg}{crop.dataorg}
+
+\end{SeeAlso}
+%
+\begin{Examples}
+\begin{ExampleCode}
+## Create random dataset for example
+
+BHH<-runif(20, min=0, max=7)
+BFH<-runif(20, min=0, max=24)
+SHH<-runif(20, min=1, max=13)
+SHL<-runif(20, min=0.5, max=17)
+SFH<-runif(20, min=1, max=22)
+SFL<-runif(20, min=1, max=8)
+Samples<-c("s1","s2","s3","s4","s5","s6","s7","s8","s9","s10","s11","s12","s13","s14","s15","s16","s17","s18","s19","s20")
+data<-data.frame(Samples,BHH,BFH,SHH,SHL,SFH,SFL)
+
+## function usage
+
+LDAcrop.dung(data)
+
+\end{ExampleCode}
+\end{Examples}
+\inputencoding{utf8}
+\HeaderA{LDAcrop.pro}{Linear discriminant analysis based on attributes of weed seeds}{LDAcrop.pro}
+%
+\begin{Description}\relax
+This function conducts linear discriminant analysis. The size, areodymics and tendancy to remain in heads of weed seeds from ethnographic crop processing data are used to create a model against which the archaeobotanical samples are classified. The function provides the classification, posterior probabilities of such classifications, and the discriminant score of the entered samples.
+\end{Description}
+%
+\begin{Usage}
+\begin{verbatim}
+LDAcrop.pro(x)
+\end{verbatim}
+\end{Usage}
+%
+\begin{Arguments}
+\begin{ldescription}
+\item[\code{x}] The archaeobotanical dataset
+
+\end{ldescription}
+\end{Arguments}
+%
+\begin{Details}\relax
+The archaeobotanical dataset needs to have been transformed and organised with columns labelled and in the order of: BHH,BFH,SHH,SHL,SFH,SFL.The first column of the dataframe should be the sample names.Transformation can be done manually following (insert reference) or through the use of \code{\LinkA{crop.dataorg}{crop.dataorg}} which can transform a raw archaeobotanical dataset.
+
+\end{Details}
+%
+\begin{Value}
+Results table:(note the * asterisked items appear in console output and are used for interpretation, non-asterisked columns provide addition details regarding standardised and unstandardised components
+\begin{ldescription}
+\item[\code{Samples}] the archaeobotanical sample names form the first column of the entered dataset (x)
+\item[\code{Class\_std*}] The standardised classification of the samples as either 1,2,3,or 4. 1= winnowing by-products, 2= coarse-sieving by-products, 3= fine-seieving by=products and 4= fine sieving products
+\item[\code{Prob.1\_std*}] the standardised posterior probability of the sample being classified as group 1
+\item[\code{Prob.2\_std*}] the standardised posterior probability of the sample being classified as group 2
+\item[\code{Prob.3\_std*}] the standardised posterior probability of the sample being classified as group 3
+\item[\code{Prob.4\_std*}] the standardised posterior probability of the sample being classified as group 4
+\item[\code{ld1\_std}] the standarised linear discriminant score for funcation 1
+\item[\code{ld2\_std}] the standarised linear discriminant score for funcation 2
+\item[\code{ld3\_std}] the standarised linear discriminant score for funcation 3
+\item[\code{Class}] the unstandarised classification of the samples 
+\item[\code{Prob.1}] the unstandardised posterior probability of the sample being classified as group 4
+\item[\code{Prob.2}] the unstandardised posterior probability of the sample being classified as group 4
+\item[\code{Prob.3}] the unstandardised posterior probability of the sample being classified as group 4
+\item[\code{Prob.4}] the unstandardised posterior probability of the sample being classified as group 4
+\item[\code{LD1*}] the unstandardised linear discriminant score for function 1
+\item[\code{LD2*}] the unstandardised linear discriminant score for function 2
+\item[\code{LD3*}] the unstandardised linear discriminant score for function 3
+\end{ldescription}
+Classification table: showing the count and percentage of samples classifed as one of four crop processing groups - as shown in the Class\_std column
+\begin{ldescription}
+\item[\code{winnowing by-products}] the count and percentage of samples classified as group 1
+\item[\code{Coarse-sieving by-products}] the count and percentage of samples classified as group 2
+\item[\code{Fine-sieving by-products}] the count and percentage of samples classified as group 3
+\item[\code{Fine-sieving products}] the count and percentage of samples classified as group 4
+\end{ldescription}
+\end{Value}
+%
+\begin{Author}\relax
+Eizabeth Stroud
+
+\end{Author}
+%
+\begin{References}\relax
+PAPER reference
+
+\end{References}
+%
+\begin{Examples}
+\begin{ExampleCode}
+##Create random dataset for examples
+
+BHH<-runif(20, min=0, max=7)
+BFH<-runif(20, min=0, max=24)
+SHH<-runif(20, min=1, max=13)
+SHL<-runif(20, min=0.5, max=17)
+SFH<-runif(20, min=1, max=22)
+SFL<-runif(20, min=1, max=8)
+Samples<-c("s1","s2","s3","s4","s5","s6","s7","s8","s9","s10","s11","s12","s13","s14","s15","s16","s17","s18","s19","s20")
+data<-data.frame(Samples,BHH,BFH,SHH,SHL,SFH,SFL)
+
+#Use
+
+LDAcrop.pro(data)
+
+\end{ExampleCode}
+\end{Examples}
+\printindex{}
+\end{document}

@@ -1,7 +1,6 @@
 #triplot
-
 crop.triplot<-function(grain,rachis,weeds,pch=5, col="black", bg="black", sample=NULL, samplelabel="Sample",legendlabel="Samples",cpch=NULL, cbg=NULL, ccol=NULL){
-
+data_tri<-crop.tri.data
   par(mar=c(3,2,1,3),
       mfrow=c(1,2))
   plot(NA,NA,xlim=c(0,1),ylim=c(0,sqrt(3)/2),asp=1,bty="n",axes=F,xlab="",ylab="")

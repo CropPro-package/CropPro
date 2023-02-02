@@ -2,7 +2,7 @@
 \alias{crop.plot3D}
 \title{A three dimensional graph of the results of \code{\link[CropPro]{LDAcrop.pro}}
 }
-\description{The funcation plots the linear discriminant scores obtained from \code{\link[CropPro]{LDAcrop.pro}} as a three dimensional graph
+\description{crop.plot3D plots the linear discriminant scores obtained from \code{\link[CropPro]{LDAcrop.pro}} as a three dimensional graph
 }
 \usage{
 crop.plot3D(x, col= "black", gcol=NULL, site ="Site")
@@ -12,7 +12,7 @@ crop.plot3D(x, col= "black", gcol=NULL, site ="Site")
 \item{x}{the dataframe containing the discriminant scores obtained from \code{\link[CropPro]{LDAcrop.pro}}}
 \item{col}{Symbol colour of archaeobotanical data}
 \item{gcol}{Symbolcolours of the ethnographical crop processing groups written as a list eg. c("red", "green"...) etc}
-\item{site}{The name that the archaeobotanical data will be labelled as in legend}
+\item{site}{The name that the archaeobotanical data will be labelled as in the legend}
 }
 \references{PUT IN PAPER REFERENCE}
 \author{Elizabeth Stroud
