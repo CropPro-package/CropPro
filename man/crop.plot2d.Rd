@@ -8,7 +8,7 @@
 }
 \usage{
 crop.plot2D(x,ylims=NULL,xlims=NULL,gcols=NULL,gpchs=NULL, col ='black', pch=15,
-site="Site", Func1=1, Func2=2)
+site="Site", Func1=1, Func2=2, label=NULL)
 }
 
 \arguments{
@@ -22,6 +22,8 @@ site="Site", Func1=1, Func2=2)
   \item{site}{The name the archaeobotanical data will be labelled as in the legend}
   \item{Func1}{The linear discriminant function to be ploted on the x axis- the default is 1}
   \item{Func2}{The linear discriminant function to be ploted on the y axis- the default is 2}
+  \item{label}{The samples to be labeled on the graph with text}
+
 }
 \details{
 The data frame entered as argument x can be the output of \code{\link[CropPro]{LDAcrop.pro}} or from manual normalizing. However the data frame must have column labeled LD1, LD2, LD3 containing the linear discrimanant scores for funcation 1, 2 and 3

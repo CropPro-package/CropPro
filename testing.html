@@ -1,0 +1,688 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.1.189">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>croppro script doc</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1.6em;
+  vertical-align: middle;
+}
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { color: #008000; } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { color: #008000; font-weight: bold; } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+
+<script src="testing_files/libs/clipboard/clipboard.min.js"></script>
+<script src="testing_files/libs/quarto-html/quarto.js"></script>
+<script src="testing_files/libs/quarto-html/popper.min.js"></script>
+<script src="testing_files/libs/quarto-html/tippy.umd.min.js"></script>
+<script src="testing_files/libs/quarto-html/anchor.min.js"></script>
+<link href="testing_files/libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="testing_files/libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="testing_files/libs/bootstrap/bootstrap.min.js"></script>
+<link href="testing_files/libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="testing_files/libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+
+
+</head>
+
+<body class="fullcontent">
+
+<div id="quarto-content" class="page-columns page-rows-contents page-layout-article">
+
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">croppro script doc</h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+    
+  </div>
+  
+
+</header>
+
+<section id="croppro" class="level1">
+<h1>CropPro</h1>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(CropPro)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<section id="stafford" class="level2">
+<h2 class="anchored" data-anchor-id="stafford">Stafford</h2>
+<section id="import-data" class="level3">
+<h3 class="anchored" data-anchor-id="import-data">Import data</h3>
+<p>import data from stafford_raw.xlsx - select sheet stafford_raw</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(readxl)</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>stafford_raw <span class="ot">&lt;-</span> <span class="fu">read_excel</span>(<span class="st">"stafford_raw.xlsx"</span>, </span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>    <span class="at">sheet =</span> <span class="st">"stafford_raw"</span>)</span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="co">#remove na values</span></span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>stafford_raw[<span class="dv">7</span><span class="sc">:</span><span class="dv">50</span>][<span class="fu">is.na</span>(stafford_raw[<span class="dv">7</span><span class="sc">:</span><span class="dv">50</span>])]<span class="ot">&lt;-</span><span class="dv">0</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="triplot-data" class="level3">
+<h3 class="anchored" data-anchor-id="triplot-data">Triplot data</h3>
+<p>Data cleaning is required to use the triplot function. Any fruits or pulse items need to be removed.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co">#removed pulse rows</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>stafford_nopulse<span class="ot">&lt;-</span>stafford_raw[stafford_raw<span class="sc">$</span>object<span class="sc">!=</span><span class="st">"seed"</span>,]</span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="co">#calculate totals based on column called object (seed, grain, rachis).</span></span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a><span class="co">#note the seed group now only contains weed seeds and no pulse seeds</span></span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>GRW<span class="ot">&lt;-</span><span class="fu">aggregate</span>(stafford_nopulse[<span class="dv">7</span><span class="sc">:</span><span class="dv">50</span>],<span class="at">by=</span><span class="fu">list</span>(stafford_nopulse<span class="sc">$</span>object), <span class="at">FUN=</span>sum)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>The number of items per sample needs to be checked , and any sample with limited items removed. The cutoff/threshold is up to the user and will be assemblage depended. For the Stafford data only samples with 30 or more items were included. Only one sample had less : 1174 and so it was removed</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co">#remove sample 1174 as it only has 9 items</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>GRW <span class="ot">&lt;-</span> GRW[<span class="sc">!</span><span class="fu">names</span>(GRW) <span class="sc">%in%</span> <span class="fu">c</span>(<span class="st">"1174"</span>)]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>The data needs to be transposed and organised with column names assigned</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>GRW_named<span class="ot">&lt;-</span>GRW[<span class="dv">2</span><span class="sc">:</span><span class="dv">44</span>]</span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>GRWnew<span class="ot">&lt;-</span><span class="fu">as.data.frame</span>(<span class="fu">t</span>(GRW_named[,]))</span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a><span class="fu">colnames</span>(GRWnew)<span class="ot">&lt;-</span><span class="fu">c</span>(<span class="st">"grain"</span>,<span class="st">"rachis"</span>, <span class="st">"weeds"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>The function crop.triplot then takes the data and plots it in comparison to the ethnographic data</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="fu">crop.triplot</span>(<span class="at">grain=</span>GRWnew<span class="sc">$</span>grain, <span class="at">rachis=</span>GRWnew<span class="sc">$</span>rachis, <span class="at">weeds=</span>GRWnew<span class="sc">$</span>weeds)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="testing_files/figure-html/unnamed-chunk-6-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+<p>The function can be modified so that a specific sample/s is highlighted or labeled</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="fu">crop.triplot</span>(<span class="at">grain=</span>GRWnew<span class="sc">$</span>grain, <span class="at">rachis=</span>GRWnew<span class="sc">$</span>rachis, <span class="at">weeds=</span>GRWnew<span class="sc">$</span>weeds, <span class="at">sample =</span> <span class="dv">16</span>, <span class="at">samplelabel =</span> <span class="st">"478"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="testing_files/figure-html/unnamed-chunk-7-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+</section>
+<section id="linear-discriminant-analysis" class="level3">
+<h3 class="anchored" data-anchor-id="linear-discriminant-analysis">Linear discriminant analysis</h3>
+<p>The other functions within the package relate to the conducting of linear discriminant analysis which classifies the archaeobotanical samples in reference to the ethnographic data. The data again has to be organised and cleaned</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="do">##### discriminant analysis #####</span></span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a><span class="co">#remove na rows in dataset using column codes - leaving only the classified weed samples</span></span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>cropPdata<span class="ot">&lt;-</span>stafford_raw[<span class="sc">!</span><span class="fu">is.na</span>(stafford_raw<span class="sc">$</span>codes),]</span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a><span class="co">#select just the species, seed attribute and sample columns</span></span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a>cropPdata<span class="ot">&lt;-</span>cropPdata[<span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">4</span>,<span class="dv">7</span><span class="sc">:</span><span class="dv">50</span>)]</span>
+<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a><span class="co">#sum the totals for each sample to check numbers</span></span>
+<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a><span class="fu">colSums</span>(cropPdata[<span class="dv">3</span><span class="sc">:</span><span class="dv">46</span>])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code> 461  462  463  464  465  466  467  468  469  470  471  472  473  474  475  478 
+3272   41   19   15   80 2204 1170  949   36  548  187   17   45   80   52  187 
+ 479  480  481  482  483  484  485  486  487  492  505  506  507  508  509 1163 
+  69  172   25   68  117   11   50  289   51  197   64  133 1376 4955  333  274 
+1164 1165 1166 1167 1168 1170 1171 1172 1173 1174  476 1169 
+  27  160   32   56   28   12   30   38   70    9    8    7 </code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="co">#remove samples 1174, 476, 1169 - have less than 10 items</span></span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>cropPdata<span class="ot">&lt;-</span>cropPdata[<span class="dv">1</span><span class="sc">:</span><span class="dv">43</span>]</span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a><span class="co">#transform the data using crop.dataorg. Codes is the column number the seed attribute </span></span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a><span class="co">#codes fall in and sample is the column number which the samples start in. </span></span>
+<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a>datatrans<span class="ot">&lt;-</span><span class="fu">crop.dataorg</span>(cropPdata, <span class="at">codes =</span> <span class="dv">2</span>, <span class="at">samples=</span><span class="dv">3</span>)</span>
+<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a><span class="co">#run linear discriminant analysis on the transformed data using LDAcrop.pro</span></span>
+<span id="cb10-7"><a href="#cb10-7" aria-hidden="true" tabindex="-1"></a>cropproc<span class="ot">&lt;-</span><span class="fu">LDAcrop.pro</span>(datatrans)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] "Classification results and linear discriminant scores "
+   samples Class_std* Prob.1_std* Prob.2_std* Prob.3_std* Prob.4_std*   LD1*
+1      461          3       0.292       0.000       0.373       0.335 -1.000
+2      462          4       0.001       0.000       0.069       0.930 -2.361
+3      463          1       0.730       0.000       0.199       0.071 -0.334
+4      464          4       0.000       0.000       0.000       1.000 -2.854
+5      465          1       0.990       0.000       0.008       0.002 -0.025
+6      466          1       0.869       0.000       0.010       0.121 -0.632
+7      467          4       0.093       0.000       0.003       0.904 -1.312
+8      468          4       0.364       0.000       0.032       0.603 -0.886
+9      469          3       0.074       0.000       0.925       0.001 -0.730
+10     470          1       0.954       0.005       0.033       0.008  0.446
+11     471          3       0.188       0.000       0.806       0.006 -0.303
+12     472          3       0.337       0.000       0.569       0.094 -0.993
+13     473          3       0.072       0.000       0.927       0.001 -0.701
+14     474          4       0.000       0.000       0.000       1.000 -3.907
+15     475          3       0.083       0.000       0.875       0.042 -1.145
+16     478          3       0.267       0.000       0.728       0.004 -0.372
+17     479          1       0.714       0.000       0.004       0.282 -0.392
+18     480          1       0.840       0.000       0.038       0.121 -0.616
+19     481          3       0.005       0.000       0.754       0.240 -1.160
+20     482          4       0.094       0.000       0.324       0.582 -1.892
+21     483          1       0.787       0.001       0.107       0.105 -0.253
+22     484          4       0.009       0.000       0.028       0.963 -1.533
+23     485          3       0.013       0.000       0.764       0.222 -1.009
+24     486          1       0.983       0.000       0.012       0.004  0.220
+25     487          4       0.106       0.000       0.206       0.688 -1.330
+26     492          4       0.034       0.000       0.085       0.881 -1.518
+27     505          1       0.980       0.000       0.019       0.002 -0.012
+28     506          4       0.011       0.000       0.049       0.940 -1.897
+29     507          4       0.244       0.000       0.123       0.633 -1.335
+30     508          4       0.212       0.000       0.048       0.741 -1.461
+31     509          1       0.953       0.000       0.021       0.026 -0.171
+32    1163          3       0.000       0.000       0.995       0.005 -2.192
+33    1164          4       0.000       0.000       0.007       0.993 -1.770
+34    1165          3       0.000       0.000       0.999       0.001 -2.729
+35    1166          3       0.000       0.000       0.995       0.005 -2.676
+36    1167          4       0.000       0.000       0.383       0.617 -3.117
+37    1168          4       0.000       0.000       0.002       0.998 -3.183
+38    1170          3       0.000       0.000       1.000       0.000 -1.376
+39    1171          3       0.000       0.000       1.000       0.000 -1.624
+40    1172          4       0.001       0.000       0.154       0.845 -2.051
+41    1173          4       0.312       0.011       0.002       0.675 -0.167
+     LD2*   LD3*
+1  -0.220 -2.711
+2  -0.007 -1.561
+3  -0.118 -2.303
+4   2.546 -0.905
+5  -0.317 -5.077
+6   0.631 -4.597
+7   1.337 -4.221
+8   0.754 -3.184
+9  -2.358 -3.627
+10  0.228 -1.658
+11 -1.296 -1.743
+12 -0.812 -3.446
+13 -2.094 -3.076
+14  2.240 -0.853
+15 -1.237 -2.888
+16 -1.450 -2.582
+17  1.457 -3.375
+18  0.277 -3.928
+19 -0.319  0.997
+20 -0.653 -4.728
+21  0.261 -2.088
+22  0.727 -1.646
+23 -0.304  0.562
+24  0.102 -3.371
+25  0.011 -2.742
+26  0.285 -2.522
+27 -0.567 -4.678
+28  0.231 -3.022
+29  0.045 -3.912
+30  0.270 -4.569
+31  0.265 -3.539
+32 -2.316 -0.644
+33  1.188 -0.004
+34 -3.185 -0.861
+35 -2.582 -0.754
+36 -1.044 -1.143
+37  0.858 -0.249
+38 -3.193 -1.576
+39 -3.213  0.143
+40 -0.009 -0.241
+41  2.215 -1.344
+[1] "classification table"
+                           Count Percentage
+Winnowing by-products         10      24.39
+Coarse-sieving by-products     0       0.00
+Fine-sieving by-products      14      34.15
+Fine-sieving products         17      41.46</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="co">#plot the results of the LDAcrop.pro in three dimensions </span></span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a><span class="fu">crop.plot3D</span>(cropproc, <span class="at">site =</span><span class="st">"Stafford"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="images/stafford_cropPro.gif" class="img-fluid figure-img"></p>
+<p></p><figcaption class="figure-caption">3D scatterplot of results of LDA on the Stafford data set</figcaption><p></p>
+</figure>
+</div>
+<p>The data can be plotted as 2D plots as well</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="co">#plot the results of LDAcrop.pro in two dimensions - which functions are plotted </span></span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a><span class="co">#can be changed using Func1 and Func2 arguments</span></span>
+<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a><span class="fu">crop.plot2D</span>(cropproc, <span class="at">site =</span> <span class="st">"Stafford"</span>, <span class="at">col=</span><span class="st">"red"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="testing_files/figure-html/unnamed-chunk-9-1.png" class="img-fluid" width="672"></p>
+</div>
+<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="fu">crop.plot2D</span>(cropproc, <span class="at">site =</span> <span class="st">"Stafford"</span>, <span class="at">col=</span><span class="st">"red"</span>, <span class="at">Func1 =</span> <span class="dv">1</span>, <span class="at">Func2=</span><span class="dv">3</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="testing_files/figure-html/unnamed-chunk-9-2.png" class="img-fluid" width="672"></p>
+</div>
+<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="fu">crop.plot2D</span>(cropproc, <span class="at">site =</span> <span class="st">"Stafford"</span>, <span class="at">col=</span><span class="st">"red"</span>, <span class="at">Func1 =</span> <span class="dv">2</span>, <span class="at">Func2=</span><span class="dv">3</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="testing_files/figure-html/unnamed-chunk-9-3.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+</section>
+</section>
+<section id="tell-brak" class="level2">
+<h2 class="anchored" data-anchor-id="tell-brak">Tell Brak</h2>
+<section id="import-data-and-organise" class="level3">
+<h3 class="anchored" data-anchor-id="import-data-and-organise">Import data and organise</h3>
+<p>The Tell Brak data needs to be modified to the correct format - removing extra rows and columns. any sample with less than 30 items needs to be removed and the data set transposed once summing of the grain, rachis and weed categories is conducted</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="do">######## Tell Brak script ######</span></span>
+<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(readxl)</span>
+<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a>Brak_raw <span class="ot">&lt;-</span> <span class="fu">read_excel</span>(<span class="st">"Brak_raw.xlsx"</span>)</span>
+<span id="cb16-4"><a href="#cb16-4" aria-hidden="true" tabindex="-1"></a>brak<span class="ot">&lt;-</span>Brak_raw</span>
+<span id="cb16-5"><a href="#cb16-5" aria-hidden="true" tabindex="-1"></a><span class="co">#select only species and remove top 7 lines</span></span>
+<span id="cb16-6"><a href="#cb16-6" aria-hidden="true" tabindex="-1"></a>brak[<span class="dv">5</span><span class="sc">:</span><span class="dv">44</span>][<span class="fu">is.na</span>(brak[<span class="dv">5</span><span class="sc">:</span><span class="dv">44</span>])]<span class="ot">&lt;-</span><span class="dv">0</span></span>
+<span id="cb16-7"><a href="#cb16-7" aria-hidden="true" tabindex="-1"></a><span class="co">#What columns and rows are needed? </span></span>
+<span id="cb16-8"><a href="#cb16-8" aria-hidden="true" tabindex="-1"></a>samples<span class="ot">&lt;-</span>brak[,<span class="fu">c</span>(<span class="dv">5</span><span class="sc">:</span><span class="dv">44</span>)]</span>
+<span id="cb16-9"><a href="#cb16-9" aria-hidden="true" tabindex="-1"></a>GRW<span class="ot">&lt;-</span><span class="fu">aggregate</span>(samples,<span class="at">by=</span><span class="fu">list</span>(brak<span class="sc">$</span>Cat1), <span class="at">FUN=</span>sum)</span>
+<span id="cb16-10"><a href="#cb16-10" aria-hidden="true" tabindex="-1"></a>GRW<span class="ot">&lt;-</span>GRW[<span class="fu">c</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">2</span>,<span class="dv">5</span>),]</span>
+<span id="cb16-11"><a href="#cb16-11" aria-hidden="true" tabindex="-1"></a><span class="fu">colSums</span>(GRW[<span class="dv">2</span><span class="sc">:</span><span class="dv">41</span>])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>       AL19/4          AL47      CH253/54      CH484/29      CH485/18 
+          182           979           250            78           410 
+     CH485/45      CH495/46      CH527/56      DH56/115       DH57/93 
+          169           213           208           102           157 
+     DH78/158      DH91/142       ER39/23        ER45/1        ER45/4 
+          264            75           157           154           583 
+      ER45/13       ER45/26       FS140/8      FS178/33      FS191/35 
+           16           752          1466            74           197 
+     FS242/58      FS243/52      FS259/75      FS267/64      FS267/77 
+           80           318           144            36           228 
+     FS309/31      FS351/48      FS351/49     FS355/147 FS1016/68+111 
+          351           386           176           639           559 
+FS1020/85+110        FS1067     FS1067/84     FS1067/87    FS1067/130 
+          201           127            64            74           158 
+   FS1107/155        FS1527      SS142/65      ST105/26      ST105/27 
+          263           242           952             0             0 </code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="co">#remove samples&lt;30</span></span>
+<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a>GRW <span class="ot">&lt;-</span> GRW[<span class="sc">!</span><span class="fu">names</span>(GRW) <span class="sc">%in%</span> <span class="fu">c</span>(<span class="st">"ST105/26"</span>, <span class="st">"ST105/27"</span>, <span class="st">"ER45/13"</span>)]</span>
+<span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a><span class="fu">colSums</span>(GRW[<span class="dv">2</span><span class="sc">:</span><span class="dv">38</span>])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>       AL19/4          AL47      CH253/54      CH484/29      CH485/18 
+          182           979           250            78           410 
+     CH485/45      CH495/46      CH527/56      DH56/115       DH57/93 
+          169           213           208           102           157 
+     DH78/158      DH91/142       ER39/23        ER45/1        ER45/4 
+          264            75           157           154           583 
+      ER45/26       FS140/8      FS178/33      FS191/35      FS242/58 
+          752          1466            74           197            80 
+     FS243/52      FS259/75      FS267/64      FS267/77      FS309/31 
+          318           144            36           228           351 
+     FS351/48      FS351/49     FS355/147 FS1016/68+111 FS1020/85+110 
+          386           176           639           559           201 
+       FS1067     FS1067/84     FS1067/87    FS1067/130    FS1107/155 
+          127            64            74           158           263 
+       FS1527      SS142/65 
+          242           952 </code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="co">#transpose it</span></span>
+<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a>GRWnew<span class="ot">&lt;-</span><span class="fu">as.data.frame</span>(<span class="fu">t</span>(GRW[,<span class="sc">-</span><span class="dv">1</span>]))</span>
+<span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a><span class="fu">colnames</span>(GRWnew)<span class="ot">&lt;-</span><span class="fu">c</span>(<span class="st">"grain"</span>,<span class="st">"rachis"</span>, <span class="st">"weeds"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="triplot-graphing" class="level3">
+<h3 class="anchored" data-anchor-id="triplot-graphing">Triplot graphing</h3>
+<p>Only the samples which are classified as barley or free-threshing cereal dominant were used in the triplot.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="co">#add column showing classifications and remove mixed samples</span></span>
+<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a><span class="co">#add data frame with classes ( called Classes_brak below)</span></span>
+<span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a>Classes_brak <span class="ot">&lt;-</span> <span class="fu">read_excel</span>(<span class="st">"Classes_brak.xlsx"</span>)</span>
+<span id="cb21-4"><a href="#cb21-4" aria-hidden="true" tabindex="-1"></a>GRWnew<span class="sc">$</span>samples<span class="ot">&lt;-</span><span class="fu">row.names</span>(GRWnew)</span>
+<span id="cb21-5"><a href="#cb21-5" aria-hidden="true" tabindex="-1"></a>GRW_named<span class="ot">&lt;-</span><span class="fu">merge</span>(<span class="at">x=</span>GRWnew, <span class="at">y=</span>Classes_brak, <span class="at">by.x=</span><span class="st">"samples"</span>, <span class="at">by.y =</span> <span class="st">"Sample"</span>)</span>
+<span id="cb21-6"><a href="#cb21-6" aria-hidden="true" tabindex="-1"></a>GRW_Class<span class="ot">&lt;-</span>GRW_named[GRW_named<span class="sc">$</span>grouping<span class="sc">!=</span><span class="st">"mixed"</span>,]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>This removes all mixed samples. The triplot can be constructed using crop.triplot. If particular samples need to be highlighted -for example all the free-threshing cereal dominated (give metric)</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="fu">crop.triplot</span>(<span class="at">grain=</span>GRW_Class<span class="sc">$</span>grain, <span class="at">rachis=</span>GRW_Class<span class="sc">$</span>rachis, <span class="at">weeds=</span>GRW_Class<span class="sc">$</span>weeds)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="testing_files/figure-html/unnamed-chunk-12-1.png" class="img-fluid" width="672"></p>
+</div>
+<div class="sourceCode cell-code" id="cb23"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="co">#adds row number otherwise confusing</span></span>
+<span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a>GRW_Class<span class="sc">$</span>rownumber <span class="ot">=</span> <span class="dv">1</span><span class="sc">:</span><span class="fu">nrow</span>(GRW_Class)</span>
+<span id="cb23-3"><a href="#cb23-3" aria-hidden="true" tabindex="-1"></a><span class="co">#highlight particular samples using the row number - all FT samples</span></span>
+<span id="cb23-4"><a href="#cb23-4" aria-hidden="true" tabindex="-1"></a><span class="fu">crop.triplot</span>(<span class="at">grain=</span>GRW_Class<span class="sc">$</span>grain, <span class="at">rachis=</span>GRW_Class<span class="sc">$</span>rachis, <span class="at">weeds=</span>GRW_Class<span class="sc">$</span>weeds,  <span class="at">sample =</span> <span class="fu">c</span>(<span class="dv">6</span>,<span class="dv">7</span>,<span class="dv">13</span>,<span class="dv">14</span>,<span class="dv">17</span>,<span class="dv">18</span>,<span class="dv">20</span>,<span class="dv">21</span>,<span class="dv">25</span>), <span class="at">samplelabel =</span> <span class="fu">c</span>(<span class="st">""</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="testing_files/figure-html/unnamed-chunk-12-2.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+</section>
+<section id="linear-discriminant-analysis---crop-processing" class="level3">
+<h3 class="anchored" data-anchor-id="linear-discriminant-analysis---crop-processing">Linear discriminant analysis - crop processing</h3>
+<p>The package CropPro can be used to conduct linear discriminant analysis on the data, like was conducted with the stafford data set. The data needs to be organised, with codes for the species etc (see above). the data thenis tranformed using LDAcrop.pro and the LDA cane be conducted</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb24"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="do">###discriminant analysis</span></span>
+<span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a><span class="co">#remove crops and cats dung related</span></span>
+<span id="cb24-3"><a href="#cb24-3" aria-hidden="true" tabindex="-1"></a>brak_crop_pro<span class="ot">&lt;-</span>brak[brak<span class="sc">$</span>Codes<span class="sc">!=</span><span class="st">"n"</span>,]</span>
+<span id="cb24-4"><a href="#cb24-4" aria-hidden="true" tabindex="-1"></a>brak_crop_pro<span class="ot">&lt;-</span>brak_crop_pro[,<span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">4</span><span class="sc">:</span><span class="dv">44</span>)]</span>
+<span id="cb24-5"><a href="#cb24-5" aria-hidden="true" tabindex="-1"></a><span class="co">#remove samples with less than 20 weed seeds - change to 10</span></span>
+<span id="cb24-6"><a href="#cb24-6" aria-hidden="true" tabindex="-1"></a>brak2<span class="ot">&lt;-</span>brak_crop_pro[<span class="dv">3</span><span class="sc">:</span><span class="dv">42</span>]</span>
+<span id="cb24-7"><a href="#cb24-7" aria-hidden="true" tabindex="-1"></a><span class="fu">colSums</span>(brak2)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>       AL19/4          AL47      CH253/54      CH484/29      CH485/18 
+           11            38           106            11            11 
+     CH485/45      CH495/46      CH527/56      DH56/115       DH57/93 
+           96            22            94            48            68 
+     DH78/158      DH91/142       ER39/23        ER45/1        ER45/4 
+           68            36             3            18            24 
+      ER45/13       ER45/26       FS140/8      FS178/33      FS191/35 
+            2            87            79            41           151 
+     FS242/58      FS243/52      FS259/75      FS267/64      FS267/77 
+           24           145            61             9            85 
+     FS309/31      FS351/48      FS351/49     FS355/147 FS1016/68+111 
+           68            66            45           172            96 
+FS1020/85+110        FS1067     FS1067/84     FS1067/87    FS1067/130 
+           13             4            11             4             3 
+   FS1107/155        FS1527      SS142/65      ST105/26      ST105/27 
+           14            32           514             0             0 </code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb26"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a>samples20<span class="ot">&lt;-</span>brak2[,<span class="fu">colSums</span>(brak2)<span class="sc">&gt;</span><span class="dv">10</span>]</span>
+<span id="cb26-2"><a href="#cb26-2" aria-hidden="true" tabindex="-1"></a>codes<span class="ot">&lt;-</span>brak_crop_pro[<span class="dv">2</span>]</span>
+<span id="cb26-3"><a href="#cb26-3" aria-hidden="true" tabindex="-1"></a>samples20<span class="ot">&lt;-</span><span class="fu">cbind</span>(codes, samples20)</span>
+<span id="cb26-4"><a href="#cb26-4" aria-hidden="true" tabindex="-1"></a><span class="fu">colnames</span>(samples20)[<span class="dv">1</span>]<span class="ot">&lt;-</span><span class="st">"codes"</span></span>
+<span id="cb26-5"><a href="#cb26-5" aria-hidden="true" tabindex="-1"></a><span class="fu">colSums</span>(samples20[<span class="dv">2</span><span class="sc">:</span><span class="dv">33</span>])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>       AL19/4          AL47      CH253/54      CH484/29      CH485/18 
+           11            38           106            11            11 
+     CH485/45      CH495/46      CH527/56      DH56/115       DH57/93 
+           96            22            94            48            68 
+     DH78/158      DH91/142        ER45/1        ER45/4       ER45/26 
+           68            36            18            24            87 
+      FS140/8      FS178/33      FS191/35      FS242/58      FS243/52 
+           79            41           151            24           145 
+     FS259/75      FS267/77      FS309/31      FS351/48      FS351/49 
+           61            85            68            66            45 
+    FS355/147 FS1016/68+111 FS1020/85+110     FS1067/84    FS1107/155 
+          172            96            13            11            14 
+       FS1527      SS142/65 
+           32           514 </code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb28"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a><span class="co"># data org function</span></span>
+<span id="cb28-2"><a href="#cb28-2" aria-hidden="true" tabindex="-1"></a>datatrans<span class="ot">&lt;-</span><span class="fu">crop.dataorg</span>(samples20, <span class="at">codes =</span> <span class="dv">1</span>, <span class="at">samples=</span><span class="dv">2</span>)</span>
+<span id="cb28-3"><a href="#cb28-3" aria-hidden="true" tabindex="-1"></a><span class="co"># conduct LDA</span></span>
+<span id="cb28-4"><a href="#cb28-4" aria-hidden="true" tabindex="-1"></a>cropproc<span class="ot">&lt;-</span><span class="fu">LDAcrop.pro</span>(datatrans)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] "Classification results and linear discriminant scores "
+         samples Class_std* Prob.1_std* Prob.2_std* Prob.3_std* Prob.4_std*
+1         AL19/4          2       0.009       0.988       0.000       0.002
+2           AL47          2       0.007       0.775       0.003       0.216
+3       CH253/54          1       0.856       0.144       0.000       0.000
+4       CH484/29          2       0.010       0.983       0.003       0.004
+5       CH485/18          4       0.014       0.351       0.017       0.617
+6       CH485/45          1       0.977       0.022       0.001       0.000
+7       CH495/46          2       0.046       0.898       0.007       0.049
+8       CH527/56          4       0.001       0.000       0.000       0.999
+9       DH56/115          4       0.000       0.015       0.000       0.985
+10       DH57/93          1       0.907       0.021       0.001       0.072
+11      DH78/158          4       0.392       0.024       0.074       0.510
+12      DH91/142          3       0.007       0.005       0.743       0.246
+13        ER45/1          4       0.000       0.000       0.007       0.993
+14        ER45/4          4       0.000       0.000       0.001       0.999
+15       ER45/26          4       0.022       0.000       0.001       0.976
+16       FS140/8          1       0.971       0.016       0.003       0.009
+17      FS178/33          2       0.094       0.905       0.000       0.000
+18      FS191/35          4       0.073       0.034       0.018       0.875
+19      FS242/58          1       1.000       0.000       0.000       0.000
+20      FS243/52          4       0.000       0.003       0.000       0.997
+21      FS259/75          1       1.000       0.000       0.000       0.000
+22      FS267/77          1       0.999       0.000       0.000       0.001
+23      FS309/31          2       0.053       0.947       0.000       0.000
+24      FS351/48          2       0.002       0.998       0.000       0.000
+25      FS351/49          2       0.000       1.000       0.000       0.000
+26     FS355/147          2       0.000       1.000       0.000       0.000
+27 FS1016/68+111          1       0.639       0.268       0.092       0.002
+28 FS1020/85+110          1       0.984       0.008       0.007       0.000
+29     FS1067/84          2       0.007       0.955       0.012       0.026
+30    FS1107/155          2       0.009       0.970       0.001       0.020
+31        FS1527          4       0.000       0.000       0.001       0.999
+32      SS142/65          1       0.957       0.043       0.000       0.000
+     LD1*   LD2*   LD3*
+1   1.013  1.968  2.802
+2   0.111  2.292  3.191
+3   2.290  1.219 -1.373
+4   0.824  1.411  3.201
+5  -0.176  1.841  2.744
+6   1.562  0.753 -1.802
+7   0.517  1.656  2.277
+8  -1.388  2.604 -0.486
+9  -0.808  3.118  2.991
+10  0.452  2.161 -1.932
+11 -0.195  1.053 -0.302
+12 -0.791 -0.010  2.176
+13 -1.770  1.188 -0.004
+14 -1.627  2.030  0.037
+15 -0.892  2.107 -1.409
+16  0.681  1.136 -1.664
+17  2.640  0.348  1.294
+18 -0.340  1.671  0.627
+19  1.564  0.973 -4.763
+20 -1.088  2.613  2.618
+21  2.744  1.849 -9.730
+22  0.617  1.182 -4.947
+23  3.253  1.138  0.804
+24  1.714  2.016  3.268
+25  2.419  1.665  4.472
+26  2.471  1.451  5.002
+27  1.049 -0.012  0.681
+28  1.094  0.100 -1.692
+29  0.410  1.351  3.677
+30  0.649  2.309  2.793
+31 -1.920  1.875  0.018
+32  2.465  1.073 -2.169
+[1] "classification table"
+                           Count Percentage
+Winnowing by-products         10      31.25
+Coarse-sieving by-products    11      34.38
+Fine-sieving by-products       1       3.12
+Fine-sieving products         10      31.25</code></pre>
+</div>
+</div>
+<p>The data can be plotted using the 3D function for exploration. While the 2D plots can be colour coded according the the class of the samples ( i.e mixed, barley or free-threshing cereal).</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb30"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a><span class="co">#classes </span></span>
+<span id="cb30-2"><a href="#cb30-2" aria-hidden="true" tabindex="-1"></a>grouped<span class="ot">&lt;-</span><span class="fu">merge</span>(<span class="at">x=</span>cropproc, <span class="at">y=</span>Classes_brak, <span class="at">by.x =</span> <span class="st">"Samples"</span>, <span class="at">by.y =</span> <span class="st">"Sample"</span>)</span>
+<span id="cb30-3"><a href="#cb30-3" aria-hidden="true" tabindex="-1"></a>grouped<span class="sc">$</span>pch<span class="ot">&lt;-</span>grouped<span class="sc">$</span>grouping</span>
+<span id="cb30-4"><a href="#cb30-4" aria-hidden="true" tabindex="-1"></a>grouped<span class="sc">$</span>pch[grouped<span class="sc">$</span>pch<span class="sc">==</span><span class="st">"barley"</span>]<span class="ot">&lt;-</span><span class="dv">15</span></span>
+<span id="cb30-5"><a href="#cb30-5" aria-hidden="true" tabindex="-1"></a>grouped<span class="sc">$</span>pch[grouped<span class="sc">$</span>pch<span class="sc">==</span><span class="st">"mixed"</span>]<span class="ot">&lt;-</span><span class="dv">16</span></span>
+<span id="cb30-6"><a href="#cb30-6" aria-hidden="true" tabindex="-1"></a>grouped<span class="sc">$</span>pch[grouped<span class="sc">$</span>pch<span class="sc">==</span><span class="st">"FT"</span>]<span class="ot">&lt;-</span><span class="dv">17</span></span>
+<span id="cb30-7"><a href="#cb30-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb30-8"><a href="#cb30-8" aria-hidden="true" tabindex="-1"></a>grouped<span class="sc">$</span>col<span class="ot">&lt;-</span>grouped<span class="sc">$</span>grouping</span>
+<span id="cb30-9"><a href="#cb30-9" aria-hidden="true" tabindex="-1"></a>grouped<span class="sc">$</span>col[grouped<span class="sc">$</span>col<span class="sc">==</span><span class="st">"barley"</span>]<span class="ot">&lt;-</span><span class="st">"red"</span></span>
+<span id="cb30-10"><a href="#cb30-10" aria-hidden="true" tabindex="-1"></a>grouped<span class="sc">$</span>col[grouped<span class="sc">$</span>col<span class="sc">==</span><span class="st">"mixed"</span>]<span class="ot">&lt;-</span><span class="st">"blue"</span></span>
+<span id="cb30-11"><a href="#cb30-11" aria-hidden="true" tabindex="-1"></a>grouped<span class="sc">$</span>col[grouped<span class="sc">$</span>col<span class="sc">==</span><span class="st">"FT"</span>]<span class="ot">&lt;-</span><span class="st">"green"</span></span>
+<span id="cb30-12"><a href="#cb30-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb30-13"><a href="#cb30-13" aria-hidden="true" tabindex="-1"></a><span class="fu">crop.plot2D</span>(cropproc, <span class="at">pch=</span><span class="fu">as.numeric</span>(grouped<span class="sc">$</span>pch), <span class="at">site =</span> <span class="fu">c</span>(<span class="st">"mixed"</span>, <span class="st">"FT"</span>, <span class="st">"barley"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="testing_files/figure-html/unnamed-chunk-14-1.png" class="img-fluid" width="672"></p>
+</div>
+<div class="sourceCode cell-code" id="cb31"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a><span class="fu">crop.plot2D</span>(cropproc,<span class="at">col=</span><span class="fu">paste</span>(grouped<span class="sc">$</span>col), <span class="at">pch=</span><span class="fu">as.numeric</span>(<span class="fu">as.character</span>(grouped<span class="sc">$</span>pch)), <span class="at">site =</span> <span class="fu">c</span>(<span class="st">"mixed"</span>,  <span class="st">"barley"</span>, <span class="st">"FT"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="testing_files/figure-html/unnamed-chunk-14-2.png" class="img-fluid" width="672"></p>
+</div>
+<div class="sourceCode cell-code" id="cb32"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a>grouped<span class="sc">$</span>lab<span class="ot">&lt;-</span>grouped<span class="sc">$</span>Samples</span>
+<span id="cb32-2"><a href="#cb32-2" aria-hidden="true" tabindex="-1"></a>grouped<span class="sc">$</span>lab<span class="ot">&lt;-</span><span class="st">"red"</span></span>
+<span id="cb32-3"><a href="#cb32-3" aria-hidden="true" tabindex="-1"></a>grouped<span class="sc">$</span>lab[grouped<span class="sc">$</span>Samples<span class="sc">==</span><span class="st">"AL47"</span>]<span class="ot">&lt;-</span><span class="st">"green"</span></span>
+<span id="cb32-4"><a href="#cb32-4" aria-hidden="true" tabindex="-1"></a>grouped<span class="sc">$</span>lab[grouped<span class="sc">$</span>Samples<span class="sc">==</span><span class="st">"CH527/56"</span>]<span class="ot">&lt;-</span><span class="st">"blue"</span></span>
+<span id="cb32-5"><a href="#cb32-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb32-6"><a href="#cb32-6" aria-hidden="true" tabindex="-1"></a><span class="fu">crop.plot2D</span>(cropproc,<span class="at">col=</span><span class="fu">paste</span>(grouped<span class="sc">$</span>lab), <span class="at">label =</span> <span class="fu">c</span>(<span class="st">"AL47"</span>,<span class="st">"CH527/56"</span>), <span class="at">site =</span> <span class="fu">c</span>(<span class="st">"Samples"</span>,  <span class="st">"AL47"</span>, <span class="st">"CH527/56"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="testing_files/figure-html/unnamed-chunk-14-3.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb33"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a><span class="fu">crop.plot3D</span>(cropproc,<span class="at">gcol =</span> <span class="fu">c</span>(<span class="st">"black"</span>, <span class="st">"grey"</span>, <span class="st">"grey48"</span>, <span class="st">"grey89"</span>), <span class="at">col=</span><span class="fu">paste</span>(grouped<span class="sc">$</span>lab))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p><img src="images/BW_brak_croppro.gif" class="img-fluid"></p>
+</section>
+</section>
+</section>
+
+</main>
+<!-- /main column -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    target: function(trigger) {
+      return trigger.previousElementSibling;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    setTimeout(function() {
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+  function tippyHover(el, contentFn) {
+    const config = {
+      allowHTML: true,
+      content: contentFn,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start'
+    };
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      return note.innerHTML;
+    });
+  }
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const cites = ref.parentNode.getAttribute('data-cites').split(' ');
+    tippyHover(ref, function() {
+      var popup = window.document.createElement('div');
+      cites.forEach(function(cite) {
+        var citeDiv = window.document.createElement('div');
+        citeDiv.classList.add('hanging-indent');
+        citeDiv.classList.add('csl-entry');
+        var biblioDiv = window.document.getElementById('ref-' + cite);
+        if (biblioDiv) {
+          citeDiv.innerHTML = biblioDiv.innerHTML;
+        }
+        popup.appendChild(citeDiv);
+      });
+      return popup.innerHTML;
+    });
+  }
+});
+</script>
+</div> <!-- /content -->
+
+
+
+</body></html>

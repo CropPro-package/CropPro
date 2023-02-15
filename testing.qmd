@@ -1,0 +1,213 @@
+---
+title: "croppro script doc"
+format: html
+editor: visual
+---
+
+# CropPro
+
+```{r}
+#| message: false
+library(CropPro)
+```
+
+## Stafford
+
+### Import data
+
+import data from stafford_raw.xlsx - select sheet stafford_raw
+
+```{r}
+library(readxl)
+stafford_raw <- read_excel("stafford_raw.xlsx", 
+    sheet = "stafford_raw")
+#remove na values
+stafford_raw[7:50][is.na(stafford_raw[7:50])]<-0
+```
+
+### Triplot data
+
+Data cleaning is required to use the triplot function. Any fruits or pulse items need to be removed.
+
+```{r}
+#removed pulse rows
+stafford_nopulse<-stafford_raw[stafford_raw$object!="seed",]
+#calculate totals based on column called object (seed, grain, rachis).
+#note the seed group now only contains weed seeds and no pulse seeds
+GRW<-aggregate(stafford_nopulse[7:50],by=list(stafford_nopulse$object), FUN=sum)
+```
+
+The number of items per sample needs to be checked , and any sample with limited items removed. The cutoff/threshold is up to the user and will be assemblage depended. For the Stafford data only samples with 30 or more items were included. Only one sample had less : 1174 and so it was removed
+
+```{r}
+#remove sample 1174 as it only has 9 items
+GRW <- GRW[!names(GRW) %in% c("1174")]
+```
+
+The data needs to be transposed and organised with column names assigned
+
+```{r}
+GRW_named<-GRW[2:44]
+GRWnew<-as.data.frame(t(GRW_named[,]))
+colnames(GRWnew)<-c("grain","rachis", "weeds")
+
+```
+
+The function crop.triplot then takes the data and plots it in comparison to the ethnographic data
+
+```{r}
+crop.triplot(grain=GRWnew$grain, rachis=GRWnew$rachis, weeds=GRWnew$weeds)
+```
+
+The function can be modified so that a specific sample/s is highlighted or labeled
+
+```{r}
+crop.triplot(grain=GRWnew$grain, rachis=GRWnew$rachis, weeds=GRWnew$weeds, sample = 16, samplelabel = "478")
+
+```
+
+### Linear discriminant analysis 
+
+The other functions within the package relate to the conducting of linear discriminant analysis which classifies the archaeobotanical samples in reference to the ethnographic data. The data again has to be organised and cleaned
+
+```{r}
+##### discriminant analysis #####
+#remove na rows in dataset using column codes - leaving only the classified weed samples
+cropPdata<-stafford_raw[!is.na(stafford_raw$codes),]
+#select just the species, seed attribute and sample columns
+cropPdata<-cropPdata[c(1,4,7:50)]
+#sum the totals for each sample to check numbers
+colSums(cropPdata[3:46])
+#remove samples 1174, 476, 1169 - have less than 10 items
+cropPdata<-cropPdata[1:43]
+#transform the data using crop.dataorg. Codes is the column number the seed attribute 
+#codes fall in and sample is the column number which the samples start in. 
+datatrans<-crop.dataorg(cropPdata, codes = 2, samples=3)
+#run linear discriminant analysis on the transformed data using LDAcrop.pro
+cropproc<-LDAcrop.pro(datatrans)
+
+#plot the results of the LDAcrop.pro in three dimensions 
+
+crop.plot3D(cropproc, site ="Stafford")
+
+```
+
+![3D scatterplot of results of LDA on the Stafford data set](images/stafford_cropPro.gif)
+
+The data can be plotted as 2D plots as well
+
+```{r}
+#plot the results of LDAcrop.pro in two dimensions - which functions are plotted 
+#can be changed using Func1 and Func2 arguments
+crop.plot2D(cropproc, site = "Stafford", col="red")
+crop.plot2D(cropproc, site = "Stafford", col="red", Func1 = 1, Func2=3)
+crop.plot2D(cropproc, site = "Stafford", col="red", Func1 = 2, Func2=3)
+```
+
+## Tell Brak
+
+### Import data and organise
+
+The Tell Brak data needs to be modified to the correct format - removing extra rows and columns. any sample with less than 30 items needs to be removed and the data set transposed once summing of the grain, rachis and weed categories is conducted
+
+```{r}
+######## Tell Brak script ######
+library(readxl)
+Brak_raw <- read_excel("Brak_raw.xlsx")
+brak<-Brak_raw
+#select only species and remove top 7 lines
+brak[5:44][is.na(brak[5:44])]<-0
+#What columns and rows are needed? 
+samples<-brak[,c(5:44)]
+GRW<-aggregate(samples,by=list(brak$Cat1), FUN=sum)
+GRW<-GRW[c(1:2,5),]
+colSums(GRW[2:41])
+#remove samples<30
+GRW <- GRW[!names(GRW) %in% c("ST105/26", "ST105/27", "ER45/13")]
+colSums(GRW[2:38])
+#transpose it
+GRWnew<-as.data.frame(t(GRW[,-1]))
+colnames(GRWnew)<-c("grain","rachis", "weeds")
+```
+
+### Triplot graphing
+
+Only the samples which are classified as barley or free-threshing cereal dominant were used in the triplot.
+
+```{r}
+#add column showing classifications and remove mixed samples
+#add data frame with classes ( called Classes_brak below)
+Classes_brak <- read_excel("Classes_brak.xlsx")
+GRWnew$samples<-row.names(GRWnew)
+GRW_named<-merge(x=GRWnew, y=Classes_brak, by.x="samples", by.y = "Sample")
+GRW_Class<-GRW_named[GRW_named$grouping!="mixed",]
+```
+
+This removes all mixed samples. The triplot can be constructed using crop.triplot. If particular samples need to be highlighted -for example all the free-threshing cereal dominated (give metric)
+
+```{r}
+crop.triplot(grain=GRW_Class$grain, rachis=GRW_Class$rachis, weeds=GRW_Class$weeds)
+#adds row number otherwise confusing
+GRW_Class$rownumber = 1:nrow(GRW_Class)
+#highlight particular samples using the row number - all FT samples
+crop.triplot(grain=GRW_Class$grain, rachis=GRW_Class$rachis, weeds=GRW_Class$weeds,  sample = c(6,7,13,14,17,18,20,21,25), samplelabel = c(""))
+
+```
+
+### Linear discriminant analysis - crop processing
+
+The package CropPro can be used to conduct linear discriminant analysis on the data, like was conducted with the stafford data set. The data needs to be organised, with codes for the species etc (see above). the data thenis tranformed using LDAcrop.pro and the LDA cane be conducted
+
+```{r}
+###discriminant analysis
+#remove crops and cats dung related
+brak_crop_pro<-brak[brak$Codes!="n",]
+brak_crop_pro<-brak_crop_pro[,c(1,4:44)]
+#remove samples with less than 20 weed seeds - change to 10
+brak2<-brak_crop_pro[3:42]
+colSums(brak2)
+samples20<-brak2[,colSums(brak2)>10]
+codes<-brak_crop_pro[2]
+samples20<-cbind(codes, samples20)
+colnames(samples20)[1]<-"codes"
+colSums(samples20[2:33])
+# data org function
+datatrans<-crop.dataorg(samples20, codes = 1, samples=2)
+# conduct LDA
+cropproc<-LDAcrop.pro(datatrans)
+```
+
+The data can be plotted using the 3D function for exploration. While the 2D plots can be colour coded according the the class of the samples ( i.e mixed, barley or free-threshing cereal).
+
+```{r}
+#classes 
+grouped<-merge(x=cropproc, y=Classes_brak, by.x = "Samples", by.y = "Sample")
+grouped$pch<-grouped$grouping
+grouped$pch[grouped$pch=="barley"]<-15
+grouped$pch[grouped$pch=="mixed"]<-16
+grouped$pch[grouped$pch=="FT"]<-17
+
+grouped$col<-grouped$grouping
+grouped$col[grouped$col=="barley"]<-"red"
+grouped$col[grouped$col=="mixed"]<-"blue"
+grouped$col[grouped$col=="FT"]<-"green"
+
+crop.plot2D(cropproc, pch=as.numeric(grouped$pch), site = c("mixed", "FT", "barley"))
+crop.plot2D(cropproc,col=paste(grouped$col), pch=as.numeric(as.character(grouped$pch)), site = c("mixed",  "barley", "FT"))
+
+grouped$lab<-grouped$Samples
+grouped$lab<-"red"
+grouped$lab[grouped$Samples=="AL47"]<-"green"
+grouped$lab[grouped$Samples=="CH527/56"]<-"blue"
+
+crop.plot2D(cropproc,col=paste(grouped$lab), label = c("AL47","CH527/56"), site = c("Samples",  "AL47", "CH527/56"))
+
+
+```
+
+```{r}
+crop.plot3D(cropproc,gcol = c("black", "grey", "grey48", "grey89"), col=paste(grouped$lab), site = c("Samples",  "AL47", "CH527/56"))
+
+```
+
+![](images/BW_brak_croppro.gif)
