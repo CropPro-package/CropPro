@@ -35,7 +35,10 @@ crop.plot3D<-function(x, gcol=NULL, col="black", site="Site"){
   spheres3d(x$LD1,x$LD3,x$LD2, col=col,radius=0.14 )
   shapelist3d(cube3d(),x=centroids$centroid1,y=centroids$centroid3, z=centroids$centroid2,  col="black",size=0.2)
   #play3d( spin3d( axis = c(0, 0, 1), rpm = 20), duration = 10 )
-  legend3d("topright",c("Winnowing by-products", "Coarse-sieving by-products", "Fine-sieving by-products", "Fine-sieving products", site, "Group centroids"), pch= c(16,16,16,16,16,15), col=c(gcolours,col,"black"), cex=1)
+
+  legendtab<-tibble(labels=site,col=unique(col))
+
+  legend3d("topright",c("Winnowing by-products", "Coarse-sieving by-products", "Fine-sieving by-products", "Fine-sieving products", site, "Group centroids"), pch= c(16,16,16,16,16,15), col=c(gcolours,legendtab$col,"black"), cex=1)
 }
 
 

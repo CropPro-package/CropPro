@@ -1,4 +1,4 @@
-library(plyr)
+
 crop.dataorg<-function(dataframe, codes, samples){
 data<-dataframe[,samples:ncol(dataframe)]
 
