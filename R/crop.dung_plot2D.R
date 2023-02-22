@@ -1,4 +1,4 @@
-crop.dung_plot2D<-function(data,Func1=1, Func2=2, ylims=NULL,xlims=NULL,gcols=NULL,gpchs=NULL, col ='black', pch=15, site="Archaeological"){
+crop.dung_plot2D<-function(data,Func1=1, Func2=2, ylims=NULL,xlims=NULL,gcols=NULL,gpchs=NULL, col ='black', pch=15, site="Archaeological", label=NULL){
   data.model<-data.frame(data.model)
   archdata<-data
   archdata$PROC<-"5"
@@ -20,21 +20,24 @@ crop.dung_plot2D<-function(data,Func1=1, Func2=2, ylims=NULL,xlims=NULL,gcols=NU
 
   names(data)<-gsub(x=names(data), pattern = "`*`", replacement="")
 
+  sampledata<-dataset[dataset$PROC==5,]
+  ethnodata<-dataset[dataset$PROC!=5,]
+
   if(!is.null(gcols)){
-    gcolours<-c(gcols,col)
-    dataset$colour<-gcolours[as.numeric(dataset$PROC)]
+    gcolours<-c(gcols)
+    ethnodata$colour<-gcolours[as.numeric(ethnodata$PROC)]
   }
   if(is.null(gcols)){
-    gcolours<-c('black','black','black','black',col)
-    dataset$colour<-gcolours[as.numeric(dataset$PROC)]
+    gcolours<-c('black','black','black','black')
+    ethnodata$colour<-gcolours[as.numeric(ethnodata$PROC)]
   }
-  mygroups<-c( "Winnowing by-products", "Coarse-sieving by-products", "Fine-sieving by-products", "Fine-sieving products", site)
+  mygroups<-c( "Winnowing by-products", "Coarse-sieving by-products", "Fine-sieving by-products", "Fine-sieving products")
 
-  dataset$Actual.Group<-mygroups[as.numeric(dataset$PROC)]
+  ethnodata$Actual.Group<-mygroups[as.numeric(ethnodata$PROC)]
 
   if(is.null(gpchs)){
-    mypch<-c(1,2,3,5,15)
-    dataset$pch<-mypch[as.numeric(dataset$PROC)]
+    mypch<-c(1,2,3,5)
+    ethnodata$pch<-mypch[as.numeric(ethnodata$PROC)]
   }
 
   if(Func1==1 & Func2==3){
@@ -81,13 +84,20 @@ crop.dung_plot2D<-function(data,Func1=1, Func2=2, ylims=NULL,xlims=NULL,gcols=NU
     }else {
       ylim<-c(ymin-0.5,ymax+0.5)}
     par(mar=c(10,4,4,4))
-    plot(dataset$LD1, dataset$LD3, col=paste(dataset$colour), pch=as.numeric(as.character(dataset$pch)), ylim=ylim, xlim=xlim, xlab="", ylab="")
+    plot(ethnodata$LD1, ethnodata$LD3, col=paste(ethnodata$colour), pch=as.numeric(as.character(ethnodata$pch)), ylim=ylim, xlim=xlim, xlab="", ylab="")
+    par(new=T)
+    plot(sampledata$LD1, sampledata$LD3, col=paste(col), pch=as.numeric(as.character(pch)), ylim=ylim, xlim=xlim, xlab="", ylab="")
     par(new=T)
     plot(centroids$centroid1,centroids$centroid3 , col="Black", pch=19, ylim=ylim, xlim=xlim, xlab="Function 1", ylab="Function 3")
+    if(!is.null(label)){
+      samples<- data[data$Samples %in% c(label),]
+      text(samples$LD1,samples$LD3-0.3,labels=samples$Samples, cex=0.8)
+    }
 
-    legend.table<- dataset[!duplicated(dataset$Actual.Group),]
+    legend.table<- ethnodata[!duplicated(ethnodata$Actual.Group),]
+    legendtab<-tibble(labels=site,col=unique(col), pch=unique(pch))
 
-    legend("bottom", c(paste(legend.table$Actual.Group), "Group centroids"), col=c((paste(legend.table$colour)), "black"), pch=c((as.numeric(as.character(legend.table$pch))),19), pt.cex=1, cex=0.64, bg="white",xpd=TRUE, ncol=2, inset = c(-0.3,-0.4))
+    legend("bottom", c(paste(legend.table$Actual.Group), site, "Group centroids"), col=c((paste(legend.table$colour)),legendtab$col, "black"), pch=c((as.numeric(as.character(legend.table$pch))),legendtab$pch,19), pt.cex=1, cex=0.64, bg="white",xpd=TRUE, ncol=2, inset = c(-0.4,-0.5))
   }
     else if(Func1==1 & Func2==4){
       xv<-data$LD1
@@ -133,13 +143,21 @@ crop.dung_plot2D<-function(data,Func1=1, Func2=2, ylims=NULL,xlims=NULL,gcols=NU
       }else {
         ylim<-c(ymin-0.5,ymax+0.5)}
       par(mar=c(10,4,4,4))
-      plot(dataset$LD1, dataset$LD4, col=paste(dataset$colour), pch=as.numeric(as.character(dataset$pch)), ylim=ylim, xlim=xlim, xlab="", ylab="")
+
+      plot(ethnodata$LD1, ethnodata$LD4, col=paste(ethnodata$colour), pch=as.numeric(as.character(ethnodata$pch)), ylim=ylim, xlim=xlim, xlab="", ylab="")
+      par(new=T)
+      plot(sampledata$LD1, sampledata$LD4, col=paste(col), pch=as.numeric(as.character(pch)), ylim=ylim, xlim=xlim, xlab="", ylab="")
       par(new=T)
       plot(centroids$centroid1,centroids$centroid4 , col="Black", pch=19, ylim=ylim, xlim=xlim, xlab="Function 1", ylab="Function 4")
+      if(!is.null(label)){
+        samples<- data[data$Samples %in% c(label),]
+        text(samples$LD1,samples$LD4-0.3,labels=samples$Samples, cex=0.8)
+      }
 
-      legend.table<- dataset[!duplicated(dataset$Actual.Group),]
+      legend.table<- ethnodata[!duplicated(ethnodata$Actual.Group),]
+      legendtab<-tibble(labels=site,col=unique(col), pch=unique(pch))
 
-      legend("bottom", c(paste(legend.table$Actual.Group), "Group centroids"), col=c((paste(legend.table$colour)), "black"), pch=c((as.numeric(as.character(legend.table$pch))),19), pt.cex=1, cex=0.64, bg="white",xpd=TRUE, ncol=2, inset = c(-0.3,-0.4))
+      legend("bottom", c(paste(legend.table$Actual.Group), site, "Group centroids"), col=c((paste(legend.table$colour)),legendtab$col, "black"), pch=c((as.numeric(as.character(legend.table$pch))),legendtab$pch,19), pt.cex=1, cex=0.64, bg="white",xpd=TRUE, ncol=2, inset = c(-0.4,-0.5))
 
     }
     else if(Func1==2 & Func2==1){
@@ -186,13 +204,20 @@ crop.dung_plot2D<-function(data,Func1=1, Func2=2, ylims=NULL,xlims=NULL,gcols=NU
       }else {
         ylim<-c(ymin-0.5,ymax+0.5)}
       par(mar=c(10,4,4,4))
-      plot(dataset$LD2, dataset$LD1, col=paste(dataset$colour), pch=as.numeric(as.character(dataset$pch)), ylim=ylim, xlim=xlim, xlab="", ylab="")
+      plot(ethnodata$LD2, ethnodata$LD1, col=paste(ethnodata$colour), pch=as.numeric(as.character(ethnodata$pch)), ylim=ylim, xlim=xlim, xlab="", ylab="")
       par(new=T)
+      plot(sampledata$LD2, sampledata$LD1, col=paste(col), pch=as.numeric(as.character(pch)), ylim=ylim, xlim=xlim, xlab="", ylab="")
       plot(centroids$centroid2,centroids$centroid1 , col="Black", pch=19, ylim=ylim, xlim=xlim, xlab="Function 2", ylab="Function 1")
 
-      legend.table<- dataset[!duplicated(dataset$Actual.Group),]
+      if(!is.null(label)){
+        samples<- data[data$Samples %in% c(label),]
+        text(samples$LD2,samples$LD1-0.3,labels=samples$Samples, cex=0.8)
+      }
 
-      legend("bottom", c(paste(legend.table$Actual.Group), "Group centroids"), col=c((paste(legend.table$colour)), "black"), pch=c((as.numeric(as.character(legend.table$pch))),19), pt.cex=1, cex=0.64, bg="white",xpd=TRUE, ncol=2, inset = c(-0.3,-0.4))
+      legend.table<- ethnodata[!duplicated(ethnodata$Actual.Group),]
+      legendtab<-tibble(labels=site,col=unique(col), pch=unique(pch))
+
+      legend("bottom", c(paste(legend.table$Actual.Group), site, "Group centroids"), col=c((paste(legend.table$colour)),legendtab$col, "black"), pch=c((as.numeric(as.character(legend.table$pch))),legendtab$pch,19), pt.cex=1, cex=0.64, bg="white",xpd=TRUE, ncol=2, inset = c(-0.4,-0.5))
 
     }
     else if(Func1==2 & Func2==3){
@@ -239,13 +264,21 @@ crop.dung_plot2D<-function(data,Func1=1, Func2=2, ylims=NULL,xlims=NULL,gcols=NU
       }else {
         ylim<-c(ymin-0.5,ymax+0.5)}
       par(mar=c(10,4,4,4))
-      plot(dataset$LD2, dataset$LD3, col=paste(dataset$colour), pch=as.numeric(as.character(dataset$pch)), ylim=ylim, xlim=xlim, xlab="", ylab="")
+      plot(ethnodata$LD2, ethnodata$LD3, col=paste(ethnodata$colour), pch=as.numeric(as.character(ethnodata$pch)), ylim=ylim, xlim=xlim, xlab="", ylab="")
       par(new=T)
+      plot(sampledata$LD2, sampledata$LD3, col=paste(col), pch=as.numeric(as.character(pch)), ylim=ylim, xlim=xlim, xlab="", ylab="")
+
+       par(new=T)
       plot(centroids$centroid2,centroids$centroid3 , col="Black", pch=19, ylim=ylim, xlim=xlim, xlab="Function 2", ylab="Function 3")
+      if(!is.null(label)){
+        samples<- data[data$Samples %in% c(label),]
+        text(samples$LD2,samples$LD3-0.3,labels=samples$Samples, cex=0.8)
+      }
 
-      legend.table<- dataset[!duplicated(dataset$Actual.Group),]
+      legend.table<- ethnodata[!duplicated(ethnodata$Actual.Group),]
+      legendtab<-tibble(labels=site,col=unique(col), pch=unique(pch))
 
-      legend("bottom", c(paste(legend.table$Actual.Group), "Group centroids"), col=c((paste(legend.table$colour)), "black"), pch=c((as.numeric(as.character(legend.table$pch))),19), pt.cex=1, cex=0.64, bg="white",xpd=TRUE, ncol=2, inset = c(-0.3,-0.4))
+      legend("bottom", c(paste(legend.table$Actual.Group), site, "Group centroids"), col=c((paste(legend.table$colour)),legendtab$col, "black"), pch=c((as.numeric(as.character(legend.table$pch))),legendtab$pch,19), pt.cex=1, cex=0.64, bg="white",xpd=TRUE, ncol=2, inset = c(-0.4,-0.5))
 
     }
     else if(Func1==2 & Func2==4){
@@ -292,13 +325,21 @@ crop.dung_plot2D<-function(data,Func1=1, Func2=2, ylims=NULL,xlims=NULL,gcols=NU
       }else {
         ylim<-c(ymin-0.5,ymax+0.5)}
       par(mar=c(10,4,4,4))
-      plot(dataset$LD2, dataset$LD4, col=paste(dataset$colour), pch=as.numeric(as.character(dataset$pch)), ylim=ylim, xlim=xlim, xlab="", ylab="")
+      plot(ethnodata$LD2, ethnodata$LD4, col=paste(ethnodata$colour), pch=as.numeric(as.character(ethnodata$pch)), ylim=ylim, xlim=xlim, xlab="", ylab="")
+      par(new=T)
+      plot(sampledata$LD2, sampledata$LD4, col=paste(col), pch=as.numeric(as.character(pch)), ylim=ylim, xlim=xlim, xlab="", ylab="")
+
       par(new=T)
       plot(centroids$centroid2,centroids$centroid4 , col="Black", pch=19, ylim=ylim, xlim=xlim, xlab="Function 2", ylab="Function 4")
+      if(!is.null(label)){
+        samples<- data[data$Samples %in% c(label),]
+        text(samples$LD2,samples$LD4-0.3,labels=samples$Samples, cex=0.8)
+      }
 
-      legend.table<- dataset[!duplicated(dataset$Actual.Group),]
+      legend.table<- ethnodata[!duplicated(ethnodata$Actual.Group),]
+      legendtab<-tibble(labels=site,col=unique(col), pch=unique(pch))
 
-      legend("bottom", c(paste(legend.table$Actual.Group), "Group centroids"), col=c((paste(legend.table$colour)), "black"), pch=c((as.numeric(as.character(legend.table$pch))),19), pt.cex=1, cex=0.64, bg="white",xpd=TRUE, ncol=2, inset = c(-0.3,-0.4))
+      legend("bottom", c(paste(legend.table$Actual.Group), site, "Group centroids"), col=c((paste(legend.table$colour)),legendtab$col, "black"), pch=c((as.numeric(as.character(legend.table$pch))),legendtab$pch,19), pt.cex=1, cex=0.64, bg="white",xpd=TRUE, ncol=2, inset = c(-0.4,-0.5))
 
     }
     else if(Func1==3 & Func2==4){
@@ -345,13 +386,21 @@ crop.dung_plot2D<-function(data,Func1=1, Func2=2, ylims=NULL,xlims=NULL,gcols=NU
       }else {
         ylim<-c(ymin-0.5,ymax+0.5)}
       par(mar=c(10,4,4,4))
-      plot(dataset$LD3, dataset$LD4, col=paste(dataset$colour), pch=as.numeric(as.character(dataset$pch)), ylim=ylim, xlim=xlim, xlab="", ylab="")
+      plot(ethnodata$LD3, ethnodata$LD4, col=paste(ethnodata$colour), pch=as.numeric(as.character(ethnodata$pch)), ylim=ylim, xlim=xlim, xlab="", ylab="")
+      par(new=T)
+      plot(sampledata$LD3, sampledata$LD4, col=paste(col), pch=as.numeric(as.character(pch)), ylim=ylim, xlim=xlim, xlab="", ylab="")
+
       par(new=T)
       plot(centroids$centroid3,centroids$centroid4 , col="Black", pch=19, ylim=ylim, xlim=xlim, xlab="Function 3", ylab="Function 4")
+      if(!is.null(label)){
+        samples<- data[data$Samples %in% c(label),]
+        text(samples$LD3,samples$LD4-0.3,labels=samples$Samples, cex=0.8)
+      }
 
-      legend.table<- dataset[!duplicated(dataset$Actual.Group),]
+      legend.table<- ethnodata[!duplicated(ethnodata$Actual.Group),]
+      legendtab<-tibble(labels=site,col=unique(col), pch=unique(pch))
 
-      legend("bottom", c(paste(legend.table$Actual.Group), "Group centroids"), col=c((paste(legend.table$colour)), "black"), pch=c((as.numeric(as.character(legend.table$pch))),19), pt.cex=1, cex=0.64, bg="white",xpd=TRUE, ncol=2, inset = c(-0.3,-0.4))
+      legend("bottom", c(paste(legend.table$Actual.Group), site, "Group centroids"), col=c((paste(legend.table$colour)),legendtab$col, "black"), pch=c((as.numeric(as.character(legend.table$pch))),legendtab$pch,19), pt.cex=1, cex=0.64, bg="white",xpd=TRUE, ncol=2, inset = c(-0.4,-0.5))
 
     }
     else if(Func1==3 & Func2==2){
@@ -398,13 +447,21 @@ crop.dung_plot2D<-function(data,Func1=1, Func2=2, ylims=NULL,xlims=NULL,gcols=NU
       }else {
         ylim<-c(ymin-0.5,ymax+0.5)}
       par(mar=c(10,4,4,4))
-      plot(dataset$LD3, dataset$LD2, col=paste(dataset$colour), pch=as.numeric(as.character(dataset$pch)), ylim=ylim, xlim=xlim, xlab="", ylab="")
+      plot(ethnodata$LD3, ethnodata$LD2, col=paste(ethnodata$colour), pch=as.numeric(as.character(ethnodata$pch)), ylim=ylim, xlim=xlim, xlab="", ylab="")
+      par(new=T)
+      plot(sampledata$LD3, sampledata$LD2, col=paste(col), pch=as.numeric(as.character(pch)), ylim=ylim, xlim=xlim, xlab="", ylab="")
+
       par(new=T)
       plot(centroids$centroid3,centroids$centroid2 , col="Black", pch=19, ylim=ylim, xlim=xlim, xlab="Function 3", ylab="Function 2")
+      if(!is.null(label)){
+        samples<- data[data$Samples %in% c(label),]
+        text(samples$LD3,samples$LD2-0.3,labels=samples$Samples, cex=0.8)
+      }
 
-      legend.table<- dataset[!duplicated(dataset$Actual.Group),]
+      legend.table<- ethnodata[!duplicated(ethnodata$Actual.Group),]
+      legendtab<-tibble(labels=site,col=unique(col), pch=unique(pch))
 
-      legend("bottom", c(paste(legend.table$Actual.Group), "Group centroids"), col=c((paste(legend.table$colour)), "black"), pch=c((as.numeric(as.character(legend.table$pch))),19), pt.cex=1, cex=0.64, bg="white",xpd=TRUE, ncol=2, inset = c(-0.3,-0.4))
+      legend("bottom", c(paste(legend.table$Actual.Group), site, "Group centroids"), col=c((paste(legend.table$colour)),legendtab$col, "black"), pch=c((as.numeric(as.character(legend.table$pch))),legendtab$pch,19), pt.cex=1, cex=0.64, bg="white",xpd=TRUE, ncol=2, inset = c(-0.4,-0.5))
 
     }
     else if(Func1==3 & Func2==4){
@@ -451,13 +508,21 @@ crop.dung_plot2D<-function(data,Func1=1, Func2=2, ylims=NULL,xlims=NULL,gcols=NU
       }else {
         ylim<-c(ymin-0.5,ymax+0.5)}
       par(mar=c(10,4,4,4))
-      plot(dataset$LD3, dataset$LD4, col=paste(dataset$colour), pch=as.numeric(as.character(dataset$pch)), ylim=ylim, xlim=xlim, xlab="", ylab="")
+      plot(ethnodata$LD3, ethnodata$LD4, col=paste(ethnodata$colour), pch=as.numeric(as.character(ethnodata$pch)), ylim=ylim, xlim=xlim, xlab="", ylab="")
+      par(new=T)
+      plot(sampledata$LD3, sampledata$LD4, col=paste(col), pch=as.numeric(as.character(pch)), ylim=ylim, xlim=xlim, xlab="", ylab="")
+
       par(new=T)
       plot(centroids$centroid3,centroids$centroid4 , col="Black", pch=19, ylim=ylim, xlim=xlim, xlab="Function 3", ylab="Function 4")
+      if(!is.null(label)){
+        samples<- data[data$Samples %in% c(label),]
+        text(samples$LD3,samples$LD4-0.3,labels=samples$Samples, cex=0.8)
+      }
 
-      legend.table<- dataset[!duplicated(dataset$Actual.Group),]
+      legend.table<- ethnodata[!duplicated(ethnodata$Actual.Group),]
+      legendtab<-tibble(labels=site,col=unique(col), pch=unique(pch))
 
-      legend("bottom", c(paste(legend.table$Actual.Group), "Group centroids"), col=c((paste(legend.table$colour)), "black"), pch=c((as.numeric(as.character(legend.table$pch))),19), pt.cex=1, cex=0.64, bg="white",xpd=TRUE, ncol=2, inset = c(-0.3,-0.4))
+      legend("bottom", c(paste(legend.table$Actual.Group), site, "Group centroids"), col=c((paste(legend.table$colour)),legendtab$col, "black"), pch=c((as.numeric(as.character(legend.table$pch))),legendtab$pch,19), pt.cex=1, cex=0.64, bg="white",xpd=TRUE, ncol=2, inset = c(-0.4,-0.5))
 
     }
     else if(Func1==4 & Func2==1){
@@ -504,14 +569,20 @@ crop.dung_plot2D<-function(data,Func1=1, Func2=2, ylims=NULL,xlims=NULL,gcols=NU
       }else {
         ylim<-c(ymin-0.5,ymax+0.5)}
       par(mar=c(10,4,4,4))
-      plot(dataset$LD4, dataset$LD1, col=paste(dataset$colour), pch=as.numeric(as.character(dataset$pch)), ylim=ylim, xlim=xlim, xlab="", ylab="")
+      plot(ethnodata$LD4, ethnodata$LD1, col=paste(ethnodata$colour), pch=as.numeric(as.character(ethnodata$pch)), ylim=ylim, xlim=xlim, xlab="", ylab="")
+      par(new=T)
+      plot(sampledata$LD4, sampledata$LD1, col=paste(col), pch=as.numeric(as.character(pch)), ylim=ylim, xlim=xlim, xlab="", ylab="")
       par(new=T)
       plot(centroids$centroid4,centroids$centroid1 , col="Black", pch=19, ylim=ylim, xlim=xlim, xlab="Function 4", ylab="Function 1")
+      if(!is.null(label)){
+        samples<- data[data$Samples %in% c(label),]
+        text(samples$LD4,samples$LD1-0.3,labels=samples$Samples, cex=0.8)
+      }
 
-      legend.table<- dataset[!duplicated(dataset$Actual.Group),]
+      legend.table<- ethnodata[!duplicated(ethnodata$Actual.Group),]
+      legendtab<-tibble(labels=site,col=unique(col), pch=unique(pch))
 
-      legend("bottom", c(paste(legend.table$Actual.Group), "Group centroids"), col=c((paste(legend.table$colour)), "black"), pch=c((as.numeric(as.character(legend.table$pch))),19), pt.cex=1, cex=0.64, bg="white",xpd=TRUE, ncol=2, inset = c(-0.3,-0.4))
-
+      legend("bottom", c(paste(legend.table$Actual.Group), site, "Group centroids"), col=c((paste(legend.table$colour)),legendtab$col, "black"), pch=c((as.numeric(as.character(legend.table$pch))),legendtab$pch,19), pt.cex=1, cex=0.64, bg="white",xpd=TRUE, ncol=2, inset = c(-0.4,-0.5))
     }
     else if(Func1==4 & Func2==2){
       xv<-data$LD4
@@ -557,13 +628,21 @@ crop.dung_plot2D<-function(data,Func1=1, Func2=2, ylims=NULL,xlims=NULL,gcols=NU
       }else {
         ylim<-c(ymin-0.5,ymax+0.5)}
       par(mar=c(10,4,4,4))
-      plot(dataset$LD4, dataset$LD2, col=paste(dataset$colour), pch=as.numeric(as.character(dataset$pch)), ylim=ylim, xlim=xlim, xlab="", ylab="")
+      plot(ethnodata$LD4, ethnodata$LD2, col=paste(ethnodata$colour), pch=as.numeric(as.character(ethnodata$pch)), ylim=ylim, xlim=xlim, xlab="", ylab="")
+      par(new=T)
+      plot(sampledata$LD4, sampledata$LD2, col=paste(col), pch=as.numeric(as.character(pch)), ylim=ylim, xlim=xlim, xlab="", ylab="")
+
       par(new=T)
       plot(centroids$centroid4,centroids$centroid2 , col="Black", pch=19, ylim=ylim, xlim=xlim, xlab="Function 4", ylab="Function 2")
+      if(!is.null(label)){
+        samples<- data[data$Samples %in% c(label),]
+        text(samples$LD4,samples$LD2-0.3,labels=samples$Samples, cex=0.8)
+      }
 
-      legend.table<- dataset[!duplicated(dataset$Actual.Group),]
+      legend.table<- ethnodata[!duplicated(ethnodata$Actual.Group),]
+      legendtab<-tibble(labels=site,col=unique(col), pch=unique(pch))
 
-      legend("bottom", c(paste(legend.table$Actual.Group), "Group centroids"), col=c((paste(legend.table$colour)), "black"), pch=c((as.numeric(as.character(legend.table$pch))),19), pt.cex=1, cex=0.64, bg="white",xpd=TRUE, ncol=2, inset = c(-0.3,-0.4))
+      legend("bottom", c(paste(legend.table$Actual.Group), site, "Group centroids"), col=c((paste(legend.table$colour)),legendtab$col, "black"), pch=c((as.numeric(as.character(legend.table$pch))),legendtab$pch,19), pt.cex=1, cex=0.64, bg="white",xpd=TRUE, ncol=2, inset = c(-0.4,-0.5))
 
     }
     else if(Func1==4 & Func2==3){
@@ -610,13 +689,21 @@ crop.dung_plot2D<-function(data,Func1=1, Func2=2, ylims=NULL,xlims=NULL,gcols=NU
       }else {
         ylim<-c(ymin-0.5,ymax+0.5)}
       par(mar=c(10,4,4,4))
-      plot(dataset$LD4, dataset$LD3, col=paste(dataset$colour), pch=as.numeric(as.character(dataset$pch)), ylim=ylim, xlim=xlim, xlab="", ylab="")
+      plot(ethnodata$LD4, ethnodata$LD3, col=paste(ethnodata$colour), pch=as.numeric(as.character(ethnodata$pch)), ylim=ylim, xlim=xlim, xlab="", ylab="")
+      par(new=T)
+      plot(sampledata$LD4, sampledata$LD3, col=paste(col), pch=as.numeric(as.character(pch)), ylim=ylim, xlim=xlim, xlab="", ylab="")
+
       par(new=T)
       plot(centroids$centroid4,centroids$centroid3 , col="Black", pch=19, ylim=ylim, xlim=xlim, xlab="Function 4", ylab="Function 3")
+      if(!is.null(label)){
+        samples<- data[data$Samples %in% c(label),]
+        text(samples$LD4,samples$LD3-0.3,labels=samples$Samples, cex=0.8)
+      }
 
-      legend.table<- dataset[!duplicated(dataset$Actual.Group),]
+      legend.table<- ethnodata[!duplicated(ethnodata$Actual.Group),]
+      legendtab<-tibble(labels=site,col=unique(col), pch=unique(pch))
 
-      legend("bottom", c(paste(legend.table$Actual.Group), "Group centroids"), col=c((paste(legend.table$colour)), "black"), pch=c((as.numeric(as.character(legend.table$pch))),19), pt.cex=1, cex=0.64, bg="white",xpd=TRUE, ncol=2, inset = c(-0.3,-0.4))
+      legend("bottom", c(paste(legend.table$Actual.Group), site, "Group centroids"), col=c((paste(legend.table$colour)),legendtab$col, "black"), pch=c((as.numeric(as.character(legend.table$pch))),legendtab$pch,19), pt.cex=1, cex=0.64, bg="white",xpd=TRUE, ncol=2, inset = c(-0.4,-0.5))
 
     }
     else {xv<-data$LD1
@@ -662,11 +749,19 @@ crop.dung_plot2D<-function(data,Func1=1, Func2=2, ylims=NULL,xlims=NULL,gcols=NU
     }else {
       ylim<-c(ymin-0.5,ymax+0.5)}
     par(mar=c(10,4,4,4))
-    plot(dataset$LD1, dataset$LD2, col=paste(dataset$colour), pch=as.numeric(as.character(dataset$pch)), ylim=ylim, xlim=xlim, xlab="", ylab="")
+    plot(ethnodata$LD1, ethnodata$LD2, col=paste(ethnodata$colour), pch=as.numeric(as.character(ethnodata$pch)), ylim=ylim, xlim=xlim, xlab="", ylab="")
+    par(new=T)
+    plot(sampledata$LD1, sampledata$LD2, col=paste(col), pch=as.numeric(as.character(pch)), ylim=ylim, xlim=xlim, xlab="", ylab="")
+
     par(new=T)
     plot(centroids$centroid1,centroids$centroid2 , col="Black", pch=19, ylim=ylim, xlim=xlim, xlab="Function 1", ylab="Function 2")
+    if(!is.null(label)){
+      samples<- data[data$Samples %in% c(label),]
+      text(samples$LD1,samples$LD2-0.3,labels=samples$Samples, cex=0.8)
+    }
 
-    legend.table<- dataset[!duplicated(dataset$Actual.Group),]
+    legend.table<- ethnodata[!duplicated(ethnodata$Actual.Group),]
+    legendtab<-tibble(labels=site,col=unique(col), pch=unique(pch))
 
-    legend("bottom", c(paste(legend.table$Actual.Group), "Group centroids"), col=c((paste(legend.table$colour)), "black"), pch=c((as.numeric(as.character(legend.table$pch))),19), pt.cex=1, cex=0.64, bg="white",xpd=TRUE, ncol=2, inset = c(-0.3,-0.4))
-}}
+    legend("bottom",  c(paste(legend.table$Actual.Group), site, "Group centroids"), col=c((paste(legend.table$colour)),legendtab$col, "black"), pch=c((as.numeric(as.character(legend.table$pch))),legendtab$pch,19), pt.cex=1, cex=0.64, bg="white",xpd=TRUE, ncol=2, inset = c(-0.4,-0.5))
+    }}
