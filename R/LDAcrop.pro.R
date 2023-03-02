@@ -12,6 +12,7 @@ LDAcrop.pro<-function(x){
   functionalAt50 <- data.frame(PROC = as.factor(data.model$PROC),
                              Classification= predictionmodel50$class,
                              predictionmodel50$x)
+
   centroids <- functionalAt %>%
     group_by(PROC) %>%
     summarise(centroid1 = mean(LD1),

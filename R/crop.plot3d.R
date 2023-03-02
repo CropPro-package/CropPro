@@ -14,7 +14,7 @@ crop.plot3D<-function(x, gcol=NULL, col="black", site="Site"){
                              predictionmodel$x)
   centroids <- functionalAt %>%
     group_by(PROC) %>%
-    summarise(centroid1 = mean(LD1),
+    dplyr::summarise(centroid1 = mean(LD1),
               centroid2= mean(LD2),
               centroid3= mean(LD3))
 

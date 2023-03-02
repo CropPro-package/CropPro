@@ -8,7 +8,7 @@ crop.plot2D<-function(x,ylims=NULL,xlims=NULL,gcols=NULL,gpchs=NULL, col ='black
                              predictionmodel$x)
   centroids <- dataset %>%
     group_by(PROC) %>%
-    summarise(centroid1 = mean(LD1),
+    dplyr::summarise(centroid1 = mean(LD1),
               centroid2= mean(LD2),
               centroid3= mean(LD3))
 
