@@ -7,7 +7,6 @@ Maintainer: <elizabeth.stroud@arch.ox.ac.uk>
 Description: This package contains functions for the linear discriminant analysis of ethnographic data against which archaeobotanical data can be classified. The package contains two LDA functions which allows the archaeobotanical samples to be classified as one of four crop processing stages, or one of five classes (four crop processing stages and the archaeological group). This package also contains a function for the data transformation required before LDA, as well as four graphing functions.   
 License: MIT
 Depends:
-  plyr,
   dplyr,
   MASS, 
   rgl

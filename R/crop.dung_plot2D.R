@@ -207,6 +207,7 @@ crop.dung_plot2D<-function(data,Func1=1, Func2=2, ylims=NULL,xlims=NULL,gcols=NU
       plot(ethnodata$LD2, ethnodata$LD1, col=paste(ethnodata$colour), pch=as.numeric(as.character(ethnodata$pch)), ylim=ylim, xlim=xlim, xlab="", ylab="")
       par(new=T)
       plot(sampledata$LD2, sampledata$LD1, col=paste(col), pch=as.numeric(as.character(pch)), ylim=ylim, xlim=xlim, xlab="", ylab="")
+      par(new=T)
       plot(centroids$centroid2,centroids$centroid1 , col="Black", pch=19, ylim=ylim, xlim=xlim, xlab="Function 2", ylab="Function 1")
 
       if(!is.null(label)){
@@ -752,7 +753,6 @@ crop.dung_plot2D<-function(data,Func1=1, Func2=2, ylims=NULL,xlims=NULL,gcols=NU
     plot(ethnodata$LD1, ethnodata$LD2, col=paste(ethnodata$colour), pch=as.numeric(as.character(ethnodata$pch)), ylim=ylim, xlim=xlim, xlab="", ylab="")
     par(new=T)
     plot(sampledata$LD1, sampledata$LD2, col=paste(col), pch=as.numeric(as.character(pch)), ylim=ylim, xlim=xlim, xlab="", ylab="")
-
     par(new=T)
     plot(centroids$centroid1,centroids$centroid2 , col="Black", pch=19, ylim=ylim, xlim=xlim, xlab="Function 1", ylab="Function 2")
     if(!is.null(label)){
