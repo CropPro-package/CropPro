@@ -6,8 +6,7 @@
 }
 \description{crop.dung_plot3D plots the linear discriminant scores obtained from \code{\link[CropPro]{LDAcrop.dung}} as a three dimensional graph
 }
-\usage{
-dung.plot3d(data, gcol=NULL, col="black", site="site", LD=3)
+\usage{dung.plot3d(data, gcols=NULL, col="black", site="Archaeological", LD=3, label=NULL, cex.lab =0.65, pos.lab=3)
 }
 %- maybe also 'usage' for other objects documented here.
 \arguments{
@@ -16,6 +15,9 @@ dung.plot3d(data, gcol=NULL, col="black", site="site", LD=3)
   \item{col}{The colour of the archaeobotanical samples symbols}
   \item{site}{The name for the archaeobotanical samples - to appear in the legend}
   \item{LD}{Whether ploting the first three discriminant functions or the 4th has been substituted for the 3rd function (response is LD=4)}
+  \item{label}{the name of the samples to be labeled on the graph}
+  \item{cex.lab}{the size of the label following text3d}
+   \item{pos.lab}{the position of the label following text3d}
   }
 
 \references{PAPER

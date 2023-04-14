@@ -33,10 +33,10 @@ centroids50 <- functionalAt50 %>%
 
 model <- cbind(labels,as.data.frame(predict(model_lda,x)))
 model<-model%>% mutate(across(where(is.numeric), round, digits =3))
-names(model)<-c("Sample","Class", "Prob.1", "Prob.2","Prob.3", "Prob.4", "Prob.5", "LD1","LD2", "LD3","LD4")
+names(model)<-c("Sample","Class", "Prob.1", "Prob.2","Prob.3", "Prob.4", "Prob.5", "LD1*","LD2*", "LD3*","LD4*")
 models50 <- cbind(labels,as.data.frame(predict(model_lda50,x)))
 models50<-models50%>% mutate(across(where(is.numeric), round, digits =3))
-names(models50)<-c("Sample","CLASS_std", "Prob.1_std", "Prob.2_std", "Prob.3_std", "Prob.4_std", "Prob.5_std", "Ld1_std", "Ld2_std", "Ld3_std", "Ld4_std")
+names(models50)<-c("Sample","CLASS_std*", "Prob.1_std*", "Prob.2_std*", "Prob.3_std*", "Prob.4_std*", "Prob.5_std*", "Ld1_std", "Ld2_std", "Ld3_std", "Ld4_std")
 tbl50 <- table(models50$CLASS_std)
 res50 <- cbind(tbl50,round(prop.table(tbl50)*100,2))
 colnames(res50) <- c('Count','Percentage')

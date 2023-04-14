@@ -1,7 +1,7 @@
 
 #x = lda1, y = lda2, z= lda3
 # note not sure how to do the colour - do have this as a default colour that can be changed.
-crop.dung_plot3D<-function(data, gcol=NULL, col="black", site="Archaeological", LD=3){
+crop.dung_plot3D<-function(data, gcols=NULL, col="black", site="Archaeological", LD=3, label=NULL, cex.lab =0.65, pos.lab=3){
   data.model<-data.frame(data.model)
   archdata<-data
   archdata$PROC<-"5"
@@ -10,7 +10,7 @@ crop.dung_plot3D<-function(data, gcol=NULL, col="black", site="Archaeological", 
 
   model.arch<-rbind(data.model, archdata)
   discrim_cv <- lda(PROC ~ BHH+BFH+SHH+SHL+SFH+SFL, model.arch, CV = TRUE)
-  model_lda <- lda(PROC ~ BHH+BFH+SHH+SHL+SFH+SFL, model.arch, prior=c(1,1,1,1,1)/5)
+  model_lda <- lda(PROC ~ BHH+BFH+SHH+SHL+SFH+SFL, model.arch)
   predictionmodel <- predict(model_lda, model.arch)
   dataset <- data.frame(PROC = as.factor(model.arch$PROC),
                         Classification= predictionmodel$class,
@@ -22,41 +22,52 @@ crop.dung_plot3D<-function(data, gcol=NULL, col="black", site="Archaeological", 
               centroid3= mean(LD3),
               centroid4 = mean(LD4))
 
+  #names(data)<-gsub(x=names(data), pattern = "*", replacement="")
 
-  if(!is.null(gcol)){
-    gcolours<-c(gcol,col)
-    dataset$colour<-gcolours[as.numeric(dataset$PROC)]
-  }
-  if(is.null(gcol)){
-    gcolours<-c("forestgreen", "blue", "dodgerblue", "red", col)
-    dataset$colour<-gcolours[as.numeric(dataset$PROC)]
-  }
+  sampledata<-data
 
-  names(data)<-gsub(x=names(data), pattern = "*", replacement="")
+  ethnodata<-dataset[dataset$PROC!=5,]
+
+  if(!is.null(gcols)){
+    gcolours<-c(gcols)
+    ethnodata$colour<-gcolours[as.numeric(ethnodata$PROC)]
+  }
+  if(is.null(gcols)){
+    gcolours<-c("forestgreen", "blue", "dodgerblue", "red")
+    ethnodata$colour<-gcolours[as.numeric(ethnodata$PROC)]
+  }
+  mygroups<-c( "Winnowing by-products", "Coarse-sieving by-products", "Fine-sieving by-products", "Fine-sieving products")
+
+  ethnodata$Actual.Group<-mygroups[as.numeric(ethnodata$PROC)]
+
 
   open3d()
   par3d(windowRect = c(100, 100, 612, 612))
 
   if (LD>3){
-    plot3d(dataset$LD1, dataset$LD4,dataset$LD2, col=dataset$colour, type="s",  size=0.9, xlab= "LD1", ylab="LD4", zlab="LD2")
+    plot3d(x=ethnodata$LD1, y=ethnodata$LD4,z=ethnodata$LD2, col=ethnodata$colour, type="s",  size=0.9, xlab= "LD1", ylab="LD4", zlab="LD2")
+    shapelist3d(cube3d(),x=centroids$centroid1,y=centroids$centroid4, z=centroids$centroid2,  col="black",size=0.1)
+    spheres3d(x=sampledata$LD1,y=sampledata$LD4, z=sampledata$LD2,  col=col,radius =0.1)
+    if(!is.null(label)){
+      labeltable<- sampledata[sampledata$Samples %in% c(label),]
+      text3d(labeltable$LD1, labeltable$LD4, labeltable$LD2, labeltable$Samples,cex=cex.lab, pos=pos.lab)
+    }
+    legend.table<- ethnodata[!duplicated(ethnodata$Actual.Group),]
+    legendtab<-tibble(labels=site,col=unique(col), pch=(21))
 
-    shapelist3d(cube3d(),x=centroids$centroid1,y=centroids$centroid4, z=centroids$centroid2,  col="black",size=0.2)
-    #play3d( spin3d( axis = c(0, 0, 1), rpm = 20), duration = 10 )
-
-    legend.table<- dataset[!duplicated(dataset$Actual.Group),]
-
-    legend3d("topright",c("Winnowing by-products", "Coarse-sieving by-products", "Fine-sieving by-products", "Fine-sieving products", site, "Group centroids"), pch= c(16,16,16,16,16,15), col=c(gcolours, "black"), cex=1)
+    legend3d("topright", c(paste(legend.table$Actual.Group), site, "Group centroids"), col=c((paste(legend.table$colour)),legendtab$col, "black"),  pch=c(21,21,21,21,legendtab$pch,15),  pt.bg=c(gcolours,legendtab$col,"black"), cex=1)
 
   }else{
-
-  plot3d(dataset$LD1, dataset$LD3,dataset$LD2, col=dataset$colour, type="s",  size=0.9, xlab= "LD1", ylab="LD3", zlab="LD2")
-
-  shapelist3d(cube3d(),x=centroids$centroid1,y=centroids$centroid3, z=centroids$centroid2,  col="black",size=0.2)
-  #play3d( spin3d( axis = c(0, 0, 1), rpm = 20), duration = 10 )
-
-  legend.table<- dataset[!duplicated(dataset$Actual.Group),]
-
-  legend3d("topright",c("Winnowing by-products", "Coarse-sieving by-products", "Fine-sieving by-products", "Fine-sieving products", site, "Group centroids"), pch= c(16,16,16,16,16,15), col=c(gcolours, "black"), cex=1)
+    plot3d(x=ethnodata$LD1, y=ethnodata$LD3,z=ethnodata$LD2, col=ethnodata$colour, type="s",  size=0.9, xlab= "LD1", ylab="LD3", zlab="LD2")
+    shapelist3d(cube3d(),x=centroids$centroid1,y=centroids$centroid3, z=centroids$centroid2,  col="black",size=0.1)
+    spheres3d(x=sampledata$LD1,y=sampledata$LD3, z=sampledata$LD2,  col=col,radius =0.1)
+    if(!is.null(label)){
+      labeltable<- sampledata[sampledata$Samples %in% c(label),]
+      text3d(labeltable$LD1, labeltable$LD3, labeltable$LD2, labeltable$Samples,cex=cex.lab, pos=pos.lab)
+    }
+    legend.table<- ethnodata[!duplicated(ethnodata$Actual.Group),]
+    legendtab<-tibble(labels=site,col=unique(col), pch=21)
+    legend3d("topright", c(paste(legend.table$Actual.Group), site, "Group centroids"), col=c((paste(legend.table$colour)),legendtab$col, "black"),  pch=c(21,21,21,21,legendtab$pch,15),  pt.bg=c(gcolours,legendtab$col,"black"), cex=1)
 
   }
 }

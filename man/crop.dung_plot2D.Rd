@@ -7,7 +7,8 @@
 }
 \usage{
 crop.dung_plot2d(data,Func1=1, Func2=2, ylims=NULL,xlims=NULL,gcols=NULL,
-gpchs=NULL, col ='black', pch=15, site="Archaeological")
+gpchs=NULL, col ='black', pch=15, site="Archaeological",label=NULL, pos=c(0,-0.3))
+
 }
 %- maybe also 'usage' for other objects documented here.
 \arguments{
@@ -26,13 +27,14 @@ gpchs=NULL, col ='black', pch=15, site="Archaeological")
   \item{gpchs}{The symbols of the modern crop processing groups  expressed as for example c(1,2,3,4)
 }
   \item{col}{The colour of the archaeobotanical samples
-%%     ~~Describe \code{col} here~~
 }
   \item{pch}{The symbol of the archaeobotanical samples
-%%     ~~Describe \code{pch} here~~
 }
   \item{site}{The name of the archaeobotanical samples to appear in the legend
-%%     ~~Describe \code{site} here~~
+}
+\item{label}{The name of the sample(s) to be labeled on the graph
+}
+\item{pos}{The position of the label (format c(x,y))
 }
 }
 \details{The data frame entered as argument x can be the output of \code{\link[CropPro]{LDAcrop.dung}} or from manual transformation. However the data frame must have column labeled LD1, LD2, LD3 containing the linear discrimanant scores

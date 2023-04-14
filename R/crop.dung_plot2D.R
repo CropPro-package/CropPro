@@ -1,4 +1,4 @@
-crop.dung_plot2D<-function(data,Func1=1, Func2=2, ylims=NULL,xlims=NULL,gcols=NULL,gpchs=NULL, col ='black', pch=15, site="Archaeological", label=NULL){
+crop.dung_plot2D<-function(data,Func1=1, Func2=2, ylims=NULL,xlims=NULL,gcols=NULL,gpchs=NULL, col ='black', pch=15, site="Archaeological", label=NULL, pos=c(0,-0.3)){
   data.model<-data.frame(data.model)
   archdata<-data
   archdata$PROC<-"5"
@@ -18,9 +18,9 @@ crop.dung_plot2D<-function(data,Func1=1, Func2=2, ylims=NULL,xlims=NULL,gcols=NU
               centroid3= mean(LD3),
               centroid4 = mean(LD4))
 
-  names(data)<-gsub(x=names(data), pattern = "`*`", replacement="")
+  #names(data)<-gsub(x=names(data), pattern = "`*`", replacement="")
 
-  sampledata<-dataset[dataset$PROC==5,]
+  sampledata<-data
   ethnodata<-dataset[dataset$PROC!=5,]
 
   if(!is.null(gcols)){
@@ -90,8 +90,8 @@ crop.dung_plot2D<-function(data,Func1=1, Func2=2, ylims=NULL,xlims=NULL,gcols=NU
     par(new=T)
     plot(centroids$centroid1,centroids$centroid3 , col="Black", pch=19, ylim=ylim, xlim=xlim, xlab="Function 1", ylab="Function 3")
     if(!is.null(label)){
-      samples<- data[data$Samples %in% c(label),]
-      text(samples$LD1,samples$LD3-0.3,labels=samples$Samples, cex=0.8)
+      samples<- sampledata[sampledata$Samples %in% c(label),]
+      text(samples$LD1,samples$LD3+pos,labels=samples$Samples, cex=0.8)
     }
 
     legend.table<- ethnodata[!duplicated(ethnodata$Actual.Group),]
@@ -150,8 +150,8 @@ crop.dung_plot2D<-function(data,Func1=1, Func2=2, ylims=NULL,xlims=NULL,gcols=NU
       par(new=T)
       plot(centroids$centroid1,centroids$centroid4 , col="Black", pch=19, ylim=ylim, xlim=xlim, xlab="Function 1", ylab="Function 4")
       if(!is.null(label)){
-        samples<- data[data$Samples %in% c(label),]
-        text(samples$LD1,samples$LD4-0.3,labels=samples$Samples, cex=0.8)
+        samples<- sampledata[sampledata$Samples %in% c(label),]
+        text(samples$LD1,samples$LD4+pos,labels=samples$Samples, cex=0.8)
       }
 
       legend.table<- ethnodata[!duplicated(ethnodata$Actual.Group),]
@@ -211,8 +211,8 @@ crop.dung_plot2D<-function(data,Func1=1, Func2=2, ylims=NULL,xlims=NULL,gcols=NU
       plot(centroids$centroid2,centroids$centroid1 , col="Black", pch=19, ylim=ylim, xlim=xlim, xlab="Function 2", ylab="Function 1")
 
       if(!is.null(label)){
-        samples<- data[data$Samples %in% c(label),]
-        text(samples$LD2,samples$LD1-0.3,labels=samples$Samples, cex=0.8)
+        samples<- sampledata[sampledata$Samples %in% c(label),]
+        text(samples$LD2,samples$LD1+pos,labels=samples$Samples, cex=0.8)
       }
 
       legend.table<- ethnodata[!duplicated(ethnodata$Actual.Group),]
@@ -272,8 +272,8 @@ crop.dung_plot2D<-function(data,Func1=1, Func2=2, ylims=NULL,xlims=NULL,gcols=NU
        par(new=T)
       plot(centroids$centroid2,centroids$centroid3 , col="Black", pch=19, ylim=ylim, xlim=xlim, xlab="Function 2", ylab="Function 3")
       if(!is.null(label)){
-        samples<- data[data$Samples %in% c(label),]
-        text(samples$LD2,samples$LD3-0.3,labels=samples$Samples, cex=0.8)
+        samples<- sampledata[sampledata$Samples %in% c(label),]
+        text(samples$LD2,samples$LD3+pos,labels=samples$Samples, cex=0.8)
       }
 
       legend.table<- ethnodata[!duplicated(ethnodata$Actual.Group),]
@@ -333,8 +333,8 @@ crop.dung_plot2D<-function(data,Func1=1, Func2=2, ylims=NULL,xlims=NULL,gcols=NU
       par(new=T)
       plot(centroids$centroid2,centroids$centroid4 , col="Black", pch=19, ylim=ylim, xlim=xlim, xlab="Function 2", ylab="Function 4")
       if(!is.null(label)){
-        samples<- data[data$Samples %in% c(label),]
-        text(samples$LD2,samples$LD4-0.3,labels=samples$Samples, cex=0.8)
+        samples<- sampledata[sampledata$Samples %in% c(label),]
+        text(samples$LD2,samples$LD4+pos,labels=samples$Samples, cex=0.8)
       }
 
       legend.table<- ethnodata[!duplicated(ethnodata$Actual.Group),]
@@ -394,8 +394,8 @@ crop.dung_plot2D<-function(data,Func1=1, Func2=2, ylims=NULL,xlims=NULL,gcols=NU
       par(new=T)
       plot(centroids$centroid3,centroids$centroid4 , col="Black", pch=19, ylim=ylim, xlim=xlim, xlab="Function 3", ylab="Function 4")
       if(!is.null(label)){
-        samples<- data[data$Samples %in% c(label),]
-        text(samples$LD3,samples$LD4-0.3,labels=samples$Samples, cex=0.8)
+        samples<- sampledata[sampledata$Samples %in% c(label),]
+        text(samples$LD3,samples$LD4+pos,labels=samples$Samples, cex=0.8)
       }
 
       legend.table<- ethnodata[!duplicated(ethnodata$Actual.Group),]
@@ -455,8 +455,8 @@ crop.dung_plot2D<-function(data,Func1=1, Func2=2, ylims=NULL,xlims=NULL,gcols=NU
       par(new=T)
       plot(centroids$centroid3,centroids$centroid2 , col="Black", pch=19, ylim=ylim, xlim=xlim, xlab="Function 3", ylab="Function 2")
       if(!is.null(label)){
-        samples<- data[data$Samples %in% c(label),]
-        text(samples$LD3,samples$LD2-0.3,labels=samples$Samples, cex=0.8)
+        samples<- sampledata[sampledata$Samples %in% c(label),]
+        text(samples$LD3,samples$LD2+pos,labels=samples$Samples, cex=0.8)
       }
 
       legend.table<- ethnodata[!duplicated(ethnodata$Actual.Group),]
@@ -516,8 +516,8 @@ crop.dung_plot2D<-function(data,Func1=1, Func2=2, ylims=NULL,xlims=NULL,gcols=NU
       par(new=T)
       plot(centroids$centroid3,centroids$centroid4 , col="Black", pch=19, ylim=ylim, xlim=xlim, xlab="Function 3", ylab="Function 4")
       if(!is.null(label)){
-        samples<- data[data$Samples %in% c(label),]
-        text(samples$LD3,samples$LD4-0.3,labels=samples$Samples, cex=0.8)
+        samples<- sampledata[sampledata$Samples %in% c(label),]
+        text(samples$LD3,samples$LD4+pos,labels=samples$Samples, cex=0.8)
       }
 
       legend.table<- ethnodata[!duplicated(ethnodata$Actual.Group),]
@@ -576,8 +576,8 @@ crop.dung_plot2D<-function(data,Func1=1, Func2=2, ylims=NULL,xlims=NULL,gcols=NU
       par(new=T)
       plot(centroids$centroid4,centroids$centroid1 , col="Black", pch=19, ylim=ylim, xlim=xlim, xlab="Function 4", ylab="Function 1")
       if(!is.null(label)){
-        samples<- data[data$Samples %in% c(label),]
-        text(samples$LD4,samples$LD1-0.3,labels=samples$Samples, cex=0.8)
+        samples<- sampledata[sampledata$Samples %in% c(label),]
+        text(samples$LD4,samples$LD1+pos,labels=samples$Samples, cex=0.8)
       }
 
       legend.table<- ethnodata[!duplicated(ethnodata$Actual.Group),]
@@ -636,8 +636,8 @@ crop.dung_plot2D<-function(data,Func1=1, Func2=2, ylims=NULL,xlims=NULL,gcols=NU
       par(new=T)
       plot(centroids$centroid4,centroids$centroid2 , col="Black", pch=19, ylim=ylim, xlim=xlim, xlab="Function 4", ylab="Function 2")
       if(!is.null(label)){
-        samples<- data[data$Samples %in% c(label),]
-        text(samples$LD4,samples$LD2-0.3,labels=samples$Samples, cex=0.8)
+        samples<- sampledata[sampledata$Samples %in% c(label),]
+        text(samples$LD4,samples$LD2+pos,labels=samples$Samples, cex=0.8)
       }
 
       legend.table<- ethnodata[!duplicated(ethnodata$Actual.Group),]
@@ -697,8 +697,8 @@ crop.dung_plot2D<-function(data,Func1=1, Func2=2, ylims=NULL,xlims=NULL,gcols=NU
       par(new=T)
       plot(centroids$centroid4,centroids$centroid3 , col="Black", pch=19, ylim=ylim, xlim=xlim, xlab="Function 4", ylab="Function 3")
       if(!is.null(label)){
-        samples<- data[data$Samples %in% c(label),]
-        text(samples$LD4,samples$LD3-0.3,labels=samples$Samples, cex=0.8)
+        samples<- sampledata[sampledata$Samples %in% c(label),]
+        text(samples$LD4,samples$LD3+pos,labels=samples$Samples, cex=0.8)
       }
 
       legend.table<- ethnodata[!duplicated(ethnodata$Actual.Group),]
@@ -756,8 +756,8 @@ crop.dung_plot2D<-function(data,Func1=1, Func2=2, ylims=NULL,xlims=NULL,gcols=NU
     par(new=T)
     plot(centroids$centroid1,centroids$centroid2 , col="Black", pch=19, ylim=ylim, xlim=xlim, xlab="Function 1", ylab="Function 2")
     if(!is.null(label)){
-      samples<- data[data$Samples %in% c(label),]
-      text(samples$LD1,samples$LD2-0.3,labels=samples$Samples, cex=0.8)
+      samples<- sampledata[sampledata$Samples %in% c(label),]
+      text(samples$LD1+pos[1],samples$LD2+pos[2],labels=samples$Samples, cex=0.8)
     }
 
     legend.table<- ethnodata[!duplicated(ethnodata$Actual.Group),]

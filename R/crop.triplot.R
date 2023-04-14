@@ -1,6 +1,6 @@
 #triplot
 crop.triplot<-function(grain,rachis,weeds,pch=5, col="black", bg="black", sample=NULL, samplelabel="Sample",legendlabel="Samples",cpch=NULL, cbg=NULL, ccol=NULL){
-data_tri<-crop.tri.data
+  data_tri<-crop.tri.data
   par(mar=c(3,2,1,3),
       mfrow=c(1,2))
   plot(NA,NA,xlim=c(0,1),ylim=c(0,sqrt(3)/2),asp=1,bty="n",axes=F,xlab="",ylab="")
@@ -120,6 +120,7 @@ data_tri<-crop.tri.data
   }
   legend.table<- data_tri[!duplicated(data_tri$Group),]
 
-  legend("bottom", c(legendlabel), col=c(col), pch=c(pch), pt.bg=c(bg), pt.cex=1, cex=0.64,xpd=TRUE, ncol=2, inset=c(-0.03,-0.03))
+  legend("bottom", c(legendlabel), col=c(unique(col)), pch=c(unique(pch)), pt.bg=c(unique(bg)), pt.cex=1, cex=0.64,xpd=TRUE, ncol=2, inset=c(-0.03,-0.03))
+  par(mfrow=c(1,1))
 }
 
