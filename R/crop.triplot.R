@@ -1,6 +1,7 @@
 #triplot
 crop.triplot<-function(grain,rachis,weeds,pch=5, col="black", bg="black", sample=NULL, samplelabel="Sample",legendlabel="Samples",cpch=NULL, cbg=NULL, ccol=NULL){
   data_tri<-crop.tri.data
+  old.par<-par(no.readonly = TRUE)
   par(mar=c(3,2,1,3),
       mfrow=c(1,2))
   plot(NA,NA,xlim=c(0,1),ylim=c(0,sqrt(3)/2),asp=1,bty="n",axes=F,xlab="",ylab="")
@@ -11,7 +12,6 @@ crop.triplot<-function(grain,rachis,weeds,pch=5, col="black", bg="black", sample
   text(0,0,labels="100% Weed",pos=1, xpd=NA)
   text(1,0,labels="100% Rachis",pos=1,xpd=NA)
   text(0.5,sqrt(3)/2,labels="100% Grain",pos=3,xpd=NA)
-
   tern2cart <- function(coord){
     coord[1]->x
     coord[2]->y
@@ -77,6 +77,10 @@ crop.triplot<-function(grain,rachis,weeds,pch=5, col="black", bg="black", sample
   points(product$rachis,product$grain, pch=product$pch,col=product$colour,bg=product$bg, cex=1.2)
 
   legend.table<- data_tri[!duplicated(data_tri$Group),]
+  legend.table$Group[legend.table$Group=="coarse-sieve by-products"]<-"coarse sieve by-product"
+  legend.table$Group[legend.table$Group=="winnowing by-products"]<-"winnowing by-product"
+  legend.table$Group[legend.table$Group=="fine-sieve by-products"]<-"fine sieve by-product"
+  legend.table$Group[legend.table$Group=="cleaned products"]<-"fine sieve product"
 
   legend("bottom", c(paste(legend.table$Group)), col=c((paste(legend.table$colour))), pch=c((as.numeric(as.character(legend.table$pch)))), pt.bg=c((paste(legend.table$bg))), pt.cex=1, cex=0.64,xpd=TRUE, ncol=2, inset=c(-0.03,-0.03))
 
@@ -121,6 +125,7 @@ crop.triplot<-function(grain,rachis,weeds,pch=5, col="black", bg="black", sample
   legend.table<- data_tri[!duplicated(data_tri$Group),]
 
   legend("bottom", c(legendlabel), col=c(unique(col)), pch=c(unique(pch)), pt.bg=c(unique(bg)), pt.cex=1, cex=0.64,xpd=TRUE, ncol=2, inset=c(-0.03,-0.03))
-  par(mfrow=c(1,1))
+
+  on.exit(par(old.par))
 }
 

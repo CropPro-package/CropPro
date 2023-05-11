@@ -5,7 +5,7 @@
 \description{crop.plot3D plots the linear discriminant scores obtained from \code{\link[CropPro]{LDAcrop.pro}} as a three dimensional graph
 }
 \usage{
-crop.plot3D(x, col= "black", gcol=NULL, site ="Site",label=NULL, cex.lab =0.65, pos.lab=3)
+crop.plot3D(x,  gcol=NULL, col= "black",site ="Site",label=NULL, cex.lab =0.65, pos.lab=3)
 }
 
 \arguments{
@@ -27,7 +27,7 @@ crop.plot3D(x, col= "black", gcol=NULL, site ="Site",label=NULL, cex.lab =0.65, 
 LD1<-runif(40, min= -0, max=3)
 LD2<-runif(40, min = -2, max=4)
 LD3<-runif(40, min =-4, max=-1)
-Study<-sample(1:3, 40, replace=T)
+Study<-sample(1:3, 40, replace=TRUE)
 data<-data.frame(Study,LD1, LD2, LD3)
 
 ## use

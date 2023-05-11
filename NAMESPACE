@@ -1,1 +1,7 @@
 exportPattern("^[[:alpha:]]+")
+import(dplyr)
+importFrom(MASS, "lda")
+importFrom(rgl, "cube3d",
+  "legend3d", "open3d", "par3d", "plot3d" ,"shapelist3d", "spheres3d","text3d")
+importFrom("graphics", "legend", "par", "points", "segments", "text")
+  importFrom("stats", "aggregate", "predict")

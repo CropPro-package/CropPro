@@ -36,11 +36,11 @@ LDAcrop.pro<-function(x){
   tbl <- table(model$class)
   res <- cbind(tbl,round(prop.table(tbl)*100,2))
   colnames(res) <- c('Count','Percentage')
-  row.names(res)<-c("Winnowing by-products", "Coarse-sieving by-products", "Fine-sieving by-products", "Fine-sieving products")
+  row.names(res)<-c("Winnowing by-product", "Coarse sieve by-product", "Fine sieve by-product", "Fine sieve product")
   tbl50 <- table(model50$class)
   res50 <- cbind(tbl50,round(prop.table(tbl50)*100,2))
   colnames(res50) <- c('Count','Percentage')
-  row.names(res50)<-c("Winnowing by-products", "Coarse-sieving by-products", "Fine-sieving by-products", "Fine-sieving products")
+  row.names(res50)<-c("Winnowing by-product", "Coarse sieve by-product", "Fine sieve by-product", "Fine sieving product")
 
   print("Classification results and linear discriminant scores ")
   print(selectedC)

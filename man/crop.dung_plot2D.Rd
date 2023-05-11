@@ -6,7 +6,7 @@
 \description{This function plots the  linear discriminant scores from \code{\link[CropPro]{LDAcrop.dung}} as a 2D graph.
 }
 \usage{
-crop.dung_plot2d(data,Func1=1, Func2=2, ylims=NULL,xlims=NULL,gcols=NULL,
+crop.dung_plot2D(data,Func1=1, Func2=2, ylims=NULL,xlims=NULL,gcols=NULL,
 gpchs=NULL, col ='black', pch=15, site="Archaeological",label=NULL, pos=c(0,-0.3))
 
 }
@@ -59,7 +59,7 @@ SHH<-runif(40, min=1, max=13)
 SHL<-runif(40, min=0.5, max=17)
 SFH<-runif(40, min=1, max=22)
 SFL<-runif(40, min=1, max=8)
-Sample<-sample(1:40, 40, replace=F)
+Sample<-sample(1:40, 40, replace=FALSE)
 data<-data.frame(Sample,BHH,BFH,SHH,SHL,SFH,SFL)
 results<-LDAcrop.dung(data)
 

@@ -1,7 +1,7 @@
 
 #x = lda1, y = lda2, z= lda3
 # note not sure how to do the colour - do have this as a default colour that can be changed.
-crop.dung_plot3D<-function(data, gcols=NULL, col="black", site="Archaeological", LD=3, label=NULL, cex.lab =0.65, pos.lab=3){
+crop.dung_plot3D<-function(data, gcol=NULL, col="black", site="Archaeological", LD=3, label=NULL, cex.lab =0.65, pos.lab=3){
   data.model<-data.frame(data.model)
   archdata<-data
   archdata$PROC<-"5"
@@ -28,15 +28,15 @@ crop.dung_plot3D<-function(data, gcols=NULL, col="black", site="Archaeological",
 
   ethnodata<-dataset[dataset$PROC!=5,]
 
-  if(!is.null(gcols)){
-    gcolours<-c(gcols)
+  if(!is.null(gcol)){
+    gcolours<-c(gcol)
     ethnodata$colour<-gcolours[as.numeric(ethnodata$PROC)]
   }
-  if(is.null(gcols)){
+  if(is.null(gcol)){
     gcolours<-c("forestgreen", "blue", "dodgerblue", "red")
     ethnodata$colour<-gcolours[as.numeric(ethnodata$PROC)]
   }
-  mygroups<-c( "Winnowing by-products", "Coarse-sieving by-products", "Fine-sieving by-products", "Fine-sieving products")
+  mygroups<-c( "Winnowing by-products", "Coarse sieve by-products", "Fine sieve by-products", "Fine sieve products")
 
   ethnodata$Actual.Group<-mygroups[as.numeric(ethnodata$PROC)]
 

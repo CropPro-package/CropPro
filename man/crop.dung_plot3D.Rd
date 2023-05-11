@@ -6,7 +6,8 @@
 }
 \description{crop.dung_plot3D plots the linear discriminant scores obtained from \code{\link[CropPro]{LDAcrop.dung}} as a three dimensional graph
 }
-\usage{dung.plot3d(data, gcols=NULL, col="black", site="Archaeological", LD=3, label=NULL, cex.lab =0.65, pos.lab=3)
+\usage{crop.dung_plot3D(data, gcol=NULL, col="black", site="Archaeological", LD=3,
+label=NULL, cex.lab =0.65, pos.lab=3)
 }
 %- maybe also 'usage' for other objects documented here.
 \arguments{
@@ -38,7 +39,7 @@ SHH<-runif(40, min=1, max=13)
 SHL<-runif(40, min=0.5, max=17)
 SFH<-runif(40, min=1, max=22)
 SFL<-runif(40, min=1, max=8)
-Sample<-sample(1:40, 40, replace=F)
+Sample<-sample(1:40, 40, replace=FALSE)
 
 data<-data.frame(Sample,BHH,BFH,SHH,SHL,SFH,SFL)
 results<-LDAcrop.dung(data)

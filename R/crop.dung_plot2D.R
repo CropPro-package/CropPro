@@ -1,4 +1,5 @@
 crop.dung_plot2D<-function(data,Func1=1, Func2=2, ylims=NULL,xlims=NULL,gcols=NULL,gpchs=NULL, col ='black', pch=15, site="Archaeological", label=NULL, pos=c(0,-0.3)){
+
   data.model<-data.frame(data.model)
   archdata<-data
   archdata$PROC<-"5"
@@ -31,7 +32,7 @@ crop.dung_plot2D<-function(data,Func1=1, Func2=2, ylims=NULL,xlims=NULL,gcols=NU
     gcolours<-c('black','black','black','black')
     ethnodata$colour<-gcolours[as.numeric(ethnodata$PROC)]
   }
-  mygroups<-c( "Winnowing by-products", "Coarse-sieving by-products", "Fine-sieving by-products", "Fine-sieving products")
+  mygroups<-c( "Winnowing by-product", "Coarse sieve by-product  ", "Fine sieve by-product", "Fine sieve product")
 
   ethnodata$Actual.Group<-mygroups[as.numeric(ethnodata$PROC)]
 
@@ -142,7 +143,7 @@ crop.dung_plot2D<-function(data,Func1=1, Func2=2, ylims=NULL,xlims=NULL,gcols=NU
         ylim<-ylims
       }else {
         ylim<-c(ymin-0.5,ymax+0.5)}
-      par(mar=c(10,4,4,4))
+      par(mar=c(8,4,1,1))
 
       plot(ethnodata$LD1, ethnodata$LD4, col=paste(ethnodata$colour), pch=as.numeric(as.character(ethnodata$pch)), ylim=ylim, xlim=xlim, xlab="", ylab="")
       par(new=T)
@@ -203,7 +204,7 @@ crop.dung_plot2D<-function(data,Func1=1, Func2=2, ylims=NULL,xlims=NULL,gcols=NU
         ylim<-ylims
       }else {
         ylim<-c(ymin-0.5,ymax+0.5)}
-      par(mar=c(10,4,4,4))
+      par(mar=c(8,4,1,1))
       plot(ethnodata$LD2, ethnodata$LD1, col=paste(ethnodata$colour), pch=as.numeric(as.character(ethnodata$pch)), ylim=ylim, xlim=xlim, xlab="", ylab="")
       par(new=T)
       plot(sampledata$LD2, sampledata$LD1, col=paste(col), pch=as.numeric(as.character(pch)), ylim=ylim, xlim=xlim, xlab="", ylab="")
@@ -264,7 +265,7 @@ crop.dung_plot2D<-function(data,Func1=1, Func2=2, ylims=NULL,xlims=NULL,gcols=NU
         ylim<-ylims
       }else {
         ylim<-c(ymin-0.5,ymax+0.5)}
-      par(mar=c(10,4,4,4))
+      par(mar=c(8,4,1,1))
       plot(ethnodata$LD2, ethnodata$LD3, col=paste(ethnodata$colour), pch=as.numeric(as.character(ethnodata$pch)), ylim=ylim, xlim=xlim, xlab="", ylab="")
       par(new=T)
       plot(sampledata$LD2, sampledata$LD3, col=paste(col), pch=as.numeric(as.character(pch)), ylim=ylim, xlim=xlim, xlab="", ylab="")
@@ -325,7 +326,7 @@ crop.dung_plot2D<-function(data,Func1=1, Func2=2, ylims=NULL,xlims=NULL,gcols=NU
         ylim<-ylims
       }else {
         ylim<-c(ymin-0.5,ymax+0.5)}
-      par(mar=c(10,4,4,4))
+      par(mar=c(8,4,1,1))
       plot(ethnodata$LD2, ethnodata$LD4, col=paste(ethnodata$colour), pch=as.numeric(as.character(ethnodata$pch)), ylim=ylim, xlim=xlim, xlab="", ylab="")
       par(new=T)
       plot(sampledata$LD2, sampledata$LD4, col=paste(col), pch=as.numeric(as.character(pch)), ylim=ylim, xlim=xlim, xlab="", ylab="")
@@ -386,7 +387,7 @@ crop.dung_plot2D<-function(data,Func1=1, Func2=2, ylims=NULL,xlims=NULL,gcols=NU
         ylim<-ylims
       }else {
         ylim<-c(ymin-0.5,ymax+0.5)}
-      par(mar=c(10,4,4,4))
+      par(mar=c(8,4,1,1))
       plot(ethnodata$LD3, ethnodata$LD4, col=paste(ethnodata$colour), pch=as.numeric(as.character(ethnodata$pch)), ylim=ylim, xlim=xlim, xlab="", ylab="")
       par(new=T)
       plot(sampledata$LD3, sampledata$LD4, col=paste(col), pch=as.numeric(as.character(pch)), ylim=ylim, xlim=xlim, xlab="", ylab="")
@@ -447,7 +448,7 @@ crop.dung_plot2D<-function(data,Func1=1, Func2=2, ylims=NULL,xlims=NULL,gcols=NU
         ylim<-ylims
       }else {
         ylim<-c(ymin-0.5,ymax+0.5)}
-      par(mar=c(10,4,4,4))
+      par(mar=c(8,4,1,1))
       plot(ethnodata$LD3, ethnodata$LD2, col=paste(ethnodata$colour), pch=as.numeric(as.character(ethnodata$pch)), ylim=ylim, xlim=xlim, xlab="", ylab="")
       par(new=T)
       plot(sampledata$LD3, sampledata$LD2, col=paste(col), pch=as.numeric(as.character(pch)), ylim=ylim, xlim=xlim, xlab="", ylab="")
@@ -508,7 +509,7 @@ crop.dung_plot2D<-function(data,Func1=1, Func2=2, ylims=NULL,xlims=NULL,gcols=NU
         ylim<-ylims
       }else {
         ylim<-c(ymin-0.5,ymax+0.5)}
-      par(mar=c(10,4,4,4))
+      par(mar=c(8,4,1,1))
       plot(ethnodata$LD3, ethnodata$LD4, col=paste(ethnodata$colour), pch=as.numeric(as.character(ethnodata$pch)), ylim=ylim, xlim=xlim, xlab="", ylab="")
       par(new=T)
       plot(sampledata$LD3, sampledata$LD4, col=paste(col), pch=as.numeric(as.character(pch)), ylim=ylim, xlim=xlim, xlab="", ylab="")
@@ -569,7 +570,7 @@ crop.dung_plot2D<-function(data,Func1=1, Func2=2, ylims=NULL,xlims=NULL,gcols=NU
         ylim<-ylims
       }else {
         ylim<-c(ymin-0.5,ymax+0.5)}
-      par(mar=c(10,4,4,4))
+      par(mar=c(8,4,1,1))
       plot(ethnodata$LD4, ethnodata$LD1, col=paste(ethnodata$colour), pch=as.numeric(as.character(ethnodata$pch)), ylim=ylim, xlim=xlim, xlab="", ylab="")
       par(new=T)
       plot(sampledata$LD4, sampledata$LD1, col=paste(col), pch=as.numeric(as.character(pch)), ylim=ylim, xlim=xlim, xlab="", ylab="")
@@ -628,7 +629,7 @@ crop.dung_plot2D<-function(data,Func1=1, Func2=2, ylims=NULL,xlims=NULL,gcols=NU
         ylim<-ylims
       }else {
         ylim<-c(ymin-0.5,ymax+0.5)}
-      par(mar=c(10,4,4,4))
+      par(mar=c(8,4,1,1))
       plot(ethnodata$LD4, ethnodata$LD2, col=paste(ethnodata$colour), pch=as.numeric(as.character(ethnodata$pch)), ylim=ylim, xlim=xlim, xlab="", ylab="")
       par(new=T)
       plot(sampledata$LD4, sampledata$LD2, col=paste(col), pch=as.numeric(as.character(pch)), ylim=ylim, xlim=xlim, xlab="", ylab="")
@@ -689,7 +690,7 @@ crop.dung_plot2D<-function(data,Func1=1, Func2=2, ylims=NULL,xlims=NULL,gcols=NU
         ylim<-ylims
       }else {
         ylim<-c(ymin-0.5,ymax+0.5)}
-      par(mar=c(10,4,4,4))
+      par(mar=c(8,4,1,1))
       plot(ethnodata$LD4, ethnodata$LD3, col=paste(ethnodata$colour), pch=as.numeric(as.character(ethnodata$pch)), ylim=ylim, xlim=xlim, xlab="", ylab="")
       par(new=T)
       plot(sampledata$LD4, sampledata$LD3, col=paste(col), pch=as.numeric(as.character(pch)), ylim=ylim, xlim=xlim, xlab="", ylab="")
@@ -749,7 +750,7 @@ crop.dung_plot2D<-function(data,Func1=1, Func2=2, ylims=NULL,xlims=NULL,gcols=NU
       ylim<-ylims
     }else {
       ylim<-c(ymin-0.5,ymax+0.5)}
-    par(mar=c(10,4,4,4))
+    par(mar=c(8,4,1,1))
     plot(ethnodata$LD1, ethnodata$LD2, col=paste(ethnodata$colour), pch=as.numeric(as.character(ethnodata$pch)), ylim=ylim, xlim=xlim, xlab="", ylab="")
     par(new=T)
     plot(sampledata$LD1, sampledata$LD2, col=paste(col), pch=as.numeric(as.character(pch)), ylim=ylim, xlim=xlim, xlab="", ylab="")
@@ -759,9 +760,12 @@ crop.dung_plot2D<-function(data,Func1=1, Func2=2, ylims=NULL,xlims=NULL,gcols=NU
       samples<- sampledata[sampledata$Samples %in% c(label),]
       text(samples$LD1+pos[1],samples$LD2+pos[2],labels=samples$Samples, cex=0.8)
     }
-
+    par(new=T)
     legend.table<- ethnodata[!duplicated(ethnodata$Actual.Group),]
     legendtab<-tibble(labels=site,col=unique(col), pch=unique(pch))
 
     legend("bottom",  c(paste(legend.table$Actual.Group), site, "Group centroids"), col=c((paste(legend.table$colour)),legendtab$col, "black"), pch=c((as.numeric(as.character(legend.table$pch))),legendtab$pch,19), pt.cex=1, cex=0.64, bg="white",xpd=TRUE, ncol=2, inset = c(-0.4,-0.5))
-    }}
+
+    }
+
+  }

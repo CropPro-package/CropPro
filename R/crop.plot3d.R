@@ -41,7 +41,7 @@ crop.plot3D<-function(x, gcol=NULL, col="black", site="Site", label=NULL, cex.la
 
   legendtab<-tibble(labels=site,col=unique(col), pch=21)
 
-  legend3d("topright",c("Winnowing by-products", "Coarse-sieving by-products", "Fine-sieving by-products", "Fine-sieving products", site, "Group centroids"), pch=c(21,21,21,21,legendtab$pch,15), col="black", pt.bg=c(gcolours,legendtab$col,"black"), cex=1)
+  legend3d("topright",c("Winnowing by-product", "Coarse sieve by-product", "Fine sieve by-product", "Fine sieve product", site, "Group centroids"), pch=c(21,21,21,21,legendtab$pch,15), col="black", pt.bg=c(gcolours,legendtab$col,"black"), cex=1)
 }
 
 

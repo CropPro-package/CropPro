@@ -1,5 +1,6 @@
-crop.plot2D<-function(x,ylims=NULL,xlims=NULL,gcols=NULL,gpchs=NULL, col ='black', pch=15, site="Site", Func1=1, Func2=2, label=NULL,pos=c(0,-0.3), lab.col="black", lab.cex=0.8){
+crop.plot2D<-function(x,ylims=NULL,xlims=NULL,gcol=NULL,gpch=NULL, col ='black', pch=15, site="Site", Func1=1, Func2=2, label=NULL,pos=c(0,-0.3), lab.col="black", lab.cex=0.8){
   data.model<-data.frame(data.model)
+
   discrim_cv <- lda(PROC ~ BHH+BFH+SHH+SHL+SFH+SFL,data.model,CV = TRUE)
   model_lda <- lda(PROC ~ BHH+BFH+SHH+SHL+SFH+SFL, data.model)
   predictionmodel <- predict(model_lda,data.model)
@@ -12,21 +13,21 @@ crop.plot2D<-function(x,ylims=NULL,xlims=NULL,gcols=NULL,gpchs=NULL, col ='black
               centroid2= mean(LD2),
               centroid3= mean(LD3))
 
-  if(!is.null(gcols)){
-    gcolours<-gcols
+  if(!is.null(gcol)){
+    gcolours<-gcol
     dataset$colour<-gcolours[as.numeric(dataset$PROC)]
   }
-  if(is.null(gcols)){
+  if(is.null(gcol)){
     gcolours<-c('black','black','black','black')
     dataset$colour<-gcolours[as.numeric(dataset$PROC)]
   }
-  mygroups<-c("Winnowing by-products", "Coarse-sieving by-products", "Fine-sieving by-products", "Fine-sieving products")
+  mygroups<-c("Winnowing by-product", "Coarse sieve by-product  ", "Fine sieve by-product", "Fine sieve product")
  dataset$Actual.Group<-mygroups[as.numeric(dataset$PROC)]
-  if(!is.null(gpchs)){
-    mypch<-gpchs
+  if(!is.null(gpch)){
+    mypch<-gpch
     dataset$pch<-mypch[as.numeric(dataset$PROC)]
   }
- if(is.null(gpchs)){
+ if(is.null(gpch)){
     mypch<-c(1,2,3,5)
     dataset$pch<-mypch[as.numeric(dataset$PROC)]
  }
@@ -79,7 +80,7 @@ names(x)<-gsub(x=names(x), pattern = "*", replacement="")
      ylim<-ylims
    }else {
      ylim<-c(ymin-0.5,ymax+0.5)}
-   par(mar=c(10,4,4,4))
+   par(mar=c(8,4,1,1))
    plot(dataset$LD1, dataset$LD3, col=paste(dataset$colour), pch=as.numeric(as.character(dataset$pch)), ylim=ylim, xlim=xlim, xlab="", ylab="")
    par(new=T)
    plot(centroids$centroid1,centroids$centroid3 , col="Black", pch=19, ylim=ylim, xlim=xlim, xlab="", ylab="")
@@ -141,7 +142,7 @@ names(x)<-gsub(x=names(x), pattern = "*", replacement="")
      ylim<-ylims
    }else {
      ylim<-c(ymin-0.5,ymax+0.5)}
-   par(mar=c(10,4,4,4))
+   par(mar=c(8,4,1,1))
    plot(dataset$LD3, dataset$LD1, col=paste(dataset$colour), pch=as.numeric(as.character(dataset$pch)), ylim=ylim, xlim=xlim, xlab="", ylab="")
    par(new=T)
    plot(centroids$centroid3,centroids$centroid1 , col="Black", pch=19, ylim=ylim, xlim=xlim, xlab="", ylab="")
@@ -203,7 +204,7 @@ names(x)<-gsub(x=names(x), pattern = "*", replacement="")
      ylim<-ylims
    }else {
      ylim<-c(ymin-0.5,ymax+0.5)}
-   par(mar=c(10,4,4,4))
+   par(mar=c(8,4,1,1))
    plot(dataset$LD3, dataset$LD2, col=paste(dataset$colour), pch=as.numeric(as.character(dataset$pch)), ylim=ylim, xlim=xlim, xlab="", ylab="")
    par(new=T)
    plot(centroids$centroid3,centroids$centroid2 , col="Black", pch=19, ylim=ylim, xlim=xlim, xlab="", ylab="")
@@ -266,7 +267,7 @@ names(x)<-gsub(x=names(x), pattern = "*", replacement="")
      ylim<-ylims
    }else {
      ylim<-c(ymin-0.5,ymax+0.5)}
-   par(mar=c(10,4,4,4))
+   par(mar=c(8,4,1,1))
    plot(dataset$LD2, dataset$LD3, col=paste(dataset$colour), pch=as.numeric(as.character(dataset$pch)), ylim=ylim, xlim=xlim, xlab="", ylab="")
    par(new=T)
    plot(centroids$centroid2,centroids$centroid3 , col="Black", pch=19, ylim=ylim, xlim=xlim, xlab="", ylab="")
@@ -328,7 +329,7 @@ names(x)<-gsub(x=names(x), pattern = "*", replacement="")
      ylim<-ylims
    }else {
      ylim<-c(ymin-0.5,ymax+0.5)}
-   par(mar=c(10,4,4,4))
+   par(mar=c(8,4,1,1))
    plot(dataset$LD2, dataset$LD1, col=paste(dataset$colour), pch=as.numeric(as.character(dataset$pch)), ylim=ylim, xlim=xlim, xlab="", ylab="")
    par(new=T)
    plot(centroids$centroid2,centroids$centroid1 , col="Black", pch=19, ylim=ylim, xlim=xlim, xlab="", ylab="")
@@ -390,7 +391,7 @@ names(x)<-gsub(x=names(x), pattern = "*", replacement="")
      ylim<-ylims
    }else {
      ylim<-c(ymin-0.5,ymax+0.5)}
-   par(mar=c(10,4,4,4))
+   par(mar=c(8,4,1,1))
    plot(dataset$LD1, dataset$LD2, col=paste(dataset$colour), pch=as.numeric(as.character(dataset$pch)), ylim=ylim, xlim=xlim, xlab="", ylab="")
    par(new=T)
    plot(centroids$centroid1,centroids$centroid2 , col="Black", pch=19, ylim=ylim, xlim=xlim, xlab="", ylab="")

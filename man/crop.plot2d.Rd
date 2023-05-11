@@ -7,16 +7,16 @@
 
 }
 \usage{
-crop.plot2D(x,ylims=NULL,xlims=NULL,gcols=NULL,gpchs=NULL, col ='black', pch=15,
-site="Site", Func1=1, Func2=2, label=NULL, pos=c(0,0.3))
+crop.plot2D(x,ylims=NULL,xlims=NULL,gcol=NULL,gpch=NULL, col ='black', pch=15,
+site="Site", Func1=1, Func2=2, label=NULL, pos=c(0,-0.3), lab.col= "black", lab.cex = 0.8)
 }
 
 \arguments{
   \item{x}{dataframe containing columns with the LD1, LD2 and LD3 scores - this can be the output of \code{\link[CropPro]{LDAcrop.pro}, see details for futher information}}
   \item{ylims}{The limits of the y axis (expressed as c(min, max))}
   \item{xlims}{The limits of the x axis (expressed as c(min, max))}
-  \item{gcols}{Symbol colours of the ethnographical crop processing groups written as c("red", "green"...) etc. The default produces a black and white plot}
-  \item{gpchs}{The symbols of the ethnographical crop processing groups (expressed as c(1, 2, 3, 14, 18))}
+  \item{gcol}{Symbol colours of the ethnographical crop processing groups written as c("red", "green"...) etc. The default produces a black and white plot}
+  \item{gpch}{The symbols of the ethnographical crop processing groups (expressed as c(1, 2, 3, 14, 18))}
   \item{col}{Symbol colour for archaeobotanical data}
   \item{pch}{Symbol of the archaeobotanical data}
   \item{site}{The name the archaeobotanical data will be labelled as in the legend}
@@ -25,6 +25,11 @@ site="Site", Func1=1, Func2=2, label=NULL, pos=c(0,0.3))
   \item{label}{The name of the sample(s) to be labeled on the graph}
   \item{pos}{The position of the label (format c(x,y))
 }
+\item{lab.col}{need to fill
+}
+\item{lab.cex}{need to fill
+}
+
 }
 \details{
 The data frame entered as argument x can be the output of \code{\link[CropPro]{LDAcrop.pro}} or from manual normalizing. However the data frame must have column labeled LD1, LD2, LD3 containing the linear discrimanant scores for funcation 1, 2 and 3
@@ -43,7 +48,7 @@ The data frame entered as argument x can be the output of \code{\link[CropPro]{L
 LD1<-runif(40, min= -0, max=3)
 LD2<-runif(40, min = -2, 4)
 LD3<-runif(40, min = 2, 4)
-Study<-sample(1:3, 40, replace=T)
+Study<-sample(1:3, 40, replace=TRUE)
 data<-data.frame(Study,LD1, LD2, LD3)
 
 ###Use with defaults (will return a black and white graph)
@@ -56,7 +61,7 @@ crop.plot2D(data, Func1=2, Func2=3)
 
 ##Use with colour and symbol variables
 
-crop.plot2D(data, xlims = c(-5, 5), ylims =c(-5,5), gcols =c("forestgreen", "blue",
+crop.plot2D(data, xlims = c(-5, 5), ylims =c(-5,5), gcol =c("forestgreen", "blue",
 "skyblue", "orange"), gpch=c(6,7,8,9), col = "darkred", pch = 20 , site ="Example")
   }
 

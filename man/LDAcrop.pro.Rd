@@ -46,15 +46,7 @@ Classification table: showing the count and percentage of samples classifed as o
 \author{Eizabeth Stroud
 %%  ~~who you are~~
 }
-\note{
-%%  ~~further notes~~
-}
 
-%% ~Make other sections like Warning with \section{Warning }{....} ~
-
-\seealso{
-%% ~~objects to See Also as \code{\link{help}}, ~~~
-}
 \examples{
 ##Create random dataset for examples
 

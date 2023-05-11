@@ -8,7 +8,7 @@
 
 }
 \usage{
-dataorg(dataframe, codes, samples)
+crop.dataorg(dataframe, codes, samples)
 }
 
 \arguments{
@@ -33,11 +33,11 @@ Elizabeth Stroud
 species<-c("Chenopodium album" , "Anthemis cotula", "Brassica rapa ssp campestris",
 "Raphanus raphanistrum", "Agrostemma githago" , "Poa annua" )
 category<-c("SFH", "BHH","SFH","BHH","BFH", "SFL" )
-s.1246<-sample(1:3, 6, replace=T)
-s.46178<-sample(1:5, 6, replace=T)
-s.1<-sample(0:8, 6, replace=T)
-s.23<-sample(0:3, 6, replace=T)
-s.987<-sample(3:9, 6, replace=T)
+s.1246<-sample(1:3, 6, replace=TRUE)
+s.46178<-sample(1:5, 6, replace=TRUE)
+s.1<-sample(0:8, 6, replace=TRUE)
+s.23<-sample(0:3, 6, replace=TRUE)
+s.987<-sample(3:9, 6, replace=TRUE)
 dataset<-data.frame(species,category,s.1246,s.46178,s.1,s.23,s.987)
 
 ## Usage
