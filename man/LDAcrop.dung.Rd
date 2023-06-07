@@ -4,7 +4,7 @@
 \title{Linear discriminant analysis based on attributes of weed seeds to classify taphonomic pathway (crop processing vs dung)
 %%  ~~function to do ... ~~
 }
-\description{This function conducts linear discriminant analysis using ethnographic crop processing data of weed seeds attributes. This function is a modification of \code{\link[CropPro]{LDAcrop.pro}}, and uses the entered archaeobotanical data as well as the ethnographic data during the discrimination stage to create a model. The entered archaeobotanical data is then reclassified against that model, allowing the archaeobotanical samples to be classified as 1 of five groups: archaeological, winnowing by-products, coarse sieve by-products, fine sieve by-products, fine sieve products. The function provides the classification, posterior probabilities of such classifications, and the discriminant score of the entered samples.
+\description{This function conducts linear discriminant analysis using ethnographic crop processing data of weed seeds attributes. This function is a modification of \code{\link[CropPro]{LDAcrop.pro}}, and uses the entered archaeobotanical data as well as the ethnographic data during the discrimination stage to create a model. The entered archaeobotanical data is then reclassified against that model, allowing the archaeobotanical samples to be classified as 1 of five groups: archaeological, winnowing by-product, coarse sieve by-product, fine sieve by-product, fine sieve product. The function provides the classification, posterior probabilities of such classifications, and the discriminant score of the entered samples.
 }
 \usage{
 LDAcrop.dung(x)
@@ -20,15 +20,15 @@ LDAcrop.dung(x)
 }
 \value{Results table: (note the * asterisked columns appear in console output and are used for interpretation, and graphing.  Non-asterisked columns provide additional details regarding standardised and unstandardised results
   \item{Samples}{the archaeobotanical sample names form the first column of the entered dataset (x)}
-  \item{Class_std*}{The standardised classification of the samples as either 1,2,3,or 4. 1= winnowing by-products, 2= coarse-sieving by-products, 3= fine-seieving by=products and 4= fine sieving products}
+  \item{Class_std*}{The standardised classification of the samples as either 1, 2, 3, or 4. 1= winnowing by-product, 2= coarse sieve by-product, 3= fine sieve by-product  and 4= fine sieve product}
   \item{Prob.1_std*}{the standardised posterior probability of the sample being classified as group 1}
   \item{Prob.2_std*}{the standardised posterior probability of the sample being classified as group 2}
   \item{Prob.3_std*}{the standardised posterior probability of the sample being classified as group 3}
   \item{Prob.4_std*}{the standardised posterior probability of the sample being classified as group 4}
-  \item{ld1_std}{the standarised linear discriminant score for funcation 1}
-  \item{ld2_std}{the standarised linear discriminant score for funcation 2}
-  \item{ld3_std}{the standarised linear discriminant score for funcation 3}
-  \item{Class}{the unstandarised classification of the samples }
+  \item{ld1_std}{the standardised linear discriminant score for function 1}
+  \item{ld2_std}{the standardised linear discriminant score for function 2}
+  \item{ld3_std}{the standardised linear discriminant score for function 3}
+  \item{Class}{the unstandardised classification of the samples }
   \item{Prob.1}{the unstandardised posterior probability of the sample being classified as group 4}
   \item{Prob.2}{the unstandardised posterior probability of the sample being classified as group 4}
   \item{Prob.3}{the unstandardised posterior probability of the sample being classified as group 4}
@@ -36,11 +36,11 @@ LDAcrop.dung(x)
   \item{LD1*}{the unstandardised linear discriminant score for function 1}
   \item{LD2*}{the unstandardised linear discriminant score for function 2}
   \item{LD3*}{the unstandardised linear discriminant score for function 3}
-Classification table: showing the count and percentage of samples classifed as one of four crop processing groups - as shown in the Class_std column
+Classification table: showing the count and percentage of samples classified as one of four crop processing groups - as shown in the Class_std column
 \item{winnowing by-products}{the count and percentage of samples classified as group 1}
-  \item{Coarse-sieving by-products}{the count and percentage of samples classified as group 2}
-  \item{Fine-sieving by-products}{the count and percentage of samples classified as group 3}
-  \item{Fine-sieving products}{the count and percentage of samples classified as group 4}
+  \item{Coarse sieve by-product}{the count and percentage of samples classified as group 2}
+  \item{Fine sieve by-product}{the count and percentage of samples classified as group 3}
+  \item{Fine sieve product}{the count and percentage of samples classified as group 4}
   }
 \references{
 Charles, M., 1998. Fodder from dung: the recognition and interpretation of dung-derived plant material from archaeological sites, \emph{Environmental Archaeology}, 1:1, 111-122

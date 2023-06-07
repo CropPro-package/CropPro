@@ -15,8 +15,8 @@ label=NULL, cex.lab =0.65, pos.lab=3)
   \item{gcol}{The colour of the crop processing stages' symbols}
   \item{col}{The colour of the archaeobotanical samples symbols}
   \item{site}{The name for the archaeobotanical samples - to appear in the legend}
-  \item{LD}{Whether ploting the first three discriminant functions or the 4th has been substituted for the 3rd function (response is LD=4)}
-  \item{label}{the name of the samples to be labeled on the graph}
+  \item{LD}{Whether plotting the first three discriminant functions or the 4th has been substituted for the 3rd function (response is LD=4)}
+  \item{label}{the name of the samples to be labelled on the graph}
   \item{cex.lab}{the size of the label following text3d}
    \item{pos.lab}{the position of the label following text3d}
   }

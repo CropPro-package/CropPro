@@ -3,10 +3,10 @@
 
 \title{Triplot of the different proportions of weeds, grains, and rachis compared to the ethnographic data
 }
-\description{Trianglar diagram showing the percentages of weeds to grains to rachis of the entered data. The funcation create two side by side plots, with the first showing the ethnographic data :\code{\link{crop.tri.data}} and the second the entered archaeobotanical data.
+\description{Triangular diagram showing the percentages of weeds to grains to rachis of the entered data. The funcation create two side by side plots, with the first showing the ethnographic data: \code{\link{crop.tri.data}} and the second the entered archaeobotanical data.
 }
 \usage{
-crop.triplot(grain,rachis,weeds,pch=5, col="black", bg="black", sample=NULL,
+crop.triplot(grain, rachis, weeds, pch=5, col="black", bg="black", sample=NULL,
 samplelabel="Sample",legendlabel="Samples",cpch=NULL, cbg=NULL, ccol=NULL)
 
 }
@@ -17,12 +17,12 @@ samplelabel="Sample",legendlabel="Samples",cpch=NULL, cbg=NULL, ccol=NULL)
   \item{weeds}{the column containing the amount of weed seeds in each sample}
   \item{pch}{the symbol for the archaeobotanical samples, default is 5}
   \item{col}{the colour for the archaeobotanical samples, default is black}
-  \item{bg}{the colour the the background of the symbol, default is black}
-  \item{sample}{row number of the sample/s to be labeled}
+  \item{bg}{the colour the background of the symbol, default is black}
+  \item{sample}{row number of the sample/s to be labelled}
   \item{samplelabel}{label of the sample/s entered in the sample argument to be shown on graph}
-  \item{legendlabel}{the name of the archaebotanical assemablage to appear in the legend}
+  \item{legendlabel}{the name of the archaeobotanical assemblage to appear in the legend}
   \item{cpch}{the symbols of the model data as a list}
-  \item{cbg}{the blackground colours of the symbols of the model data}
+  \item{cbg}{the background colours of the symbols of the model data}
   \item{ccol}{the colours of the symbols of the model data}
 }
 

@@ -1,22 +1,22 @@
 \name{crop.dung_plot2D}
 \alias{crop.dung_plot2D}
 %- Also NEED an '\alias' for EACH other topic documented here.
-\title{A two dimentional plot (xy scatterplot) of linear discriminant scores from \code{\link[CropPro]{LDAcrop.dung}} in comparsion to the ethnographic model's scores
+\title{A two dimensional plot (xy scatterplot) of linear discriminant scores from \code{\link[CropPro]{LDAcrop.dung}} in comparison to the ethnographic model's scores
 }
 \description{This function plots the  linear discriminant scores from \code{\link[CropPro]{LDAcrop.dung}} as a 2D graph.
 }
 \usage{
-crop.dung_plot2D(data,Func1=1, Func2=2, ylims=NULL,xlims=NULL,gcols=NULL,
-gpchs=NULL, col ='black', pch=15, site="Archaeological",label=NULL, pos=c(0,-0.3))
+crop.dung_plot2D(data,Func1=1, Func2=2, ylims=NULL, xlims=NULL, gcols=NULL,
+gpchs=NULL, col ='black', pch=15, site="Archaeological", label=NULL, pos=c(0,-0.3))
 
 }
 %- maybe also 'usage' for other objects documented here.
 \arguments{
   \item{data}{The data frame containing the results of the \code{\link[CropPro]{LDAcrop.dung}} function
 }
-  \item{Func1}{The linear discriminant function to be ploted on the x axis
+  \item{Func1}{The linear discriminant function to be plotted on the x axis
 }
-  \item{Func2}{The linear discriminant function to be ploted  on the y axis
+  \item{Func2}{The linear discriminant function to be plotted  on the y axis
 }
   \item{ylims}{The limits of the y axis expressed as c(min, max)
 }
@@ -32,12 +32,12 @@ gpchs=NULL, col ='black', pch=15, site="Archaeological",label=NULL, pos=c(0,-0.3
 }
   \item{site}{The name of the archaeobotanical samples to appear in the legend
 }
-\item{label}{The name of the sample(s) to be labeled on the graph
+\item{label}{The name of the sample(s) to be labelled on the graph
 }
 \item{pos}{The position of the label (format c(x,y))
 }
 }
-\details{The data frame entered as argument x can be the output of \code{\link[CropPro]{LDAcrop.dung}} or from manual transformation. However the data frame must have column labeled LD1, LD2, LD3 containing the linear discrimanant scores
+\details{The data frame entered as argument x can be the output of \code{\link[CropPro]{LDAcrop.dung}} or from manual transformation. However the data frame must have column labelled LD1, LD2, LD3 containing the linear discriminant scores
 }
 
 \references{ PAPER reference

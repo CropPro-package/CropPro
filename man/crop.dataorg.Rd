@@ -1,10 +1,8 @@
 \name{crop.dataorg}
 \alias{crop.dataorg}
-%- Also NEED an '\alias' for EACH other topic documented here.
 \title{Function to transform raw archaeobotanical data into the form required for \code{\link[CropPro]{LDAcrop.pro}} and \code{\link[CropPro]{LDAcrop.dung}}.
-%%  ~~function to do ... ~~
 }
-\description{The function transforms raw archaeobotanical data, converting the data to percentages and calculating the squareroot of the weed seeds percentage within the sample.
+\description{The function transforms raw archaeobotanical data calculating the square root of the weed seeds percentage within each entered sample.
 
 }
 \usage{
@@ -13,13 +11,13 @@ crop.dataorg(dataframe, codes, samples)
 
 \arguments{
   \item{dataframe}{The dataframe with the archaeobotanical samples}
- \item{codes}{The column containing the grouping variables of the different species (BHH, BFH etc )}
+ \item{codes}{The column containing the grouping variables of the different species (BHH, BFH etc)}
 \item{samples}{The column in which the samples data starts}}
-\details{The funcation conducts a square-root transformation of the weed seeds percentages as per Jones 1984.
+\details{The function conducts a square-root transformation of the weed seeds percentages as per Jones (1984).
 }
 
 \references{
-Jones, G. 1984. Interpretation of archaeological plant remains: ethnographic models from Greece. In W. van Zeist & W.A. Casparie, Eds \emph{Plants and Ancient Man: Studies in Palaeoethnobotany}. Rotterdam: Balkema, pp 43-61
+Jones, G. 1984. Interpretation of archaeological plant remains: ethnographic models from Greece. In (eds) W. van Zeist & W.A. Casparie, \emph{Plants and Ancient Man: Studies in Palaeoethnobotany}. Rotterdam: Balkema, pp 43-61
 
 Jones, G., 1987. A statistical approach to the archaeological identification of crop processing. \emph{Journal of Archaeological Science}, 14(3), pp.311-323.
 }
