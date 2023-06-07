@@ -3,7 +3,7 @@
 
 # CropPro
 
-A parkage for data organisation, classification and visualisation of
+A package for data organisation, classification and visualisation of
 archaeobotanical data to understand crop processing stage
 
 <!-- badges: start -->
@@ -27,8 +27,8 @@ on the Greece Island of Amorgos . The models were developed by Jones
 
 When publishing results obtained from the use of the CropPro package
 please cite the package and its version, as well as the ethnographic
-data. A best practice example paragraph is provided in Stroud et
-al. (2023).
+data. A best practice example paragraph is provided in Stroud *et al*.
+(2023).
 
 **Package citation**: Stroud, E., (2023) CropPro: Data organisation,
 classification and visualistion of archaeobotanical data to understand
@@ -167,7 +167,7 @@ crop.plot2D(results)
 crop.plot3D(results)
 ```
 
-![](3dAnimatedScatterplot.gif)
+![](man/figures/3dAnimatedScatterplot.gif)
 
 ## Dung vs crop processing example
 
@@ -209,4 +209,4 @@ crop.dung_plot2D(dung_results)
 crop.dung_plot3D(dung_results)
 ```
 
-![](3dAnimatedScatterplot2.gif)
+![](man/figures/3dAnimatedScatterplot2.gif)
