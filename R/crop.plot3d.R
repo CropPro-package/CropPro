@@ -4,7 +4,7 @@
 # note not sure how to do the colour - do have this as a default colour that can be changed.
 
 crop.plot3D<-function(x, gcol=NULL, col="black", site="Site", label=NULL, cex.lab =0.65, pos.lab=3){
-
+  PROC<-LD1<-LD2<-LD3<-NULL
   data.model<-data.frame(data.model)
   discrim_cv <- lda(PROC ~ BHH+BFH+SHH+SHL+SFH+SFL,data.model, CV = TRUE)
   model_lda <- lda(PROC ~ BHH+BFH+SHH+SHL+SFH+SFL,data.model)

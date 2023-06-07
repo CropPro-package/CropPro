@@ -1,6 +1,8 @@
 #triplot
+
 crop.triplot<-function(grain,rachis,weeds,pch=5, col="black", bg="black", sample=NULL, samplelabel="Sample",legendlabel="Samples",cpch=NULL, cbg=NULL, ccol=NULL){
-  data_tri<-crop.tri.data
+
+data_tri<-crop.tri.data
   old.par<-par(no.readonly = TRUE)
   par(mar=c(3,2,1,3),
       mfrow=c(1,2))
@@ -77,7 +79,7 @@ crop.triplot<-function(grain,rachis,weeds,pch=5, col="black", bg="black", sample
   points(product$rachis,product$grain, pch=product$pch,col=product$colour,bg=product$bg, cex=1.2)
 
   legend.table<- data_tri[!duplicated(data_tri$Group),]
-  legend.table$Group[legend.table$Group=="coarse-sieve by-products"]<-"coarse sieve by-product"
+  legend.table$Group[legend.table$Group=="coarse-sieve by-products"]<-"coarse sieve by-product "
   legend.table$Group[legend.table$Group=="winnowing by-products"]<-"winnowing by-product"
   legend.table$Group[legend.table$Group=="fine-sieve by-products"]<-"fine sieve by-product"
   legend.table$Group[legend.table$Group=="cleaned products"]<-"fine sieve product"

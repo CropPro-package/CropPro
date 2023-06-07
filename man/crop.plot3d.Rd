@@ -13,7 +13,7 @@ crop.plot3D(x,  gcol=NULL, col= "black",site ="Site",label=NULL, cex.lab =0.65, 
 \item{col}{Symbol colour of archaeobotanical data}
 \item{gcol}{Symbolcolours of the ethnographical crop processing groups written as a list eg. c("red", "green"...) etc}
 \item{site}{The name that the archaeobotanical data will be labelled as in the legend}
-\item{label}{the name of the samples to be labeled on the graph}
+\item{label}{the name of the samples to be labelled on the graph}
 \item{cex.lab}{the size of the label following text3d}
 \item{pos.lab}{the position of the label following text3d}
 }

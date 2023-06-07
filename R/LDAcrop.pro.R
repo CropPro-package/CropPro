@@ -1,4 +1,5 @@
 LDAcrop.pro<-function(x){
+  PROC<-LD1<-LD2<-LD3<-NULL
   data.model<-data.frame(data.model)
   discrim_cv50 <- lda(PROC ~ BHH+BFH+SHH+SHL+SFH+SFL,data.model, CV = TRUE, prior=c(0.25,0.25,0.25,0.25))
   discrim_cv <- lda(PROC ~ BHH+BFH+SHH+SHL+SFH+SFL,data.model, CV = TRUE)

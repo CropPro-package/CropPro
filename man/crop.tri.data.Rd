@@ -1,9 +1,9 @@
 \name{crop.tri.data}
 \alias{crop.tri.data}
 \docType{data}
-\title{Ethnographic data on the proportions of grain to rachis to weed seeds in the differing crop procesing stages of free-threshing cereals.
+\title{Ethnographic data on the proportions of grain to rachis to weed seeds in the differing crop processing stages of free-threshing cereals.
 }
-\description{ Ethnographic data collected in Greece, on the proprotions of free-threshing cereal grain, rachis and weed seeds in four stages during crop processing: winnowing by-products, coarse-seiving by-products, fine-seiving by-products and fine seiving product.
+\description{ Ethnographic data collected in Greece, on the proportions of free-threshing cereal grain, rachis and weed seeds in four stages during crop processing: winnowing by-products, coarse sieve by-product, fine sieve by-products and fine sieve product.
 }
 
 \format{ A dataset containing 99 observations on 5 variables (NEED TO FIX THIS FILE TO JUST HAVE FIVE)

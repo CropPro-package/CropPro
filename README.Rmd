@@ -1,0 +1,117 @@
+---
+output: github_document
+---
+
+<!-- README.md is generated from README.Rmd. Please edit that file -->
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>",
+  fig.path = "man/figures/README-",
+  out.width = "100%"
+)
+```
+
+# CropPro
+
+A parkage for data organisation, classification and visualisation of archaeobotanical data to understand crop processing stage
+
+<!-- badges: start -->
+
+<!-- badges: end -->
+
+This repository stores the CropPro package. CropPro contains functions which can be used to classify archaeobotanical data against a linear discriminant model derived from ethnographic data on the by-products of crop processing stages. The package contains two linear discriminant analysis (LDA) functions which allows the archaeobotanical samples to be classified as one of four crop processing stages, or one of five classes (four crop processing stages and the archaeological group). This package also contains a function for the data transformation required before LDA can be conducted, as well as four graphing functions.
+
+## Referencing
+
+The CropPro package draws on data from ethnographic research conducted on the Greece Island of Amorgos . The models were developed by Jones (1984, 1987,1990) and Charles (1997).
+
+When publishing results obtained from the use of the CropPro package please cite the package and its version, as well as the ethnographic data. A best practice example paragraph is provided in Stroud et al. (2023).
+
+**Package citation**: Stroud, E., (2023) CropPro: Data organisation, classification and visualistion of archaeobotanical data to understand crop processing stage. R package version 0.1.0, \<github\>
+
+**Data sources \<**add**\>**
+
+**Crop processing LDA model:**
+
+Jones, G., (1984) *Interpretation of archaeological plant remains: Ethnographic models from Greece.* In (eds) W. van Zeist & W.A. Casparie, Plants and Ancient Man: Studies in Palaeoethnobotany. Rotterdam: Balkema, pp 43-61
+
+Jones, G., (1987). A statistical approach to the archaeological identification of crop processing. *Journal of Archaeological Science*, 14(3), pp.311-323.
+
+**Triplot model:**
+
+Jones, G. (1990). The application of present-day cereal processing studies to charred archaeobotanical remains. *Circaea* 6(2):91-96
+
+**Dung LDA model:**
+
+Charles, M., (1998). Fodder from dung: the recognition and interpretation of dung-derived plant material from archaeological sites, *Environmental Archaeology*, 1:1, 111-122
+
+
+
+## Installation
+
+You can install the development version of CropPro from [GitHub](https://github.com/) with:
+
+``` r
+# install.packages("devtools")
+devtools::install_github("elizabethastroud/Cropprocessing")
+```
+
+## Crop processing example
+
+This is a basic example which shows you how to use the package to understand crop processing stage represented within an archaeobotanical assemblage :
+
+```{r example}
+library(CropPro)
+## basic example code
+# Sample data
+species<-c("Chenopodium album" , "Anthemis cotula", "Brassica rapa ssp campestris",
+"Raphanus raphanistrum", "Agrostemma githago" , "Poa annua" )
+category<-c("SFH", "BHH","SFH","BHH","BFH", "SFL" )
+s.1246<-c(2,2,3,7,1, 6)
+s.46178<-c(1,1,0,0,2,5)
+s.1<-c(0,2,2,8,1,8)
+s.23<-c(0,3,2,3,0,0)
+s.987<-c(3,9,6,8,0,1 )
+dataset<-data.frame(species,category,s.1246,s.46178,s.1,s.23,s.987)
+dataset
+```
+
+The sample data, showing species, classification and 5 different samples : s.1246, s.46178, s.1, s.23, s.987, needs to be transformed and transposed for the LDA. The function crop.dataorg can do that.
+
+```{r}
+data<-crop.dataorg(dataset, codes=2, samples=3)
+data
+```
+
+The organised data can then be analysed using LDAcrop.pro which will classify the data against the ethnographic model.
+
+```{r}
+results<-LDAcrop.pro(data)
+```
+
+The results from LDAcrop.pro can be plotted as either a static 2D or interactive 3D graph.
+
+```{r}
+crop.plot2D(results)
+```
+
+```{r}
+crop.plot3D(results)
+
+```
+
+![](3dAnimatedScatterplot.gif)
+
+## Dung vs crop processing example
+
+There are alternative functions within the package which allow for classification of the entered data against a model constructed from the ethnographic data **and** the entered data. This provides the LDA an alternative group of "archaeological" when classifying the entered data. The workflow is similar to above, except with the use of the "dung" suite of functions: LDAcrop.dung, crop.dung_plot2D, crop.dung_plot3D.
+
+```{r}
+dung_results<-LDAcrop.dung(data)
+crop.dung_plot2D(dung_results)
+crop.dung_plot3D(dung_results)
+```
+
+![](3dAnimatedScatterplot2.gif)

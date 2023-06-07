@@ -1,7 +1,7 @@
 \name{crop.plot2D}
 \alias{crop.plot2D}
-%- Also NEED an '\alias' for EACH other topic documented here.
-\title{A two dimentional plot (xy scatterplot) of linear discriminant scores from \code{\link[CropPro]{LDAcrop.pro}}
+
+\title{A two dimensional plot (xy scatterplot) of linear discriminant scores from \code{\link[CropPro]{LDAcrop.pro}}
 }
 \description{This function plots the linear discriminant scores from \code{\link[CropPro]{LDAcrop.pro}} as a 2D graph.
 
@@ -12,7 +12,7 @@ site="Site", Func1=1, Func2=2, label=NULL, pos=c(0,-0.3), lab.col= "black", lab.
 }
 
 \arguments{
-  \item{x}{dataframe containing columns with the LD1, LD2 and LD3 scores - this can be the output of \code{\link[CropPro]{LDAcrop.pro}, see details for futher information}}
+  \item{x}{dataframe containing columns with the LD1, LD2 and LD3 scores - this can be the output of \code{\link[CropPro]{LDAcrop.pro}, see details for further information}}
   \item{ylims}{The limits of the y axis (expressed as c(min, max))}
   \item{xlims}{The limits of the x axis (expressed as c(min, max))}
   \item{gcol}{Symbol colours of the ethnographical crop processing groups written as c("red", "green"...) etc. The default produces a black and white plot}
@@ -20,9 +20,9 @@ site="Site", Func1=1, Func2=2, label=NULL, pos=c(0,-0.3), lab.col= "black", lab.
   \item{col}{Symbol colour for archaeobotanical data}
   \item{pch}{Symbol of the archaeobotanical data}
   \item{site}{The name the archaeobotanical data will be labelled as in the legend}
-  \item{Func1}{The linear discriminant function to be ploted on the x axis- the default is 1}
-  \item{Func2}{The linear discriminant function to be ploted on the y axis- the default is 2}
-  \item{label}{The name of the sample(s) to be labeled on the graph}
+  \item{Func1}{The linear discriminant function to be plotted on the x axis- the default is 1}
+  \item{Func2}{The linear discriminant function to be plotted on the y axis- the default is 2}
+  \item{label}{The name of the sample(s) to be labelled on the graph}
   \item{pos}{The position of the label (format c(x,y))
 }
 \item{lab.col}{need to fill
@@ -32,7 +32,7 @@ site="Site", Func1=1, Func2=2, label=NULL, pos=c(0,-0.3), lab.col= "black", lab.
 
 }
 \details{
-The data frame entered as argument x can be the output of \code{\link[CropPro]{LDAcrop.pro}} or from manual normalizing. However the data frame must have column labeled LD1, LD2, LD3 containing the linear discrimanant scores for funcation 1, 2 and 3
+The data frame entered as argument x can be the output of \code{\link[CropPro]{LDAcrop.pro}} or from manual normalizing. However the data frame must have column labelled LD1, LD2, LD3 containing the linear discriminant scores for function 1, 2 and 3
 }
 
 \references{PAPER reference

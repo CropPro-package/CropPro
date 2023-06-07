@@ -1,6 +1,6 @@
 crop.plot2D<-function(x,ylims=NULL,xlims=NULL,gcol=NULL,gpch=NULL, col ='black', pch=15, site="Site", Func1=1, Func2=2, label=NULL,pos=c(0,-0.3), lab.col="black", lab.cex=0.8){
+  PROC<-LD1<-LD2<-LD3<-NULL
   data.model<-data.frame(data.model)
-
   discrim_cv <- lda(PROC ~ BHH+BFH+SHH+SHL+SFH+SFL,data.model,CV = TRUE)
   model_lda <- lda(PROC ~ BHH+BFH+SHH+SHL+SFH+SFL, data.model)
   predictionmodel <- predict(model_lda,data.model)
