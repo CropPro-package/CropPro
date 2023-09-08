@@ -1,18 +1,18 @@
-\name{crop.dung_plot2D}
-\alias{crop.dung_plot2D}
+\name{crop.plus_plot2D}
+\alias{crop.plus_plot2D}
 %- Also NEED an '\alias' for EACH other topic documented here.
-\title{A two dimensional plot (xy scatterplot) of linear discriminant scores from \code{\link[CropPro]{LDAcrop.dung}} in comparison to the ethnographic model's scores
+\title{A two dimensional plot (xy scatterplot) of linear discriminant scores from \code{\link[CropPro]{LDAcrop.plus}} in comparison to the ethnographic model's scores
 }
-\description{This function plots the  linear discriminant scores from \code{\link[CropPro]{LDAcrop.dung}} as a 2D graph.
+\description{This function plots the  linear discriminant scores from \code{\link[CropPro]{LDAcrop.plus}} as a 2D graph.
 }
 \usage{
-crop.dung_plot2D(data,Func1=1, Func2=2, ylims=NULL, xlims=NULL, gcols=NULL,
+crop.plus_plot2D(data,Func1=1, Func2=2, ylims=NULL, xlims=NULL, gcols=NULL,
 gpchs=NULL, col ='black', pch=15, site="Archaeological", label=NULL, pos=c(0,-0.3))
 
 }
 %- maybe also 'usage' for other objects documented here.
 \arguments{
-  \item{data}{The data frame containing the results of the \code{\link[CropPro]{LDAcrop.dung}} function
+  \item{data}{The data frame containing the results of the \code{\link[CropPro]{LDAcrop.plus}} function
 }
   \item{Func1}{The linear discriminant function to be plotted on the x axis
 }
@@ -37,7 +37,7 @@ gpchs=NULL, col ='black', pch=15, site="Archaeological", label=NULL, pos=c(0,-0.
 \item{pos}{The position of the label (format c(x,y))
 }
 }
-\details{The data frame entered as argument x can be the output of \code{\link[CropPro]{LDAcrop.dung}} or from manual transformation. However the data frame must have column labelled LD1, LD2, LD3 containing the linear discriminant scores
+\details{The data frame entered as argument x can be the output of \code{\link[CropPro]{LDAcrop.plus}} or from manual transformation. However the data frame must have column labelled LD1, LD2, LD3 containing the linear discriminant scores
 }
 
 \references{ PAPER reference
@@ -47,7 +47,7 @@ gpchs=NULL, col ='black', pch=15, site="Archaeological", label=NULL, pos=c(0,-0.
 %%  ~~who you are~~
 }
 
-\seealso{\code{\link{LDAcrop.dung}}
+\seealso{\code{\link{LDAcrop.plus}}
 %% ~~objects to See Also as \code{\link{help}}, ~~~
 }
 \examples{
@@ -61,15 +61,15 @@ SFH<-runif(40, min=1, max=22)
 SFL<-runif(40, min=1, max=8)
 Sample<-sample(1:40, 40, replace=FALSE)
 data<-data.frame(Sample,BHH,BFH,SHH,SHL,SFH,SFL)
-results<-LDAcrop.dung(data)
+results<-LDAcrop.plus(data)
 
 ## Usage
 
-crop.dung_plot2D(results)
+crop.plus_plot2D(results)
 
 ##Plot different LD function
 
-crop.dung_plot2D(results, Func1=2, Func2=3)
+crop.plus_plot2D(results, Func1=2, Func2=3)
 
 }
 

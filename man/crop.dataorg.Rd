@@ -1,6 +1,6 @@
 \name{crop.dataorg}
 \alias{crop.dataorg}
-\title{Function to transform raw archaeobotanical data into the form required for \code{\link[CropPro]{LDAcrop.pro}} and \code{\link[CropPro]{LDAcrop.dung}}.
+\title{Function to transform raw archaeobotanical data into the form required for \code{\link[CropPro]{LDAcrop.pro}} and \code{\link[CropPro]{LDAcrop.plus}}.
 }
 \description{The function transforms raw archaeobotanical data calculating the square root of the weed seeds percentage within each entered sample.
 

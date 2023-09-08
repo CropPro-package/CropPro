@@ -1,17 +1,17 @@
-\name{crop.dung_plot3D}
-\alias{crop.dung_plot3D}
+\name{crop.plus_plot3D}
+\alias{crop.plus_plot3D}
 %- Also NEED an '\alias' for EACH other topic documented here.
-\title{A three dimensional graph of the results of \code{\link[CropPro]{LDAcrop.dung}}
+\title{A three dimensional graph of the results of \code{\link[CropPro]{LDAcrop.plus}}
 %%  ~~function to do ... ~~
 }
-\description{crop.dung_plot3D plots the linear discriminant scores obtained from \code{\link[CropPro]{LDAcrop.dung}} as a three dimensional graph
+\description{crop.plus_plot3D plots the linear discriminant scores obtained from \code{\link[CropPro]{LDAcrop.plus}} as a three dimensional graph
 }
-\usage{crop.dung_plot3D(data, gcol=NULL, col="black", site="Archaeological", LD=3,
+\usage{crop.plus_plot3D(data, gcol=NULL, col="black", site="Archaeological", LD=3,
 label=NULL, cex.lab =0.65, pos.lab=3)
 }
 %- maybe also 'usage' for other objects documented here.
 \arguments{
-  \item{data}{The output of \code{\link[CropPro]{LDAcrop.dung}}}
+  \item{data}{The output of \code{\link[CropPro]{LDAcrop.plus}}}
   \item{gcol}{The colour of the crop processing stages' symbols}
   \item{col}{The colour of the archaeobotanical samples symbols}
   \item{site}{The name for the archaeobotanical samples - to appear in the legend}
@@ -28,7 +28,7 @@ label=NULL, cex.lab =0.65, pos.lab=3)
 %%  ~~who you are~~
 }
 
-\seealso{\link[CropPro]{LDAcrop.dung} \link[CropPro]{crop.plot2D}}
+\seealso{\link[CropPro]{LDAcrop.plus} \link[CropPro]{crop.plot2D}}
 
 \examples{
 ##Random data
@@ -42,12 +42,12 @@ SFL<-runif(40, min=1, max=8)
 Sample<-sample(1:40, 40, replace=FALSE)
 
 data<-data.frame(Sample,BHH,BFH,SHH,SHL,SFH,SFL)
-results<-LDAcrop.dung(data)
+results<-LDAcrop.plus(data)
 
 ## Usage
 
-crop.dung_plot3D(results)
-crop.dung_plot3D(results, LD=4)
+crop.plus_plot3D(results)
+crop.plus_plot3D(results, LD=4)
 }
 % Add one or more standard keywords, see file 'KEYWORDS' in the
 % R documentation directory (show via RShowDoc("KEYWORDS")):

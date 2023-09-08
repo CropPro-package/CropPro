@@ -11,7 +11,7 @@
 \format{
   A data frame with 216 observations on the following 8 variables.
   \describe{
-    \item{\code{PROC}}{The crop proccessing stage written as a number and used as the grouping factor in \code{\link[CropPro]{LDAcrop.pro}} and \code{\link[CropPro]{LDAcrop.dung}}}. 1= Winnowing by-product, 2= Coarse sieve by-product, 3= Fine sieve by-product, 4 =Fine sieve product
+    \item{\code{PROC}}{The crop proccessing stage written as a number and used as the grouping factor in \code{\link[CropPro]{LDAcrop.pro}} and \code{\link[CropPro]{LDAcrop.plus}}}. 1= Winnowing by-product, 2= Coarse sieve by-product, 3= Fine sieve by-product, 4 =Fine sieve product
     \item{\code{BHH}}{Big, headed and heavy}
     \item{\code{BFH}}{Big, free and heavy}
     \item{\code{SHH}}{Small, headed and heavy}

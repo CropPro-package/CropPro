@@ -1,22 +1,21 @@
-\name{LDAcrop.dung}
-\alias{LDAcrop.dung}
+\name{LDAcrop.plus}
+\alias{LDAcrop.plus}
 %- Also NEED an '\alias' for EACH other topic documented here.
-\title{Linear discriminant analysis based on attributes of weed seeds to classify taphonomic pathway (crop processing vs dung)
-%%  ~~function to do ... ~~
+\title{Linear discriminant analysis based on attributes of weed seeds to classify taphonomic pathway (crop processing vs other routes)
+
 }
 \description{This function conducts linear discriminant analysis using ethnographic crop processing data of weed seeds attributes. This function is a modification of \code{\link[CropPro]{LDAcrop.pro}}, and uses the entered archaeobotanical data as well as the ethnographic data during the discrimination stage to create a model. The entered archaeobotanical data is then reclassified against that model, allowing the archaeobotanical samples to be classified as 1 of five groups: archaeological, winnowing by-product, coarse sieve by-product, fine sieve by-product, fine sieve product. The function provides the classification, posterior probabilities of such classifications, and the discriminant score of the entered samples.
 }
 \usage{
-LDAcrop.dung(x)
+LDAcrop.plus(x)
 }
-%- maybe also 'usage' for other objects documented here.
+
 \arguments{
   \item{x}{The archaeobotanical dataset
-%%     ~~Describe \code{x} here~~
 }
 }
 \details{The archaeobotanical dataset needs to have been transformed and organised with columns labelled and in the order of: BHH,BFH,SHH,SHL,SFH,SFL.The first column of the dataframe should be the sample names. Transformation can be done manually following (insert reference) or through the use of \code{\link[CropPro]{crop.dataorg}} which can transform a raw archaeobotanical dataset.
-%%  ~~ If necessary, more details than the description above ~~
+
 }
 \value{Results table: (note the * asterisked columns appear in console output and are used for interpretation, and graphing.  Non-asterisked columns provide additional details regarding standardised and unstandardised results
   \item{Samples}{the archaeobotanical sample names form the first column of the entered dataset (x)}
@@ -67,7 +66,7 @@ data<-data.frame(Samples,BHH,BFH,SHH,SHL,SFH,SFL)
 
 ## function usage
 
-LDAcrop.dung(data)
+LDAcrop.plus(data)
 
 }
 % Add one or more standard keywords, see file 'KEYWORDS' in the

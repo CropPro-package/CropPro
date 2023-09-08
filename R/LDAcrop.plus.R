@@ -1,4 +1,4 @@
-LDAcrop.dung<-function(x){
+LDAcrop.plus<-function(x){
 data.model<-data.frame(data.model,stringsAsFactors = FALSE)
 data.model$PROC<-as.numeric(data.model$PROC)
 x$PROC<-5

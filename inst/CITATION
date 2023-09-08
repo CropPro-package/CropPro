@@ -2,7 +2,7 @@ citHeader("To cite CropPro in publications use:")
 
 bibentry(
 bibtype = "Manual",
-  title    = "CropPro: Data organisation, classification and visualistion of archaeobotanical data to understand crop processing stage ",
+  title    = "CropPro: Data organisation, classification and visualisation of archaeobotanical data to understand crop processing stage ",
   author   = "Stroud, E",
   year     = "2023",
   note = "R package version 0.1.0",

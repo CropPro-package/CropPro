@@ -1,4 +1,4 @@
-crop.dung_plot2D<-function(data,Func1=1, Func2=2, ylims=NULL,xlims=NULL,gcols=NULL,gpchs=NULL, col ='black', pch=15, site="Archaeological", label=NULL, pos=c(0,-0.3)){
+crop.plus_plot2D<-function(data,Func1=1, Func2=2, ylims=NULL,xlims=NULL,gcols=NULL,gpchs=NULL, col ='black', pch=15, site="Archaeological", label=NULL, pos=c(0,-0.3)){
   PROC<-LD1<-LD2<-LD3<-LD4<-NULL
   data.model<-data.frame(data.model)
   archdata<-data

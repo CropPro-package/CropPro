@@ -79,10 +79,10 @@ data_tri<-crop.tri.data
   points(product$rachis,product$grain, pch=product$pch,col=product$colour,bg=product$bg, cex=1.2)
 
   legend.table<- data_tri[!duplicated(data_tri$Group),]
-  legend.table$Group[legend.table$Group=="coarse-sieve by-products"]<-"coarse sieve by-product "
-  legend.table$Group[legend.table$Group=="winnowing by-products"]<-"winnowing by-product"
-  legend.table$Group[legend.table$Group=="fine-sieve by-products"]<-"fine sieve by-product"
-  legend.table$Group[legend.table$Group=="cleaned products"]<-"fine sieve product"
+  legend.table$Group[legend.table$Group=="coarse-sieve by-products"]<-"Coarse sieve by-product "
+  legend.table$Group[legend.table$Group=="winnowing by-products"]<-"Winnowing by-product"
+  legend.table$Group[legend.table$Group=="fine-sieve by-products"]<-"Fine sieve by-product"
+  legend.table$Group[legend.table$Group=="cleaned products"]<-"Fine sieve product"
 
   legend("bottom", c(paste(legend.table$Group)), col=c((paste(legend.table$colour))), pch=c((as.numeric(as.character(legend.table$pch)))), pt.bg=c((paste(legend.table$bg))), pt.cex=1, cex=0.64,xpd=TRUE, ncol=2, inset=c(-0.03,-0.03))
 

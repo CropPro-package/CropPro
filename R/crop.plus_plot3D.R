@@ -1,7 +1,7 @@
 
 #x = lda1, y = lda2, z= lda3
 # note not sure how to do the colour - do have this as a default colour that can be changed.
-crop.dung_plot3D<-function(data, gcol=NULL, col="black", site="Archaeological", LD=3, label=NULL, cex.lab =0.65, pos.lab=3){
+crop.plus_plot3D<-function(data, gcol=NULL, col="black", site="Archaeological", LD=3, label=NULL, cex.lab =0.65, pos.lab=3){
   PROC<-LD1<-LD2<-LD3<-LD4<-NULL
   data.model<-data.frame(data.model)
   archdata<-data
