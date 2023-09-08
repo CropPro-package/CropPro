@@ -32,7 +32,8 @@ data. A best practice example paragraph is provided in Stroud *et al*.
 
 **Package citation**: Stroud, E., (2023) CropPro: Data organisation,
 classification and visualistion of archaeobotanical data to understand
-crop processing stage. R package version 0.1.0, \<github\>
+crop processing stage. R package version 0.1.0,
+<https://github.com/CropPro-package/CropPro>
 
 **Data sources \<**add**\>**
 
@@ -65,7 +66,7 @@ You can install the development version of CropPro from
 
 ``` r
 # install.packages("devtools")
-devtools::install_github("elizabethastroud/Cropprocessing")
+devtools::install_github("CropPro-package/CropPro")
 ```
 
 ## Crop processing LDA example
