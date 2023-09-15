@@ -84,7 +84,7 @@ crop.plus_plot2D<-function(data,Func1=1, Func2=2, ylims=NULL,xlims=NULL,gcols=NU
       ylim<-ylims
     }else {
       ylim<-c(ymin-0.5,ymax+0.5)}
-    par(mar=c(10,4,4,4))
+    par(mar=c(8,4,4,4))
     plot(ethnodata$LD1, ethnodata$LD3, col=paste(ethnodata$colour), pch=as.numeric(as.character(ethnodata$pch)), ylim=ylim, xlim=xlim, xlab="", ylab="")
     par(new=T)
     plot(sampledata$LD1, sampledata$LD3, col=paste(col), pch=as.numeric(as.character(pch)), ylim=ylim, xlim=xlim, xlab="", ylab="")
@@ -98,7 +98,10 @@ crop.plus_plot2D<-function(data,Func1=1, Func2=2, ylims=NULL,xlims=NULL,gcols=NU
     legend.table<- ethnodata[!duplicated(ethnodata$Actual.Group),]
     legendtab<-tibble(labels=site,col=unique(col), pch=unique(pch))
 
-    legend("bottom", c(paste(legend.table$Actual.Group), site, "Group centroids"), col=c((paste(legend.table$colour)),legendtab$col, "black"), pch=c((as.numeric(as.character(legend.table$pch))),legendtab$pch,19), pt.cex=1, cex=0.64, bg="white",xpd=TRUE, ncol=2, inset = c(-0.4,-0.5))
+    par(new=TRUE)
+    par(mar=c(1,4,1,1))
+    plot(1:1, axes= FALSE,type= "n", xlab="", ylab="")
+    legend("bottom", c(paste(legend.table$Actual.Group), site, "Group centroids"), col=c((paste(legend.table$colour)),legendtab$col, "black"), pch=c((as.numeric(as.character(legend.table$pch))),legendtab$pch,19), pt.cex=1, cex=0.64, bg="white",xpd=TRUE, ncol=2)
   }
     else if(Func1==1 & Func2==4){
       xv<-data$LD1
@@ -158,7 +161,7 @@ crop.plus_plot2D<-function(data,Func1=1, Func2=2, ylims=NULL,xlims=NULL,gcols=NU
       legend.table<- ethnodata[!duplicated(ethnodata$Actual.Group),]
       legendtab<-tibble(labels=site,col=unique(col), pch=unique(pch))
 
-      legend("bottom", c(paste(legend.table$Actual.Group), site, "Group centroids"), col=c((paste(legend.table$colour)),legendtab$col, "black"), pch=c((as.numeric(as.character(legend.table$pch))),legendtab$pch,19), pt.cex=1, cex=0.64, bg="white",xpd=TRUE, ncol=2, inset = c(-0.4,-0.5))
+      legend("bottom", c(paste(legend.table$Actual.Group), site, "Group centroids"), col=c((paste(legend.table$colour)),legendtab$col, "black"), pch=c((as.numeric(as.character(legend.table$pch))),legendtab$pch,19), pt.cex=1, cex=0.64, bg="white",xpd=TRUE, ncol=2)
 
     }
     else if(Func1==2 & Func2==1){
@@ -219,7 +222,10 @@ crop.plus_plot2D<-function(data,Func1=1, Func2=2, ylims=NULL,xlims=NULL,gcols=NU
       legend.table<- ethnodata[!duplicated(ethnodata$Actual.Group),]
       legendtab<-tibble(labels=site,col=unique(col), pch=unique(pch))
 
-      legend("bottom", c(paste(legend.table$Actual.Group), site, "Group centroids"), col=c((paste(legend.table$colour)),legendtab$col, "black"), pch=c((as.numeric(as.character(legend.table$pch))),legendtab$pch,19), pt.cex=1, cex=0.64, bg="white",xpd=TRUE, ncol=2, inset = c(-0.4,-0.5))
+      par(new=TRUE)
+      par(mar=c(1,4,1,1))
+      plot(1:1, axes= FALSE,type= "n", xlab="", ylab="")
+      legend("bottom", c(paste(legend.table$Actual.Group), site, "Group centroids"), col=c((paste(legend.table$colour)),legendtab$col, "black"), pch=c((as.numeric(as.character(legend.table$pch))),legendtab$pch,19), pt.cex=1, cex=0.64, bg="white",xpd=TRUE, ncol=2)
 
     }
     else if(Func1==2 & Func2==3){
@@ -280,7 +286,10 @@ crop.plus_plot2D<-function(data,Func1=1, Func2=2, ylims=NULL,xlims=NULL,gcols=NU
       legend.table<- ethnodata[!duplicated(ethnodata$Actual.Group),]
       legendtab<-tibble(labels=site,col=unique(col), pch=unique(pch))
 
-      legend("bottom", c(paste(legend.table$Actual.Group), site, "Group centroids"), col=c((paste(legend.table$colour)),legendtab$col, "black"), pch=c((as.numeric(as.character(legend.table$pch))),legendtab$pch,19), pt.cex=1, cex=0.64, bg="white",xpd=TRUE, ncol=2, inset = c(-0.4,-0.5))
+      par(new=TRUE)
+      par(mar=c(1,4,1,1))
+      plot(1:1, axes= FALSE,type= "n", xlab="", ylab="")
+      legend("bottom", c(paste(legend.table$Actual.Group), site, "Group centroids"), col=c((paste(legend.table$colour)),legendtab$col, "black"), pch=c((as.numeric(as.character(legend.table$pch))),legendtab$pch,19), pt.cex=1, cex=0.64, bg="white",xpd=TRUE, ncol=2)
 
     }
     else if(Func1==2 & Func2==4){
@@ -341,7 +350,10 @@ crop.plus_plot2D<-function(data,Func1=1, Func2=2, ylims=NULL,xlims=NULL,gcols=NU
       legend.table<- ethnodata[!duplicated(ethnodata$Actual.Group),]
       legendtab<-tibble(labels=site,col=unique(col), pch=unique(pch))
 
-      legend("bottom", c(paste(legend.table$Actual.Group), site, "Group centroids"), col=c((paste(legend.table$colour)),legendtab$col, "black"), pch=c((as.numeric(as.character(legend.table$pch))),legendtab$pch,19), pt.cex=1, cex=0.64, bg="white",xpd=TRUE, ncol=2, inset = c(-0.4,-0.5))
+      par(new=TRUE)
+      par(mar=c(1,4,1,1))
+      plot(1:1, axes= FALSE,type= "n", xlab="", ylab="")
+      legend("bottom", c(paste(legend.table$Actual.Group), site, "Group centroids"), col=c((paste(legend.table$colour)),legendtab$col, "black"), pch=c((as.numeric(as.character(legend.table$pch))),legendtab$pch,19), pt.cex=1, cex=0.64, bg="white",xpd=TRUE, ncol=2)
 
     }
     else if(Func1==3 & Func2==4){
@@ -402,7 +414,10 @@ crop.plus_plot2D<-function(data,Func1=1, Func2=2, ylims=NULL,xlims=NULL,gcols=NU
       legend.table<- ethnodata[!duplicated(ethnodata$Actual.Group),]
       legendtab<-tibble(labels=site,col=unique(col), pch=unique(pch))
 
-      legend("bottom", c(paste(legend.table$Actual.Group), site, "Group centroids"), col=c((paste(legend.table$colour)),legendtab$col, "black"), pch=c((as.numeric(as.character(legend.table$pch))),legendtab$pch,19), pt.cex=1, cex=0.64, bg="white",xpd=TRUE, ncol=2, inset = c(-0.4,-0.5))
+      par(new=TRUE)
+      par(mar=c(1,4,1,1))
+      plot(1:1, axes= FALSE,type= "n", xlab="", ylab="")
+      legend("bottom", c(paste(legend.table$Actual.Group), site, "Group centroids"), col=c((paste(legend.table$colour)),legendtab$col, "black"), pch=c((as.numeric(as.character(legend.table$pch))),legendtab$pch,19), pt.cex=1, cex=0.64, bg="white",xpd=TRUE, ncol=2)
 
     }
     else if(Func1==3 & Func2==2){
@@ -463,7 +478,10 @@ crop.plus_plot2D<-function(data,Func1=1, Func2=2, ylims=NULL,xlims=NULL,gcols=NU
       legend.table<- ethnodata[!duplicated(ethnodata$Actual.Group),]
       legendtab<-tibble(labels=site,col=unique(col), pch=unique(pch))
 
-      legend("bottom", c(paste(legend.table$Actual.Group), site, "Group centroids"), col=c((paste(legend.table$colour)),legendtab$col, "black"), pch=c((as.numeric(as.character(legend.table$pch))),legendtab$pch,19), pt.cex=1, cex=0.64, bg="white",xpd=TRUE, ncol=2, inset = c(-0.4,-0.5))
+      par(new=TRUE)
+      par(mar=c(1,4,1,1))
+      plot(1:1, axes= FALSE,type= "n", xlab="", ylab="")
+      legend("bottom", c(paste(legend.table$Actual.Group), site, "Group centroids"), col=c((paste(legend.table$colour)),legendtab$col, "black"), pch=c((as.numeric(as.character(legend.table$pch))),legendtab$pch,19), pt.cex=1, cex=0.64, bg="white",xpd=TRUE, ncol=2)
 
     }
     else if(Func1==3 & Func2==4){
@@ -524,7 +542,10 @@ crop.plus_plot2D<-function(data,Func1=1, Func2=2, ylims=NULL,xlims=NULL,gcols=NU
       legend.table<- ethnodata[!duplicated(ethnodata$Actual.Group),]
       legendtab<-tibble(labels=site,col=unique(col), pch=unique(pch))
 
-      legend("bottom", c(paste(legend.table$Actual.Group), site, "Group centroids"), col=c((paste(legend.table$colour)),legendtab$col, "black"), pch=c((as.numeric(as.character(legend.table$pch))),legendtab$pch,19), pt.cex=1, cex=0.64, bg="white",xpd=TRUE, ncol=2, inset = c(-0.4,-0.5))
+      par(new=TRUE)
+      par(mar=c(1,4,1,1))
+      plot(1:1, axes= FALSE,type= "n", xlab="", ylab="")
+      legend("bottom", c(paste(legend.table$Actual.Group), site, "Group centroids"), col=c((paste(legend.table$colour)),legendtab$col, "black"), pch=c((as.numeric(as.character(legend.table$pch))),legendtab$pch,19), pt.cex=1, cex=0.64, bg="white",xpd=TRUE, ncol=2)
 
     }
     else if(Func1==4 & Func2==1){
@@ -584,7 +605,10 @@ crop.plus_plot2D<-function(data,Func1=1, Func2=2, ylims=NULL,xlims=NULL,gcols=NU
       legend.table<- ethnodata[!duplicated(ethnodata$Actual.Group),]
       legendtab<-tibble(labels=site,col=unique(col), pch=unique(pch))
 
-      legend("bottom", c(paste(legend.table$Actual.Group), site, "Group centroids"), col=c((paste(legend.table$colour)),legendtab$col, "black"), pch=c((as.numeric(as.character(legend.table$pch))),legendtab$pch,19), pt.cex=1, cex=0.64, bg="white",xpd=TRUE, ncol=2, inset = c(-0.4,-0.5))
+      par(new=TRUE)
+      par(mar=c(1,4,1,1))
+      plot(1:1, axes= FALSE,type= "n", xlab="", ylab="")
+      legend("bottom", c(paste(legend.table$Actual.Group), site, "Group centroids"), col=c((paste(legend.table$colour)),legendtab$col, "black"), pch=c((as.numeric(as.character(legend.table$pch))),legendtab$pch,19), pt.cex=1, cex=0.64, bg="white",xpd=TRUE, ncol=2)
     }
     else if(Func1==4 & Func2==2){
       xv<-data$LD4
@@ -644,7 +668,10 @@ crop.plus_plot2D<-function(data,Func1=1, Func2=2, ylims=NULL,xlims=NULL,gcols=NU
       legend.table<- ethnodata[!duplicated(ethnodata$Actual.Group),]
       legendtab<-tibble(labels=site,col=unique(col), pch=unique(pch))
 
-      legend("bottom", c(paste(legend.table$Actual.Group), site, "Group centroids"), col=c((paste(legend.table$colour)),legendtab$col, "black"), pch=c((as.numeric(as.character(legend.table$pch))),legendtab$pch,19), pt.cex=1, cex=0.64, bg="white",xpd=TRUE, ncol=2, inset = c(-0.4,-0.5))
+      par(new=TRUE)
+      par(mar=c(1,4,1,1))
+      plot(1:1, axes= FALSE,type= "n", xlab="", ylab="")
+      legend("bottom", c(paste(legend.table$Actual.Group), site, "Group centroids"), col=c((paste(legend.table$colour)),legendtab$col, "black"), pch=c((as.numeric(as.character(legend.table$pch))),legendtab$pch,19), pt.cex=1, cex=0.64, bg="white",xpd=TRUE, ncol=2)
 
     }
     else if(Func1==4 & Func2==3){
@@ -705,7 +732,10 @@ crop.plus_plot2D<-function(data,Func1=1, Func2=2, ylims=NULL,xlims=NULL,gcols=NU
       legend.table<- ethnodata[!duplicated(ethnodata$Actual.Group),]
       legendtab<-tibble(labels=site,col=unique(col), pch=unique(pch))
 
-      legend("bottom", c(paste(legend.table$Actual.Group), site, "Group centroids"), col=c((paste(legend.table$colour)),legendtab$col, "black"), pch=c((as.numeric(as.character(legend.table$pch))),legendtab$pch,19), pt.cex=1, cex=0.64, bg="white",xpd=TRUE, ncol=2, inset = c(-0.4,-0.5))
+      par(new=TRUE)
+      par(mar=c(1,4,1,1))
+      plot(1:1, axes= FALSE,type= "n", xlab="", ylab="")
+      legend("bottom", c(paste(legend.table$Actual.Group), site, "Group centroids"), col=c((paste(legend.table$colour)),legendtab$col, "black"), pch=c((as.numeric(as.character(legend.table$pch))),legendtab$pch,19), pt.cex=1, cex=0.64, bg="white",xpd=TRUE, ncol=2)
 
     }
     else {xv<-data$LD1
@@ -764,7 +794,10 @@ crop.plus_plot2D<-function(data,Func1=1, Func2=2, ylims=NULL,xlims=NULL,gcols=NU
     legend.table<- ethnodata[!duplicated(ethnodata$Actual.Group),]
     legendtab<-tibble(labels=site,col=unique(col), pch=unique(pch))
 
-    legend("bottom",  c(paste(legend.table$Actual.Group), site, "Group centroids"), col=c((paste(legend.table$colour)),legendtab$col, "black"), pch=c((as.numeric(as.character(legend.table$pch))),legendtab$pch,19), pt.cex=1, cex=0.64, bg="white",xpd=TRUE, ncol=2, inset = c(-0.4,-0.5))
+    par(new=TRUE)
+    par(mar=c(1,4,1,1))
+    plot(1:1, axes= FALSE,type= "n", xlab="", ylab="")
+    legend("bottom", c(paste(legend.table$Actual.Group), site, "Group centroids"), col=c((paste(legend.table$colour)),legendtab$col, "black"), pch=c((as.numeric(as.character(legend.table$pch))),legendtab$pch,19), pt.cex=1, cex=0.64, bg="white",xpd=TRUE, ncol=2)
 
     }
 

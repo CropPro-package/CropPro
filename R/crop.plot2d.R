@@ -93,7 +93,10 @@ names(x)<-gsub(x=names(x), pattern = "*", replacement="")
    legend.table<- dataset[!duplicated(dataset$Actual.Group),]
    legendtab<-tibble(labels=site,col=unique(col), pch=unique(pch))
 
-   legend("bottom", inset=c(0,-0.5), c(paste(legend.table$Actual.Group), site, "Group centroids"), col=c((paste(legend.table$colour)),legendtab$col, "black"), pch=c((as.numeric(as.character(legend.table$pch))),legendtab$pch,19), pt.cex=1, cex=0.64, bg="white",xpd=TRUE, ncol=2)
+   par(new=TRUE)
+   par(mar=c(1,4,1,1))
+   plot(1:1, axes= FALSE,type= "n", xlab="", ylab="")
+   legend("bottom", c(paste(legend.table$Actual.Group), site, "Group centroids"), col=c((paste(legend.table$colour)),legendtab$col, "black"), pch=c((as.numeric(as.character(legend.table$pch))),legendtab$pch,19), pt.cex=1, cex=0.64, bg="white",xpd=TRUE, ncol=2, )
  }
  else if(Func1==3 & Func2==1){
    xv<-x$LD3
@@ -155,7 +158,10 @@ names(x)<-gsub(x=names(x), pattern = "*", replacement="")
    legend.table<- dataset[!duplicated(dataset$Actual.Group),]
    legendtab<-tibble(labels=site,col=unique(col), pch=unique(pch))
 
-   legend("bottom", inset=c(0,-0.5),c(paste(legend.table$Actual.Group), site, "Group centroids"), col=c((paste(legend.table$colour)),legendtab$col, "black"), pch=c((as.numeric(as.character(legend.table$pch))),legendtab$pch,19), pt.cex=1, cex=0.64, bg="white",xpd=TRUE, ncol=2)
+   par(new=TRUE)
+   par(mar=c(1,4,1,1))
+   plot(1:1, axes= FALSE,type= "n", xlab="", ylab="")
+   legend("bottom", c(paste(legend.table$Actual.Group), site, "Group centroids"), col=c((paste(legend.table$colour)),legendtab$col, "black"), pch=c((as.numeric(as.character(legend.table$pch))),legendtab$pch,19), pt.cex=1, cex=0.64, bg="white",xpd=TRUE, ncol=2, )
  }
  else if(Func1==3 & Func2==2){
    xv<-x$LD3
@@ -217,7 +223,10 @@ names(x)<-gsub(x=names(x), pattern = "*", replacement="")
    legend.table<- dataset[!duplicated(dataset$Actual.Group),]
    legendtab<-tibble(labels=site,col=unique(col), pch=unique(pch))
 
-   legend("bottom", inset=c(0,-0.5), c(paste(legend.table$Actual.Group), site, "Group centroids"), col=c((paste(legend.table$colour)),legendtab$col, "black"), pch=c((as.numeric(as.character(legend.table$pch))),legendtab$pch,19), pt.cex=1, cex=0.64, bg="white",xpd=TRUE, ncol=2)
+   par(new=TRUE)
+   par(mar=c(1,4,1,1))
+   plot(1:1, axes= FALSE,type= "n", xlab="", ylab="")
+   legend("bottom", c(paste(legend.table$Actual.Group), site, "Group centroids"), col=c((paste(legend.table$colour)),legendtab$col, "black"), pch=c((as.numeric(as.character(legend.table$pch))),legendtab$pch,19), pt.cex=1, cex=0.64, bg="white",xpd=TRUE, ncol=2, )
 
  }
  else if (Func1==2 & Func2==3){
@@ -280,7 +289,10 @@ names(x)<-gsub(x=names(x), pattern = "*", replacement="")
    legend.table<- dataset[!duplicated(dataset$Actual.Group),]
    legendtab<-tibble(labels=site,col=unique(col), pch=unique(pch))
 
-   legend("bottom", inset=c(0,-0.5),c(paste(legend.table$Actual.Group), site, "Group centroids"), col=c((paste(legend.table$colour)),legendtab$col, "black"), pch=c((as.numeric(as.character(legend.table$pch))),legendtab$pch,19), pt.cex=1, cex=0.64, bg="white",xpd=TRUE, ncol=2)
+   par(new=TRUE)
+   par(mar=c(1,4,1,1))
+   plot(1:1, axes= FALSE,type= "n", xlab="", ylab="")
+   legend("bottom", c(paste(legend.table$Actual.Group), site, "Group centroids"), col=c((paste(legend.table$colour)),legendtab$col, "black"), pch=c((as.numeric(as.character(legend.table$pch))),legendtab$pch,19), pt.cex=1, cex=0.64, bg="white",xpd=TRUE, ncol=2, )
  }
  else if (Func1==2 & Func2==1){
    xv<-x$LD2
@@ -342,7 +354,10 @@ names(x)<-gsub(x=names(x), pattern = "*", replacement="")
    legend.table<- dataset[!duplicated(dataset$Actual.Group),]
    legendtab<-tibble(labels=site,col=unique(col), pch=unique(pch))
 
-   legend("bottom", inset=c(0,-0.5),c(paste(legend.table$Actual.Group), site, "Group centroids"), col=c((paste(legend.table$colour)),legendtab$col, "black"), pch=c((as.numeric(as.character(legend.table$pch))),legendtab$pch,19), pt.cex=1, cex=0.64, bg="white",xpd=TRUE, ncol=2)
+   par(new=TRUE)
+   par(mar=c(1,4,1,1))
+   plot(1:1, axes= FALSE,type= "n", xlab="", ylab="")
+   legend("bottom", c(paste(legend.table$Actual.Group), site, "Group centroids"), col=c((paste(legend.table$colour)),legendtab$col, "black"), pch=c((as.numeric(as.character(legend.table$pch))),legendtab$pch,19), pt.cex=1, cex=0.64, bg="white",xpd=TRUE, ncol=2, )
  }
  else {
    xv<-x$LD1
@@ -404,7 +419,10 @@ names(x)<-gsub(x=names(x), pattern = "*", replacement="")
    legend.table<- dataset[!duplicated(dataset$Actual.Group),]
    legendtab<-tibble(labels=site,col=unique(col), pch=unique(pch))
 
-   legend("bottom",inset=c(0,-0.5), c(paste(legend.table$Actual.Group), site, "Group centroids"), col=c((paste(legend.table$colour)),legendtab$col, "black"), pch=c((as.numeric(as.character(legend.table$pch))),legendtab$pch,19), pt.cex=1, cex=0.64, bg="white",xpd=TRUE, ncol=2, )
+  par(new=TRUE)
+  par(mar=c(1,4,1,1))
+  plot(1:1, axes= FALSE,type= "n", xlab="", ylab="")
+  legend("bottom", c(paste(legend.table$Actual.Group), site, "Group centroids"), col=c((paste(legend.table$colour)),legendtab$col, "black"), pch=c((as.numeric(as.character(legend.table$pch))),legendtab$pch,19), pt.cex=1, cex=0.64, bg="white",xpd=TRUE, ncol=2, )
  }
 
 }
