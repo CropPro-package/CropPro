@@ -15,7 +15,7 @@ LDAcrop.pro(x)
 \details{The archaeobotanical dataset needs to have been transformed and organised with columns labelled and in the order of: BHH, BFH, SHH, SHL, SFH, SFL. The first column of the dataframe should be the sample names. Transformation can be done manually following (insert reference) or through the use of \code{\link[CropPro]{crop.dataorg}} which can transform a raw archaeobotanical dataset.
 }
 \value{Results table:(note the * asterisked items appear in console output and are used for interpretation, non-asterisked columns provide addition details regarding standardised and unstandardised components
-  \item{Samples}{the archaeobotanical sample names form the first column of the entered dataset (x)}
+  \item{Samples}{the archaeobotanical sample names from the first column of the entered dataset (x)}
   \item{Class_std*}{The standardised classification of the samples as either 1,2,3,or 4. 1= winnowing by-product, 2= coarse sieve by-products, 3= fine sieve by-products and 4= fine sieve product}
   \item{Prob.1_std*}{the standardised posterior probability of the sample being classified as group 1}
   \item{Prob.2_std*}{the standardised posterior probability of the sample being classified as group 2}
@@ -25,9 +25,9 @@ LDAcrop.pro(x)
   \item{ld2_std}{the standardised linear discriminant score for function 2}
   \item{ld3_std}{the standardised linear discriminant score for function 3}
   \item{Class}{the unstandardised classification of the samples }
-  \item{Prob.1}{the unstandardised posterior probability of the sample being classified as group 4}
-  \item{Prob.2}{the unstandardised posterior probability of the sample being classified as group 4}
-  \item{Prob.3}{the unstandardised posterior probability of the sample being classified as group 4}
+  \item{Prob.1}{the unstandardised posterior probability of the sample being classified as group 1}
+  \item{Prob.2}{the unstandardised posterior probability of the sample being classified as group 2}
+  \item{Prob.3}{the unstandardised posterior probability of the sample being classified as group 3}
   \item{Prob.4}{the unstandardised posterior probability of the sample being classified as group 4}
   \item{LD1*}{the unstandardised linear discriminant score for function 1}
   \item{LD2*}{the unstandardised linear discriminant score for function 2}

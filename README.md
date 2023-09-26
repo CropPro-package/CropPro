@@ -32,7 +32,7 @@ data. A best practice example paragraph is provided in Stroud *et al*.
 
 **Package citation**: Stroud, E., (2023) CropPro: Data organisation,
 classification and visualistion of archaeobotanical data to understand
-crop processing stage. R package version 0.1.0,
+crop processing stage. R package version 1.0.0,
 <https://github.com/CropPro-package/CropPro>
 
 **Data sources \<**add**\>**
