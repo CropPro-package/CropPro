@@ -6,8 +6,8 @@
 \description{This function plots the  linear discriminant scores from \code{\link[CropPro]{LDAcrop.plus}} as a 2D graph.
 }
 \usage{
-crop.plus_plot2D(data,Func1=1, Func2=2, ylims=NULL, xlims=NULL, gcols=NULL,
-gpchs=NULL, col ='black', pch=15, site="Archaeological", label=NULL, pos=c(0,-0.3))
+crop.plus_plot2D(data,Func1=1, Func2=2, ylims=NULL, xlims=NULL, gcols=NULL,gbg=NULL,
+gpchs=NULL, col ='black', bg='black', pch=15, site="Archaeological", label=NULL, pos=c(0,-0.3))
 
 }
 %- maybe also 'usage' for other objects documented here.
@@ -24,10 +24,13 @@ gpchs=NULL, col ='black', pch=15, site="Archaeological", label=NULL, pos=c(0,-0.
 }
   \item{gcols}{The colours of the symbols of the modern crop processing groups expressed as for example c("pink", "red", etc)
 }
+\item{gbg}{The colour of the background of the symbols of the ethnographical crop processing groups (expressed  c("red", "green"...) etc. The default produces a black and white plot)}
+
   \item{gpchs}{The symbols of the modern crop processing groups  expressed as for example c(1,2,3,4)
 }
   \item{col}{The colour of the archaeobotanical samples
 }
+ \item{bg}{The background(fill) colours for open plot symbols with a pch = 21:25, see \link[graphics]{points}}
   \item{pch}{The symbol of the archaeobotanical samples
 }
   \item{site}{The name of the archaeobotanical samples to appear in the legend

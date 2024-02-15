@@ -1,4 +1,4 @@
-crop.plot2D<-function(x,ylims=NULL,xlims=NULL,gcol=NULL,gpch=NULL, col ='black', pch=15, site="Site", Func1=1, Func2=2, label=NULL,pos=c(0,-0.3), lab.col="black", lab.cex=0.8){
+crop.plot2D<-function(x,ylims=NULL,xlims=NULL,gcol=NULL, gbg=NULL,gpch=NULL,col ='black', bg='black', pch=15, site="Site", Func1=1, Func2=2, label=NULL,pos=c(0,-0.3), lab.col="black", lab.cex=0.8){
   PROC<-LD1<-LD2<-LD3<-NULL
   data.model<-data.frame(data.model)
   discrim_cv <- lda(PROC ~ BHH+BFH+SHH+SHL+SFH+SFL,data.model,CV = TRUE)
@@ -20,6 +20,14 @@ crop.plot2D<-function(x,ylims=NULL,xlims=NULL,gcol=NULL,gpch=NULL, col ='black',
   if(is.null(gcol)){
     gcolours<-c('black','black','black','black')
     dataset$colour<-gcolours[as.numeric(dataset$PROC)]
+  }
+  if(!is.null(gbg)){
+    gback<-gbg
+    dataset$bg<-gback[as.numeric(dataset$PROC)]
+  }
+  if(is.null(gbg)){
+    gback<-c('black','black','black','black')
+    dataset$bg<-gback[as.numeric(dataset$PROC)]
   }
   mygroups<-c("Winnowing by-product", "Coarse sieve by-product  ", "Fine sieve by-product", "Fine sieve product")
  dataset$Actual.Group<-mygroups[as.numeric(dataset$PROC)]
@@ -85,18 +93,18 @@ names(x)<-gsub(x=names(x), pattern = "*", replacement="")
    par(new=T)
    plot(centroids$centroid1,centroids$centroid3 , col="Black", pch=19, ylim=ylim, xlim=xlim, xlab="", ylab="")
    par(new=T)
-   plot(x$LD1, x$LD3, col=col, pch=pch, ylim=ylim, xlim=xlim, xlab="Function 1", ylab="Function 3")
+   plot(x$LD1, x$LD3, col=col, pch=pch,bg=bg, ylim=ylim, xlim=xlim, xlab="Function 1", ylab="Function 3")
    if(!is.null(label)){
      samples<- x[x$Samples %in% c(label),]
      text(samples$LD1+pos[1],samples$LD3+pos[2],labels=samples$Samples, cex=0.8)
    }
    legend.table<- dataset[!duplicated(dataset$Actual.Group),]
-   legendtab<-tibble(labels=site,col=unique(col), pch=unique(pch))
+   legendtab<-tibble(labels=site,col=unique(col), bg=unique(bg), pch=unique(pch))
 
    par(new=TRUE)
    par(mar=c(1,4,1,1))
    plot(1:1, axes= FALSE,type= "n", xlab="", ylab="")
-   legend("bottom", c(paste(legend.table$Actual.Group), site, "Group centroids"), col=c((paste(legend.table$colour)),legendtab$col, "black"), pch=c((as.numeric(as.character(legend.table$pch))),legendtab$pch,19), pt.cex=1, cex=0.64, bg="white",xpd=TRUE, ncol=2, )
+   legend("bottom", c(paste(legend.table$Actual.Group), site, "Group centroids"), col=c((paste(legend.table$colour)),legendtab$col, "black"), pt.bg=c((paste(legend.table$bg)),legendtab$bg, "black"), pch=c((as.numeric(as.character(legend.table$pch))),legendtab$pch,19), pt.cex=1, cex=0.64,xpd=TRUE, bg="white", ncol=2, )
  }
  else if(Func1==3 & Func2==1){
    xv<-x$LD3
@@ -146,22 +154,22 @@ names(x)<-gsub(x=names(x), pattern = "*", replacement="")
    }else {
      ylim<-c(ymin-0.5,ymax+0.5)}
    par(mar=c(8,4,1,1))
-   plot(dataset$LD3, dataset$LD1, col=paste(dataset$colour), pch=as.numeric(as.character(dataset$pch)), ylim=ylim, xlim=xlim, xlab="", ylab="")
+   plot(dataset$LD3, dataset$LD1, col=paste(dataset$colour),col=paste(dataset$bg), pch=as.numeric(as.character(dataset$pch)), ylim=ylim, xlim=xlim, xlab="", ylab="")
    par(new=T)
    plot(centroids$centroid3,centroids$centroid1 , col="Black", pch=19, ylim=ylim, xlim=xlim, xlab="", ylab="")
    par(new=T)
-   plot(x$LD3, x$LD1, col=col, pch=pch, ylim=ylim, xlim=xlim, xlab="Function 3", ylab="Function 1")
+   plot(x$LD3, x$LD1, col=col, pch=pch, bg=bg, ylim=ylim, xlim=xlim, xlab="Function 3", ylab="Function 1")
    if(!is.null(label)){
      samples<- x[x$Samples %in% c(label),]
      text(samples$LD3+pos[1],samples$LD1+pos[2],labels=samples$Samples, cex=0.8)
    }
    legend.table<- dataset[!duplicated(dataset$Actual.Group),]
-   legendtab<-tibble(labels=site,col=unique(col), pch=unique(pch))
+   legendtab<-tibble(labels=site,col=unique(col), bg=unique(bg),pch=unique(pch))
 
    par(new=TRUE)
    par(mar=c(1,4,1,1))
    plot(1:1, axes= FALSE,type= "n", xlab="", ylab="")
-   legend("bottom", c(paste(legend.table$Actual.Group), site, "Group centroids"), col=c((paste(legend.table$colour)),legendtab$col, "black"), pch=c((as.numeric(as.character(legend.table$pch))),legendtab$pch,19), pt.cex=1, cex=0.64, bg="white",xpd=TRUE, ncol=2, )
+   legend("bottom", c(paste(legend.table$Actual.Group), site, "Group centroids"), col=c((paste(legend.table$colour)),legendtab$col, "black"),pt.bg=c((paste(legend.table$bg)),legendtab$bg, "black"), pch=c((as.numeric(as.character(legend.table$pch))),legendtab$pch,19), pt.cex=1, cex=0.64, bg="white",xpd=TRUE, ncol=2, )
  }
  else if(Func1==3 & Func2==2){
    xv<-x$LD3
@@ -211,22 +219,22 @@ names(x)<-gsub(x=names(x), pattern = "*", replacement="")
    }else {
      ylim<-c(ymin-0.5,ymax+0.5)}
    par(mar=c(8,4,1,1))
-   plot(dataset$LD3, dataset$LD2, col=paste(dataset$colour), pch=as.numeric(as.character(dataset$pch)), ylim=ylim, xlim=xlim, xlab="", ylab="")
+   plot(dataset$LD3, dataset$LD2, col=paste(dataset$colour),bg=paste(dataset$bg), pch=as.numeric(as.character(dataset$pch)), ylim=ylim, xlim=xlim, xlab="", ylab="")
    par(new=T)
    plot(centroids$centroid3,centroids$centroid2 , col="Black", pch=19, ylim=ylim, xlim=xlim, xlab="", ylab="")
    par(new=T)
-   plot(x$LD3, x$LD2, col=col, pch=pch, ylim=ylim, xlim=xlim, xlab="Function 3", ylab="Function 2")
+   plot(x$LD3, x$LD2, col=col, pch=pch, bg=bg,ylim=ylim, xlim=xlim, xlab="Function 3", ylab="Function 2")
    if(!is.null(label)){
      samples<- x[x$Samples %in% c(label),]
      text(samples$LD3+pos[1],samples$LD2+pos[2],labels=samples$Samples, cex=0.8)
    }
    legend.table<- dataset[!duplicated(dataset$Actual.Group),]
-   legendtab<-tibble(labels=site,col=unique(col), pch=unique(pch))
+   legendtab<-tibble(labels=site,col=unique(col),bg=unique(bg), pch=unique(pch))
 
    par(new=TRUE)
    par(mar=c(1,4,1,1))
    plot(1:1, axes= FALSE,type= "n", xlab="", ylab="")
-   legend("bottom", c(paste(legend.table$Actual.Group), site, "Group centroids"), col=c((paste(legend.table$colour)),legendtab$col, "black"), pch=c((as.numeric(as.character(legend.table$pch))),legendtab$pch,19), pt.cex=1, cex=0.64, bg="white",xpd=TRUE, ncol=2, )
+   legend("bottom", c(paste(legend.table$Actual.Group), site, "Group centroids"), col=c((paste(legend.table$colour)),legendtab$col, "black"), pt.bg=c((paste(legend.table$bg)),legendtab$bg, "black"),pch=c((as.numeric(as.character(legend.table$pch))),legendtab$pch,19), pt.cex=1, cex=0.64,bg="white",xpd=TRUE, ncol=2, )
 
  }
  else if (Func1==2 & Func2==3){
@@ -277,22 +285,22 @@ names(x)<-gsub(x=names(x), pattern = "*", replacement="")
    }else {
      ylim<-c(ymin-0.5,ymax+0.5)}
    par(mar=c(8,4,1,1))
-   plot(dataset$LD2, dataset$LD3, col=paste(dataset$colour), pch=as.numeric(as.character(dataset$pch)), ylim=ylim, xlim=xlim, xlab="", ylab="")
+   plot(dataset$LD2, dataset$LD3, col=paste(dataset$colour),bg=paste(dataset$bg),pch=as.numeric(as.character(dataset$pch)), ylim=ylim, xlim=xlim, xlab="", ylab="")
    par(new=T)
    plot(centroids$centroid2,centroids$centroid3 , col="Black", pch=19, ylim=ylim, xlim=xlim, xlab="", ylab="")
    par(new=T)
-   plot(x$LD2, x$LD3, col=col, pch=pch, ylim=ylim, xlim=xlim, xlab="Function 2", ylab="Function 3")
+   plot(x$LD2, x$LD3, col=col,bg=bg, pch=pch, ylim=ylim, xlim=xlim, xlab="Function 2", ylab="Function 3")
    if(!is.null(label)){
      samples<- x[x$Samples %in% c(label),]
      text(samples$LD2+pos[1],samples$LD3+pos[2],labels=samples$Samples, cex=0.8)
    }
    legend.table<- dataset[!duplicated(dataset$Actual.Group),]
-   legendtab<-tibble(labels=site,col=unique(col), pch=unique(pch))
+   legendtab<-tibble(labels=site,col=unique(col), bg=unique(bg),pch=unique(pch))
 
    par(new=TRUE)
    par(mar=c(1,4,1,1))
    plot(1:1, axes= FALSE,type= "n", xlab="", ylab="")
-   legend("bottom", c(paste(legend.table$Actual.Group), site, "Group centroids"), col=c((paste(legend.table$colour)),legendtab$col, "black"), pch=c((as.numeric(as.character(legend.table$pch))),legendtab$pch,19), pt.cex=1, cex=0.64, bg="white",xpd=TRUE, ncol=2, )
+   legend("bottom", c(paste(legend.table$Actual.Group), site, "Group centroids"), col=c((paste(legend.table$colour)),legendtab$col, "black"), pt.bg=c((paste(legend.table$bg)),legendtab$bg, "black"),pch=c((as.numeric(as.character(legend.table$pch))),legendtab$pch,19), pt.cex=1, bg="white",cex=0.64,xpd=TRUE, ncol=2, )
  }
  else if (Func1==2 & Func2==1){
    xv<-x$LD2
@@ -342,22 +350,22 @@ names(x)<-gsub(x=names(x), pattern = "*", replacement="")
    }else {
      ylim<-c(ymin-0.5,ymax+0.5)}
    par(mar=c(8,4,1,1))
-   plot(dataset$LD2, dataset$LD1, col=paste(dataset$colour), pch=as.numeric(as.character(dataset$pch)), ylim=ylim, xlim=xlim, xlab="", ylab="")
+   plot(dataset$LD2, dataset$LD1, col=paste(dataset$colour),bg=paste(dataset$bg), pch=as.numeric(as.character(dataset$pch)), ylim=ylim, xlim=xlim, xlab="", ylab="")
    par(new=T)
    plot(centroids$centroid2,centroids$centroid1 , col="Black", pch=19, ylim=ylim, xlim=xlim, xlab="", ylab="")
    par(new=T)
-   plot(x$LD2, x$LD1, col=col, pch=pch, ylim=ylim, xlim=xlim, xlab="Function 2", ylab="Function 1")
+   plot(x$LD2, x$LD1, col=col,bg=bg,pch=pch, ylim=ylim, xlim=xlim, xlab="Function 2", ylab="Function 1")
    if(!is.null(label)){
      samples<- x[x$Samples %in% c(label),]
      text(samples$LD2+pos[1],samples$LD1+pos[2],labels=samples$Samples, cex=0.8)
    }
    legend.table<- dataset[!duplicated(dataset$Actual.Group),]
-   legendtab<-tibble(labels=site,col=unique(col), pch=unique(pch))
+   legendtab<-tibble(labels=site,col=unique(col),bg=unique(bg),pch=unique(pch))
 
    par(new=TRUE)
    par(mar=c(1,4,1,1))
    plot(1:1, axes= FALSE,type= "n", xlab="", ylab="")
-   legend("bottom", c(paste(legend.table$Actual.Group), site, "Group centroids"), col=c((paste(legend.table$colour)),legendtab$col, "black"), pch=c((as.numeric(as.character(legend.table$pch))),legendtab$pch,19), pt.cex=1, cex=0.64, bg="white",xpd=TRUE, ncol=2, )
+   legend("bottom", c(paste(legend.table$Actual.Group), site, "Group centroids"), col=c((paste(legend.table$colour)),legendtab$col, "black"),pt.bg=c((paste(legend.table$bg)),legendtab$bg, "black"), pch=c((as.numeric(as.character(legend.table$pch))),legendtab$pch,19), pt.cex=1, bg="white",cex=0.64,xpd=TRUE, ncol=2, )
  }
  else {
    xv<-x$LD1
@@ -407,22 +415,22 @@ names(x)<-gsub(x=names(x), pattern = "*", replacement="")
    }else {
      ylim<-c(ymin-0.5,ymax+0.5)}
    par(mar=c(8,4,1,1))
-   plot(dataset$LD1, dataset$LD2, col=paste(dataset$colour), pch=as.numeric(as.character(dataset$pch)), ylim=ylim, xlim=xlim, xlab="", ylab="")
+   plot(dataset$LD1, dataset$LD2, col=paste(dataset$colour), bg=paste(dataset$bg),pch=as.numeric(as.character(dataset$pch)), ylim=ylim, xlim=xlim, xlab="", ylab="")
    par(new=T)
    plot(centroids$centroid1,centroids$centroid2 , col="Black", pch=19, ylim=ylim, xlim=xlim, xlab="", ylab="")
    par(new=T)
-   plot(x$LD1, x$LD2, col=col, pch=pch, ylim=ylim, xlim=xlim, xlab="Function 1", ylab="Function 2")
+   plot(x$LD1, x$LD2, col=col, bg=bg,pch=pch, ylim=ylim, xlim=xlim, xlab="Function 1", ylab="Function 2")
    if(!is.null(label)){
      samples<- x[x$Samples %in% c(label),]
      text(samples$LD1+pos[1],samples$LD2+pos[2],labels=samples$Samples, cex=lab.cex,col=lab.col)
    }
    legend.table<- dataset[!duplicated(dataset$Actual.Group),]
-   legendtab<-tibble(labels=site,col=unique(col), pch=unique(pch))
+   legendtab<-tibble(labels=site,col=unique(col),bg=unique(bg),pch=unique(pch))
 
   par(new=TRUE)
   par(mar=c(1,4,1,1))
   plot(1:1, axes= FALSE,type= "n", xlab="", ylab="")
-  legend("bottom", c(paste(legend.table$Actual.Group), site, "Group centroids"), col=c((paste(legend.table$colour)),legendtab$col, "black"), pch=c((as.numeric(as.character(legend.table$pch))),legendtab$pch,19), pt.cex=1, cex=0.64, bg="white",xpd=TRUE, ncol=2, )
+  legend("bottom", c(paste(legend.table$Actual.Group), site, "Group centroids"), col=c((paste(legend.table$colour)),legendtab$col, "black"), pt.bg=c((paste(legend.table$bg)),legendtab$bg, "black"),pch=c((as.numeric(as.character(legend.table$pch))),legendtab$pch,19), pt.cex=1,bg="white", cex=0.64,xpd=TRUE, ncol=2, )
  }
 
 }

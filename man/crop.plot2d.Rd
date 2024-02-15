@@ -7,8 +7,7 @@
 
 }
 \usage{
-crop.plot2D(x,ylims=NULL,xlims=NULL,gcol=NULL,gpch=NULL, col ='black', pch=15,
-site="Site", Func1=1, Func2=2, label=NULL, pos=c(0,-0.3), lab.col= "black", lab.cex = 0.8)
+crop.plot2D(x,ylims=NULL,xlims=NULL,gcol=NULL, gbg=NULL,gpch=NULL, col ='black', bg="black", pch=15,site="Site", Func1=1, Func2=2, label=NULL, pos=c(0,-0.3), lab.col= "black", lab.cex = 0.8)
 }
 
 \arguments{
@@ -16,8 +15,10 @@ site="Site", Func1=1, Func2=2, label=NULL, pos=c(0,-0.3), lab.col= "black", lab.
   \item{ylims}{The limits of the y axis (expressed as c(min, max))}
   \item{xlims}{The limits of the x axis (expressed as c(min, max))}
   \item{gcol}{Symbol colours of the ethnographical crop processing groups written as c("red", "green"...) etc. The default produces a black and white plot}
+  \item{gbg}{The colour of the background of the symbols of the ethnographical crop processing groups (expressed  c("red", "green"...) etc. The default produces a black and white plot)}
   \item{gpch}{The symbols of the ethnographical crop processing groups (expressed as c(1, 2, 3, 14, 18))}
   \item{col}{Symbol colour for archaeobotanical data}
+  \item{bg}{The background(fill) colours for open plot symbols with a pch = 21:25, see \link[graphics]{points}}
   \item{pch}{Symbol of the archaeobotanical data}
   \item{site}{The name the archaeobotanical data will be labelled as in the legend}
   \item{Func1}{The linear discriminant function to be plotted on the x axis- the default is 1}
