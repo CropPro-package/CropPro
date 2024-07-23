@@ -30,7 +30,7 @@ please cite the package and its version, as well as the ethnographic
 data. A best practice example paragraph is provided in Stroud *et al*.
 (2023).
 
-**Package citation**: Stroud, E., (2023) CropPro: Data organisation,
+**Package citation**: Stroud, E., Jones, G., Charles, M., Bogaard, A. (2023) CropPro: Data organisation,
 classification and visualistion of archaeobotanical data to understand
 crop processing stage. R package version 1.0.0,
 <https://github.com/CropPro-package/CropPro>
