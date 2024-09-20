@@ -60,9 +60,9 @@ interpretation of dung-derived plant material from archaeological sites,
 *Environmental Archaeology*, 1:1, 111-122
 
 **Example paper:**
-Stroud, E., Jones, G., Charles, M. et al. Sieving the weeds from the grains:
+Stroud, E., Jones, G., Charles, M. Bogaard, A. (2024) Sieving the weeds from the grains:
 an R based package for classifying archaeobotanical samples of cereals and
-pulses according to crop processing stages. Veget Hist Archaeobot (2024).
+pulses according to crop processing stages. *Vegetation History and Archaeobotany*.
 https://doi.org/10.1007/s00334-024-01006-7
 
 ## Installation
