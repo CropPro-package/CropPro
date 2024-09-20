@@ -35,7 +35,7 @@ classification and visualistion of archaeobotanical data to understand
 crop processing stage. R package version 1.0.0,
 <https://github.com/CropPro-package/CropPro>
 
-**Data sources \<**add**\>**
+**Data sources:**
 
 **Crop processing LDA model:**
 
