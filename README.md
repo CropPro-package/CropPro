@@ -28,7 +28,7 @@ on the Greek island of Amorgos. The models were developed by Jones
 When publishing results obtained from the use of the CropPro package
 please cite the package and its version, as well as the ethnographic
 data. A best practice example paragraph is provided in Stroud *et al*.
-(2023).
+(2024).
 
 **Package citation**: Stroud, E., Jones, G., Charles, M., Bogaard, A. (2023) CropPro: Data organisation,
 classification and visualistion of archaeobotanical data to understand
@@ -58,6 +58,12 @@ studies to charred archaeobotanical remains. *Circaea* 6(2):91-96
 Charles, M., (1998). Fodder from dung: the recognition and
 interpretation of dung-derived plant material from archaeological sites,
 *Environmental Archaeology*, 1:1, 111-122
+
+**Example paper:**
+Stroud, E., Jones, G., Charles, M. et al. Sieving the weeds from the grains:
+an R based package for classifying archaeobotanical samples of cereals and
+pulses according to crop processing stages. Veget Hist Archaeobot (2024).
+https://doi.org/10.1007/s00334-024-01006-7
 
 ## Installation
 
